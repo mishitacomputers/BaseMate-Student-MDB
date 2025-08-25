@@ -33,15 +33,33 @@
         opacity: 0.9;
         line-height: 1.4em;
     }
-    .note {
-        font-size: 0.9em;
-        color: #ffe;
-        background: rgba(255, 255, 255, 0.15);
-        margin: 30px auto 10px auto;
-        padding: 12px 20px;
-        border-radius: 8px;
-        max-width: 700px;
-        line-height: 1.3em;
+    .features-heading {
+        font-size: 1.5em;
+        font-weight: bold;
+        text-decoration: underline;
+        margin: 40px 0 20px;
+    }
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        max-width: 900px;
+        margin: 0 auto 30px auto;
+        text-align: left;
+    }
+    .feature-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        font-size: 1em;
+        line-height: 1.4em;
+    }
+    .feature-item strong {
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 5px;
+        color: #fff;
     }
     .btn {
         display: inline-block;
@@ -81,13 +99,54 @@
 <header>
     <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
     <h1>Mishita Computers Centre</h1>
-    <p>The ultimate App. for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs, built just for you.</p>
+    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. It is ideal for micro, small, and medium-scale training Centres, built just for you.</p>
     
-    <div class="note">
-        Note:<br/>
-        Your browser may warn that this file could harm your computer. This is a standard warning for executable files downloaded from the internet. Our app is safe and virus-free. If unsure, please contact support or scan it before opening.
+    <div class="features-heading">KEY FEATURES INCLUDE</div>
+    
+    <div class="features">
+        <div class="feature-item">
+            <strong>Secure Login & Email Alerts</strong>
+            Stay informed with real-time login alerts for enhanced system security.
+        </div>
+        <div class="feature-item">
+            <strong>User Account Management</strong>
+            Manage how other system users can access and use the system.
+        </div>
+        <div class="feature-item">
+            <strong>Student Profile Management</strong>
+            Easily register, update, and monitor student details throughout their learning journey.
+        </div>
+        <div class="feature-item">
+            <strong>Performance Tracking</strong>
+            Monitor academic progress, exams, and assessments with detailed performance records.
+        </div>
+        <div class="feature-item">
+            <strong>Payment Tracking & Instant Receipts</strong>
+            Track all student payments and generate printed or emailed receipts instantly.
+        </div>
+        <div class="feature-item">
+            <strong>Invoicing</strong>
+            Send clean, branded invoices via email or print — right from the system.
+        </div>
+        <div class="feature-item">
+            <strong>Mass Email Reminders</strong>
+            Schedule monthly automatic reminders for students with pending balances.
+        </div>
+        <div class="feature-item">
+            <strong>Data Backup & Restore</strong>
+            Auto-backup every 14 days or do it manually — with one-click restoration.
+        </div>
+        <div class="feature-item">
+            <strong>Insightful Visual Reports</strong>
+            Make data-driven decisions using dynamic charts and graphs.
+        </div>
+        <div class="feature-item">
+            <strong>Certificates & IDs</strong>
+            Generate and download student certificates or IDs with a single click.
+        </div>
     </div>
-    
+
+    <p style="font-size:1.1em; margin-top:30px;">Click the download link below to access a 14-day free trial version.</p>
     <a class="btn" href="https://drive.google.com/file/d/1EZ-n9-AvWbAe6VrJy8Ut7kcVAM__A76j/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Now</a>
 </header>
 <footer>
