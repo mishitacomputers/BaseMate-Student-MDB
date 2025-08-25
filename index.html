@@ -4,41 +4,66 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mishita Computers Centre App Download</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
-        background: linear-gradient(135deg, #4facfe, #00f2fe);
-        color: white;
         text-align: center;
+        overflow-x: hidden;
+        position: relative;
+        background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7, #ff7e5f);
+        background-size: 1000% 1000%;
+        animation: gradientBG 30s ease infinite;
+        color: #fff;
     }
-    header {
+
+    @keyframes gradientBG {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
+    /* DARK SEMI-TRANSPARENT OVERLAY CONTAINER */
+    .overlay {
+        background: rgba(0,0,0,0.65); /* Adjust opacity to balance readability */
         padding: 50px 20px;
-        animation: fadeIn 1.2s ease-in-out;
     }
+
     header img {
         max-width: 150px;
         border-radius: 50%;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         animation: popIn 1s ease-in-out;
     }
+
     h1 {
         font-size: 2.5em;
         margin-top: 20px;
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
+
     p {
         font-size: 1.2em;
         max-width: 700px;
         margin: 20px auto 0 auto;
-        opacity: 0.9;
         line-height: 1.4em;
+        color: #fff;
     }
+
     .features-heading {
         font-size: 1.5em;
         font-weight: bold;
         text-decoration: underline;
         margin: 40px 0 20px;
+        background: linear-gradient(90deg, #43e97b, #38f9d7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
     }
+
     .features {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -47,48 +72,61 @@
         margin: 0 auto 30px auto;
         text-align: left;
     }
+
     .feature-item {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05); /* Slightly darker */
         padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
         font-size: 1em;
         line-height: 1.4em;
+        transition: all 0.4s ease;
     }
+
+    .feature-item:hover {
+        transform: translateY(-8px) scale(1.05);
+        background: linear-gradient(135deg, #ff7e5f, #feb47b, #ffb347, #ff7e5f);
+        box-shadow: 0 12px 25px rgba(255,255,255,0.5);
+        color: white;
+    }
+
     .feature-item strong {
         font-size: 1.1em;
         display: block;
         margin-bottom: 5px;
-        color: #fff;
+        color: #ffeb3b;
     }
+
     .btn {
         display: inline-block;
         margin-top: 15px;
         padding: 15px 35px;
         font-size: 18px;
         color: white;
-        background: #ff7e5f;
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
         border: none;
         border-radius: 30px;
         text-decoration: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         transition: transform 0.2s ease, background 0.3s ease;
     }
+
     .btn:hover {
-        transform: scale(1.05);
-        background: #feb47b;
+        transform: scale(1.1);
+        background: linear-gradient(90deg, #feb47b, #ff7e5f);
     }
+
     footer {
         margin-top: 60px;
-        padding: 20px;
-        font-size: 0.9em;
+        padding: 25px;
+        font-size: 0.95em;
         opacity: 0.9;
         line-height: 1.5em;
+        background: rgba(0,0,0,0.65); /* keep footer readable */
+        border-top: 2px solid #ff7e5f;
+        text-align: center;
     }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
+
     @keyframes popIn {
         0% { transform: scale(0.5); opacity: 0; }
         100% { transform: scale(1); opacity: 1; }
@@ -96,59 +134,32 @@
 </style>
 </head>
 <body>
+<div class="overlay">
 <header>
     <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
     <h1>Mishita Computers Centre</h1>
-    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. It is ideal for micro, small, and medium-scale training Centres, built just for you.</p>
+    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. Ideal for micro, small, and medium-scale training Centres.</p>
     
     <div class="features-heading">KEY FEATURES INCLUDE</div>
     
     <div class="features">
-        <div class="feature-item">
-            <strong>Secure Login & Email Alerts</strong>
-            Stay informed with real-time login alerts for enhanced system security.
-        </div>
-        <div class="feature-item">
-            <strong>User Account Management</strong>
-            Manage how other system users can access and use the system.
-        </div>
-        <div class="feature-item">
-            <strong>Student Profile Management</strong>
-            Easily register, update, and monitor student details throughout their learning journey.
-        </div>
-        <div class="feature-item">
-            <strong>Performance Tracking</strong>
-            Monitor academic progress, exams, and assessments with detailed performance records.
-        </div>
-        <div class="feature-item">
-            <strong>Payment Tracking & Instant Receipts</strong>
-            Track all student payments and generate printed or emailed receipts instantly.
-        </div>
-        <div class="feature-item">
-            <strong>Invoicing</strong>
-            Send clean, branded invoices via email or print — right from the system.
-        </div>
-        <div class="feature-item">
-            <strong>Mass Email Reminders</strong>
-            Schedule monthly automatic reminders for students with pending balances.
-        </div>
-        <div class="feature-item">
-            <strong>Data Backup & Restore</strong>
-            Auto-backup every 14 days or do it manually — with one-click restoration.
-        </div>
-        <div class="feature-item">
-            <strong>Insightful Visual Reports</strong>
-            Make data-driven decisions using dynamic charts and graphs.
-        </div>
-        <div class="feature-item">
-            <strong>Certificates & IDs</strong>
-            Generate and download student certificates or IDs with a single click.
-        </div>
+        <div class="feature-item"><i class="fa fa-lock"></i><strong>Secure Login & Email Alerts</strong>Stay informed with real-time login alerts for enhanced system security.</div>
+        <div class="feature-item"><i class="fa fa-users"></i><strong>User Account Management</strong>Manage how other system users can access and use the system.</div>
+        <div class="feature-item"><i class="fa fa-id-card"></i><strong>Student Profile Management</strong>Easily register, update, and monitor student details throughout their learning journey.</div>
+        <div class="feature-item"><i class="fa fa-chart-line"></i><strong>Performance Tracking</strong>Monitor academic progress, exams, and assessments with detailed performance records.</div>
+        <div class="feature-item"><i class="fa fa-money-bill-wave"></i><strong>Payment Tracking & Instant Receipts</strong>Track all student payments and generate printed or emailed receipts instantly.</div>
+        <div class="feature-item"><i class="fa fa-file-invoice"></i><strong>Invoicing</strong>Send clean, branded invoices via email or print — right from the system.</div>
+        <div class="feature-item"><i class="fa fa-envelope"></i><strong>Mass Email Reminders</strong>Schedule monthly automatic reminders for students with pending balances.</div>
+        <div class="feature-item"><i class="fa fa-database"></i><strong>Data Backup & Restore</strong>Auto-backup every 14 days or do it manually — with one-click restoration.</div>
+        <div class="feature-item"><i class="fa fa-chart-pie"></i><strong>Insightful Visual Reports</strong>Make data-driven decisions using dynamic charts and graphs.</div>
+        <div class="feature-item"><i class="fa fa-certificate"></i><strong>Certificates & IDs</strong>Generate and download student certificates or IDs with a single click.</div>
     </div>
 
-    <p style="font-size:1.1em; margin-top:30px;">Click the download link below to access a 14-day free trial version.</p>
+    <p style="font-size:1.1em; margin-top:30px; font-weight:bold;">Click the button below to try our 14-day free trial version.</p>
     <a class="btn" href="https://drive.google.com/file/d/1EZ-n9-AvWbAe6VrJy8Ut7kcVAM__A76j/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Now</a>
 </header>
+</div>
+
 <footer>
     Support Email: <a href="mailto:mishitacomputers@gmail.com" style="color:#fff; text-decoration: underline;">mishitacomputers@gmail.com</a><br/>
     Contact: 0725482521 | 0736632205<br/>
