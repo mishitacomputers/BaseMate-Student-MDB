@@ -10,7 +10,6 @@
         font-family: Arial, sans-serif;
         margin: 0;
         text-align: center;
-        overflow-x: hidden;
         position: relative;
         background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7, #ff7e5f);
         background-size: 1000% 1000%;
@@ -127,9 +126,57 @@
         text-align: center;
     }
 
-    @keyframes popIn {
-        0% { transform: scale(0.5); opacity: 0; }
-        100% { transform: scale(1); opacity: 1; }
+    footer a {
+        color: #fff;
+        text-decoration: underline;
+        padding: 0 10px;
+    }
+
+    footer a:hover {
+        color: #ffeb3b;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1; 
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.8); /* Dark background */
+        padding: 50px;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #f0f0f0;  /* Light gray background */
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 800px;
+        color: #333; /* Changed text color to dark gray for better contrast */
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        max-height: none;
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
     }
 </style>
 </head>
@@ -148,9 +195,9 @@
         <div class="feature-item"><i class="fa fa-id-card"></i><strong>Student Profile Management</strong>Easily register, update, and monitor student details throughout their learning journey.</div>
         <div class="feature-item"><i class="fa fa-chart-line"></i><strong>Performance Tracking</strong>Monitor academic progress, exams, and assessments with detailed performance records.</div>
         <div class="feature-item"><i class="fa fa-money-bill-wave"></i><strong>Payment Tracking & Instant Receipts</strong>Track all student payments and generate printed or emailed receipts instantly.</div>
-        <div class="feature-item"><i class="fa fa-file-invoice"></i><strong>Invoicing</strong>Send clean, branded invoices via email or print — right from the system.</div>
+        <div class="feature-item"><i class="fa fa-file-invoice"></i><strong>Invoicing</strong>Send clean, branded invoices via email or print ? right from the system.</div>
         <div class="feature-item"><i class="fa fa-envelope"></i><strong>Mass Email Reminders</strong>Schedule monthly automatic reminders for students with pending balances.</div>
-        <div class="feature-item"><i class="fa fa-database"></i><strong>Data Backup & Restore</strong>Auto-backup every 14 days or do it manually — with one-click restoration.</div>
+        <div class="feature-item"><i class="fa fa-database"></i><strong>Data Backup & Restore</strong>Auto-backup every 14 days or do it manually ? with one-click restoration.</div>
         <div class="feature-item"><i class="fa fa-chart-pie"></i><strong>Insightful Visual Reports</strong>Make data-driven decisions using dynamic charts and graphs.</div>
         <div class="feature-item"><i class="fa fa-certificate"></i><strong>Certificates & IDs</strong>Generate and download student certificates or IDs with a single click.</div>
     </div>
@@ -161,9 +208,232 @@
 </div>
 
 <footer>
-    Support Email: <a href="mailto:mishitacomputers@gmail.com" style="color:#fff; text-decoration: underline;">mishitacomputers@gmail.com</a><br/>
+    Support Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br/>
     Contact: 0725482521 | 0736632205<br/>
+    <a href="javascript:void(0)" onclick="openModal('termsModal')">Terms and Conditions</a> | 
+    <a href="javascript:void(0)" onclick="openModal('readMeModal')">Read Me</a> | 
+    <a href="javascript:void(0)" onclick="openModal('faqsModal')">FAQs</a><br/>
     &copy; 2025 Mishita Computers Centre. All rights reserved.
 </footer>
+
+<!-- Modals for Terms, Read Me, and FAQs -->
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('termsModal')">&times;</span>
+      <h2>Terms and Conditions</h2>
+    <p><strong>TERMS AND CONDITIONS OF USE & USER AGREEMENT</strong><br>
+    Effective Date: July 10, 2025<br>
+    Company: Mishita Computers Centre<br>
+    Author: Edwin L. Agola<br>
+    Contact: mishitacomputers@gmail.com | +254 725 482 521<br>
+    Copyright ? 2025 Mishita Computers Centre</p>
+
+    <h3>1. ACCEPTANCE OF TERMS</h3>
+    <p>By installing, accessing, or using this software application (?Application?), you agree to be bound by this User Agreement. If you do not agree with these terms, do not install, access, or use the Application.</p>
+
+    <h3>2. LICENSE GRANT</h3>
+    <p>You are granted a limited, non-exclusive, non-transferable license to use the Application solely for lawful purposes. You may not:</p>
+    <ul>
+      <li>Reverse engineer, decompile, or modify the Application.</li>
+      <li>Rent, lease, sublicense, or redistribute the Application without prior written consent.</li>
+      <li>Use the Application for commercial hosting or as part of another software without authorization.</li>
+    </ul>
+
+    <h3>3. INTELLECTUAL PROPERTY</h3>
+    <p>All content, code, designs, and related materials are the sole property of Mishita Computers Centre and Edwin L. Agola. Protected by copyright, trademark, and other applicable intellectual property laws. All rights reserved.</p>
+
+    <h3>4. USER RESPONSIBILITIES</h3>
+    <p>You agree to:</p>
+    <ul>
+      <li>Maintain regular backups of your data.</li>
+      <li>Ensure that your use complies with all applicable laws and regulations.</li>
+      <li>Keep your login details, license keys, and other credentials secure.</li>
+      <li>Immediately report any suspected unauthorized use to Mishita Computers Centre.</li>
+    </ul>
+
+    <h3>5. PROHIBITED USES</h3>
+    <p>You must not:</p>
+    <ul>
+      <li>Use the Application to engage in unlawful, fraudulent, or harmful activities.</li>
+      <li>Upload or distribute malicious software, viruses, or harmful code through the Application.</li>
+      <li>Attempt unauthorized access to servers, databases, or other connected systems.</li>
+    </ul>
+
+    <h3>6. DATA COLLECTION & PRIVACY</h3>
+    <p>The Application may collect non-personal system information for diagnostics, updates, and performance improvements. Personal data will not be shared with third parties without your consent, except when required by law. You agree to the Privacy Policy provided by Mishita Computers Centre.</p>
+
+    <h3>7. UPDATES & SUPPORT</h3>
+    <p>Updates may be provided to improve functionality, security, or compliance. Support is available via email or phone and may require proof of license or purchase. Some updates may be mandatory for continued use.</p>
+
+    <h3>8. DISCLAIMER OF WARRANTIES</h3>
+    <p>The Application is provided ?as is? without any express or implied warranties, including but not limited to fitness for a particular purpose, merchantability, or non-infringement. You assume full responsibility for risks associated with using the Application.</p>
+
+    <h3>9. LIMITATION OF LIABILITY</h3>
+    <p>Mishita Computers Centre shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from or related to the use or inability to use the Application, including data loss or corruption.</p>
+
+    <h3>10. TERMINATION</h3>
+    <p>This license automatically terminates if you breach any term of this Agreement. Upon termination, you must uninstall the Application and destroy all copies in your possession.</p>
+
+    <h3>11. GOVERNING LAW & DISPUTE RESOLUTION</h3>
+    <p>This Agreement is governed by the laws of Kenya. Any dispute will be resolved exclusively in the courts of Kenya. You agree to attempt an amicable resolution before pursuing legal action.</p>
+
+    <h3>12. CHANGES TO TERMS</h3>
+    <p>Mishita Computers Centre reserves the right to revise these terms at any time. Continued use after changes constitutes acceptance of the revised terms.</p>
+
+    <h3>13. SEVERABILITY</h3>
+    <p>If any part of this Agreement is found invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+
+    <h3>14. THIRD-PARTY COMPONENTS</h3>
+    <p>This Application may include or work alongside third-party software components. The following are acknowledged:</p>
+    <ul>
+      <li>7-Zip, developed by Igor Pavlov, licensed under the GNU LGPL. Source and license available at <a href="https://www.7-zip.org">https://www.7-zip.org</a></li>
+      <li>Code 3 of 9 (Code39) Barcode Symbology, public domain.</li>
+    </ul>
+
+    <h3>15. CONTACT</h3>
+    <p>For support or inquiries:<br>
+    Mishita Computers Centre<br>
+    Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br>
+    Phone: +254 725 482 521<br>
+    Location: Kenya</p>
+
+    <p>By using this Application, you confirm that you have read, understood, and agreed to be bound by these terms.</p>
+  </div>
+</div>
+
+<div id="readMeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('readMeModal')">&times;</span>
+    <h2>Read Me: BaseMate - Student Management DB</h2>
+    <p><strong>BASEMATE - STUDENT MANAGEMENT DB</strong><br>
+    <strong>VERSION:</strong> 1.0.0.2<br>
+    <strong>DATE:</strong> July 2025<br>
+    <strong>DEVELOPER:</strong> Mishita Computers Centre</p>
+
+    <h3>ABOUT THIS APPLICATION</h3>
+    <p>This application is designed to manage student records for micro, small, and medium-scale institutions, including academics, payments, attachments, and reporting. Key features include:</p>
+    <ul>
+      <li>Automatic email reminders</li>
+      <li>Secure backup and restore options</li>
+      <li>Real-time PC diagnostics</li>
+      <li>PDF exporting & silent printing</li>
+      <li>Login monitoring with email alerts</li>
+    </ul>
+
+    <h3>RECOMMENDED SYSTEM REQUIREMENTS</h3>
+    <ul>
+      <li>Operating System: Windows 7 or higher</li>
+      <li>RAM: 2 GB minimum (4 GB recommended)</li>
+      <li>Processor: Intel Core i3 or higher</li>
+      <li>Storage: SSD recommended (HDD can work but may be slower)</li>
+      <li>Microsoft Access: 2010 or later (32-bit recommended)</li>
+      <li>Internet Connection: Required for email features and cloud functionality</li>
+    </ul>
+
+    <h3>WHY INTERNET IS IMPORTANT</h3>
+    <p>The application uses internet connectivity for:</p>
+    <ul>
+      <li>Sending emails and automated reminders/alerts</li>
+      <li>Downloading updates (future versions)</li>
+      <li>Backup reporting to the developer</li>
+      <li>Security email alerts for login attempts</li>
+      <li>Receiving login verification codes</li>
+    </ul>
+
+    <h3>TIPS FOR BEST PERFORMANCE</h3>
+    <ul>
+      <li>Keep system drivers up-to-date</li>
+      <li>Ensure system date and time are correct</li>
+      <li>Maintain a stable internet connection when using the app</li>
+      <li>Always close the app properly to prevent file corruption</li>
+      <li>Avoid running heavy programs in the background</li>
+      <li>Ensure Microsoft Access macros are enabled</li>
+    </ul>
+
+    <h3>BACKUP INFORMATION</h3>
+    <ul>
+      <li>Backups are saved with a timestamp in the folder: D:\BaseMate Student Management DB\</li>
+      <li>Backups cannot be stored on the local C: drive. Use a separate partition or removable media.</li>
+      <li>Each backup is encrypted with a secure password set by the system admin.</li>
+      <li>Attachments and reports are included unless specifically excluded.</li>
+    </ul>
+
+    <h3>WARNING</h3>
+    <p>Do not rename, move, or modify critical folders or files unless explicitly advised. Ensure your email SMTP settings are correctly configured and working before enabling OTP login verification.</p>
+
+    <h3>SUPPORT / FEEDBACK</h3>
+    <p>For support or to report issues, contact:<br>
+    Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br>
+    Phone: +254 725 482 521</p>
+    <p>Thank you for using our application!</p>
+  </div>
+</div>
+
+<div id="faqsModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('faqsModal')">&times;</span>
+    <h2>FAQs</h2>
+    <p><strong>FREQUENTLY ASKED QUESTIONS (FAQ)</strong></p>
+    
+    <h3>Q: I forgot my password. How can I recover it?</h3>
+    <p>A: You can retrieve it from your registered email address. Every time you reset or change your password, a copy is automatically sent to your email. Note: Password reset is only supported while connected to the internet.</p>
+
+    <h3>Q: I didn&rsquo;t receive the login (OTP) verification code. What should I do?</h3>
+    <p>A: Ensure your device is connected to the internet. Check your Spam or Junk folder in your email. If the issue persists, contact your system administrator for assistance.</p>
+
+    <h3>Q: I keep seeing &ldquo;This Application is Blocked.&rdquo; What does this mean and what should I do?</h3>
+    <p>A: This message indicates that your account has been restricted and you cannot use it. Please contact the system administrator or developer at 0725 482521 for assistance.</p>
+
+    <h3>Q: &ldquo;Verifying authenticity please wait?&rdquo; This is the message I see every time I log in.</h3>
+    <p>A: No need to worry. This message is part of the system&rsquo;s security process to validate your license and account status each time you log in.</p>
+
+    <h3>Q: I used to receive login notifications, but I don&rsquo;t anymore.</h3>
+    <p>A: Please ensure that login notifications are enabled in the Settings form. You will receive a notification each time someone attempts to log in to your application, provided the PC is connected to the internet.</p>
+
+    <h3>Q: All student learners show &lsquo;Learning is in progress&rsquo;. What could be the issue?</h3>
+    <p>A: This is likely related to your computer's date and time settings. The application depends entirely on your system's date and time to provide accurate information. Ensure your PC has the correct and updated date/time settings.</p>
+
+    <h3>Q: Why do some forms take longer to load?</h3>
+    <p>A: This may occur when certain automated features are enabled. During form initialization, the system checks for an active internet connection. If a connection is detected but no data is transmitted, loading may be temporarily delayed while the system verifies connectivity.</p>
+
+    <h3>Q: &lsquo;All charts and data successfully loaded&rsquo;. This is the message I see, yet some charts and graphs don&rsquo;t appear on the form.</h3>
+    <p>A: This may be due to loading delays&mdash;queries can occasionally take longer than expected to complete. Simply close and reopen the form to refresh the charts.</p>
+
+    <h3>Q: How do I back up my data?</h3>
+    <p>A: There are two backup options: Simply go to the Settings form, and pick the action button to take the desired backup (Full, Passports, or Data tables). Or automate the process every 14 days by checking &ldquo;auto data backup&rdquo;.</p>
+
+    <h3>Q: Why does the backup process fail?</h3>
+    <p>A: Ensure your PC has more than one disk partition. The system does not store backups on C:\\ for safety reasons. Tip: Plug in a removable drive or ensure D:\\ is available before running backups.</p>
+
+    <h3>Q: I see a &ldquo;No encryption tool found&rdquo; error during backup. What should I do?</h3>
+    <p>A: Make sure that a file compression tool like 7-Zip is installed on your PC. The system uses it to zip and encrypt backup files.</p>
+
+    <h3>Q: How can I restore a previous backup?</h3>
+    <p>A: Open the Settings form and select the Restore option for the data type you wish to recover (e.g., tables, passports, all data). The system will automatically locate your backup folder and begin the restoration process.</p>
+
+    <h3>Q: How do I verify legitimacy of a payment receipt?</h3>
+    <p>A: Go to the Settings form, locate the Payment Verification section, enter the payment reference number, and click Verify. The system will process the request and display the result.</p>
+
+    <h3>Q: Can the system work without internet access?</h3>
+    <p>A: Yes. Core functions like data entry, reporting, backup, and restore work offline. However, features such as email verification, password reset, and system alerts require an internet connection.</p>
+
+    <h3>Q: Can I share this application with others over a network?</h3>
+    <p>A: No. This system is designed as a standalone application to minimize dependency on external service providers (e.g., paid servers). It&rsquo;s optimized for low-cost operation while maintaining full data management capabilities.</p>
+
+    <h3>Q: The barcode doesn&rsquo;t display properly; I only see plain text. Why?</h3>
+    <p>A: This happens when the "3 of 9 Barcode" font is not installed on your PC. To fix it, download and install the 3 of 9 Barcode font to enable correct barcode display.</p>
+  </div>
+</div>
+
+<!-- JavaScript to Handle Modal -->
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = "block";
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+    }
+</script>
 </body>
 </html>
