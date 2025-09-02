@@ -165,6 +165,23 @@
         overflow-y: auto; /* Allow scrolling if content overflows */
     }
 
+.title-bar {
+    background-color: #007BFF;   /* dark blue-gray, you can change */
+    color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 0;   /* space above & below */
+    border-radius: 5px;  /* optional rounded edges */
+}
+
+.title-bar h1 {
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
     .close {
         color: #aaa;
         float: right;
@@ -184,8 +201,14 @@
 <div class="overlay">
 <header>
     <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
-    <h1>Mishita Computers Centre</h1>
-    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. Ideal for micro, small, and medium-scale training Centres.</p>
+
+    <!-- Full-width rectangle for heading -->
+    <div class="title-bar">
+        <h1>::::::::::BASEMATE STUDENT MANAGEMENT DB::::::::::</h1>
+	<h4>::::::::Version 1.0.0.2. ::::::::  Desktop Application By Mishita Computers Centre.</h4>
+    </div>
+
+    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. It's Ideal for micro, small, and medium-scale Computer training Centres.</p>
     
     <div class="features-heading">KEY FEATURES INCLUDE</div>
     
@@ -201,11 +224,30 @@
         <div class="feature-item"><i class="fa fa-chart-pie"></i><strong>Insightful Visual Reports</strong>Make data-driven decisions using dynamic charts and graphs.</div>
         <div class="feature-item"><i class="fa fa-certificate"></i><strong>Certificates & IDs</strong>Generate and download student certificates or IDs with a single click.</div>
     </div>
-
-    <p style="font-size:1.1em; margin-top:30px; font-weight:bold;">Click the button below to try our 14-day free trial version.</p>
-    <a class="btn" href="https://drive.google.com/file/d/1EZ-n9-AvWbAe6VrJy8Ut7kcVAM__A76j/view?usp=sharing" target="_blank" rel="noopener noreferrer">Download Now</a>
 </header>
 </div>
+
+
+<<p style="font-size:1.1em; margin-top:30px; font-weight:bold;">
+    Click on the links below to have overview of the system and App Customization request form:
+</p>
+<ul style="font-size:1em; margin-top:10px; line-height:1.6;">
+    <li>
+        <a href="https://drive.google.com/uc?export=download&id=12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH" 
+           target="_blank" rel="noopener noreferrer">
+           System User Interface Documentation (PDF)
+        </a>
+    </li>
+    <li>
+        <a href="https://drive.google.com/uc?export=download&id=1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8" 
+           target="_blank" rel="noopener noreferrer">
+           App Customization Request/Registration Form (PDF)
+        </a>
+    </li>
+</ul>
+</header>
+</div>
+
 
 <footer>
     Support Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br/>
@@ -229,7 +271,7 @@
     Copyright ? 2025 Mishita Computers Centre</p>
 
     <h3>1. ACCEPTANCE OF TERMS</h3>
-    <p>By installing, accessing, or using this software application (?Application?), you agree to be bound by this User Agreement. If you do not agree with these terms, do not install, access, or use the Application.</p>
+    <p>By installing, accessing, or using this software application (Application), you agree to be bound by this User Agreement. If you do not agree with these terms, do not install, access, or use the Application.</p>
 
     <h3>2. LICENSE GRANT</h3>
     <p>You are granted a limited, non-exclusive, non-transferable license to use the Application solely for lawful purposes. You may not:</p>
@@ -326,9 +368,9 @@
       <li>RAM: 2 GB minimum (4 GB recommended)</li>
       <li>Processor: Intel Core i3 or higher</li>
       <li>Storage: SSD recommended (HDD can work but may be slower)</li>
-      <li>Microsoft Access: 2010 or later (32-bit recommended)</li>
+      <li>Microsoft Access: 2007 or later (incase of incompatility issues 2010 is recommended)</li>
       <li>Internet Connection: Required for email features and cloud functionality</li>
-    </ul>
+          </ul>
 
     <h3>WHY INTERNET IS IMPORTANT</h3>
     <p>The application uses internet connectivity for:</p>
@@ -338,6 +380,8 @@
       <li>Backup reporting to the developer</li>
       <li>Security email alerts for login attempts</li>
       <li>Receiving login verification codes</li>
+      <li>Forwarding a copy of your password to your email everytime you change.</li>
+      <li>Forwarding copy of Data backup to email address.</li>
     </ul>
 
     <h3>TIPS FOR BEST PERFORMANCE</h3>
