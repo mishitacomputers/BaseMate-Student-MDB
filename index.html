@@ -3,426 +3,297 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mishita Computers Centre App Download</title>
+<title>Mishita Computers Centre - BaseMate Student MDB</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
     body {
         font-family: Arial, sans-serif;
         margin: 0;
         text-align: center;
-        position: relative;
         background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7, #ff7e5f);
         background-size: 1000% 1000%;
         animation: gradientBG 30s ease infinite;
         color: #fff;
     }
-
     @keyframes gradientBG {
         0%{background-position:0% 50%}
         50%{background-position:100% 50%}
         100%{background-position:0% 50%}
     }
 
-    /* DARK SEMI-TRANSPARENT OVERLAY CONTAINER */
+    /* Sticky HEADER BAR */
+    .main-header {
+        background: #0056b3;
+        padding: 20px 10px;
+        color: white;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: bold;
+        letter-spacing: 1px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+
     .overlay {
-        background: rgba(0,0,0,0.65); /* Adjust opacity to balance readability */
-        padding: 50px 20px;
+        background: rgba(0,0,0,0.65);
+        padding: 30px 20px;
     }
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: left;
+}
 
-    header img {
-        max-width: 150px;
-        border-radius: 50%;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        animation: popIn 1s ease-in-out;
+header img {
+    max-width: 90px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin: 5px 0;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header h3 {
+    font-size: 1.2em;
+    margin: 0;
+    color: #ddd;
+}
+
+header p {
+    font-size: 1em;
+    max-width: 750px;
+    margin-top: 5px;
+    line-height: 1.4em;
+}
+
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the whole header horizontally */
+    gap: 20px; /* Space between logo and text */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    text-align: left; /* Align text to the left */
+}
+
+header img {
+    max-width: 130px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+    /* Tabs */
+    .tab-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        margin: 30px auto;
+        max-width: 800px;
+        overflow: hidden;
     }
-
-    h1 {
-        font-size: 2.5em;
-        margin-top: 20px;
-        background: linear-gradient(90deg, #ff7e5f, #feb47b);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    p {
-        font-size: 1.2em;
-        max-width: 700px;
-        margin: 20px auto 0 auto;
-        line-height: 1.4em;
+    .tab-buttons button {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        background: transparent;
         color: #fff;
+        font-weight: bold;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .tab-buttons button:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffeb3b;
+    }
+    .tab-buttons button.active {
+        background: rgba(255, 255, 255, 0.2);
+        border-bottom: 3px solid #ffeb3b;
+        color: #ffeb3b;
+    }
+    .tab-content {
+        display: none;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: left;
+        animation: fadeIn 0.4s ease;
+        background: rgba(0, 0, 0, 0.45);
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Features Section */
     .features-heading {
-        font-size: 1.5em;
+        font-size: 1.6em;
         font-weight: bold;
         text-decoration: underline;
-        margin: 40px 0 20px;
+        margin: 20px 0 15px;
         background: linear-gradient(90deg, #43e97b, #38f9d7);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        text-align: center;
     }
-
     .features {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 15px;
-        max-width: 900px;
-        margin: 0 auto 30px auto;
-        text-align: left;
+        margin: 20px auto 30px auto;
     }
-
     .feature-item {
-        background: rgba(255, 255, 255, 0.05); /* Slightly darker */
+        background: rgba(255, 255, 255, 0.05);
         padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-        font-size: 1em;
-        line-height: 1.4em;
         transition: all 0.4s ease;
     }
-
     .feature-item:hover {
         transform: translateY(-8px) scale(1.05);
-        background: linear-gradient(135deg, #ff7e5f, #feb47b, #ffb347, #ff7e5f);
-        box-shadow: 0 12px 25px rgba(255,255,255,0.5);
-        color: white;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
     }
+    .feature-item strong { display: block; color: #ffeb3b; margin-bottom: 5px; }
 
-    .feature-item strong {
-        font-size: 1.1em;
-        display: block;
-        margin-bottom: 5px;
-        color: #ffeb3b;
-    }
-
-    .btn {
+    /* Download buttons */
+    .download-btn {
         display: inline-block;
-        margin-top: 15px;
-        padding: 15px 35px;
-        font-size: 18px;
-        color: white;
-        background: linear-gradient(90deg, #ff7e5f, #feb47b);
-        border: none;
-        border-radius: 30px;
+        margin: 10px;
+        padding: 12px 20px;
+        background: #ff7e5f;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 8px;
         text-decoration: none;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-        transition: transform 0.2s ease, background 0.3s ease;
+        transition: 0.3s;
     }
-
-    .btn:hover {
-        transform: scale(1.1);
-        background: linear-gradient(90deg, #feb47b, #ff7e5f);
-    }
+    .download-btn:hover { background: #feb47b; color: #000; }
 
     footer {
-        margin-top: 60px;
+        margin-top: 40px;
         padding: 25px;
         font-size: 0.95em;
-        opacity: 0.9;
-        line-height: 1.5em;
-        background: rgba(0,0,0,0.65); /* keep footer readable */
+        background: rgba(0,0,0,0.65);
         border-top: 2px solid #ff7e5f;
-        text-align: center;
     }
+    footer a { color: #fff; text-decoration: underline; }
+    footer a:hover { color: #ffeb3b; }
 
-    footer a {
-        color: #fff;
-        text-decoration: underline;
-        padding: 0 10px;
-    }
-
-    footer a:hover {
-        color: #ffeb3b;
-    }
-
-    /* Modal Styles */
-    .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 1; 
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto; 
-        background-color: rgba(0,0,0,0.8); /* Dark background */
-        padding: 50px;
-    }
-
-    /* Modal Content */
-    .modal-content {
-        background-color: #f0f0f0;  /* Light gray background */
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 800px;
-        color: #333; /* Changed text color to dark gray for better contrast */
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        max-height: none;
-        overflow-y: auto; /* Allow scrolling if content overflows */
-    }
-
-.title-bar {
-    background-color: #007BFF;   /* dark blue-gray, you can change */
-    color: white;
-    width: 100%;
-    padding: 15px 0;
-    text-align: center;
-    margin: 20px 0;   /* space above & below */
-    border-radius: 5px;  /* optional rounded edges */
+.main-header header {
+    display: flex;
+    align-items: center; /* Vertically centers image and text */
+    justify-content: center; /* Center horizontally */
+    gap: 15px; /* Space between image and text */
 }
 
-.title-bar h1 {
-    margin: 0;
-    font-size: 2em;
-    font-weight: bold;
+.main-header img {
+    max-width: 50px; /* Adjust logo size */
+    height: auto;
 }
 
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
 </style>
 </head>
 <body>
+
+<!-- HEADER BAR -->
+
+
+<div class="main-header">
+    <header>
+        <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
+        <span>Mishita Computers Centre - BaseMate Student MDB</span>
+    </header>
+</div>
+
 <div class="overlay">
-<header>
-    <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
-
-    <!-- Full-width rectangle for heading -->
-    <div class="title-bar">
-        <h1>::::::::::BASEMATE STUDENT MANAGEMENT DB::::::::::</h1>
-	<h4>::::::::Version 1.0.0.2. ::::::::  Desktop Application By Mishita Computers Centre.</h4>
+    <div>
+        <h1 style="color: red;"><u>MISHITA COMPUTERS CENTRE</u></h1>
+        <h3>BaseMate Student Management DB</h3>
+        <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently.</p>
+	<p> It's fast, secure, and zero on running and maintenance costs.</p>
+    </div>
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+        <button class="tab-link active" data-tab="home">Home</button>
+        <button class="tab-link" data-tab="readme">Read Me</button>
+        <button class="tab-link" data-tab="faq">FAQ</button>
+        <button class="tab-link" data-tab="terms">Terms</button>
+	<button class="tab-link" data-tab="downloads">Downloads</button>
+ 	<button class="tab-link" data-tab="services">Other Services</button> 
     </div>
 
-    <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently. It's fast, secure, and zero on running and maintenance costs. It's Ideal for micro, small, and medium-scale Computer training Centres.</p>
-    
-    <div class="features-heading">KEY FEATURES INCLUDE</div>
-    
-    <div class="features">
-        <div class="feature-item"><i class="fa fa-lock"></i><strong>Secure Login & Email Alerts</strong>Stay informed with real-time login alerts for enhanced system security.</div>
-        <div class="feature-item"><i class="fa fa-users"></i><strong>User Account Management</strong>Manage how other system users can access and use the system.</div>
-        <div class="feature-item"><i class="fa fa-id-card"></i><strong>Student Profile Management</strong>Easily register, update, and monitor student details throughout their learning journey.</div>
-        <div class="feature-item"><i class="fa fa-chart-line"></i><strong>Performance Tracking</strong>Monitor academic progress, exams, and assessments with detailed performance records.</div>
-        <div class="feature-item"><i class="fa fa-money-bill-wave"></i><strong>Payment Tracking & Instant Receipts</strong>Track all student payments and generate printed or emailed receipts instantly.</div>
-        <div class="feature-item"><i class="fa fa-file-invoice"></i><strong>Invoicing</strong>Send clean, branded invoices via email or print ? right from the system.</div>
-        <div class="feature-item"><i class="fa fa-envelope"></i><strong>Mass Email Reminders</strong>Schedule monthly automatic reminders for students with pending balances.</div>
-        <div class="feature-item"><i class="fa fa-database"></i><strong>Data Backup & Restore</strong>Auto-backup every 14 days or do it manually ? with one-click restoration.</div>
-        <div class="feature-item"><i class="fa fa-chart-pie"></i><strong>Insightful Visual Reports</strong>Make data-driven decisions using dynamic charts and graphs.</div>
-        <div class="feature-item"><i class="fa fa-certificate"></i><strong>Certificates & IDs</strong>Generate and download student certificates or IDs with a single click.</div>
+       <!-- HOME TAB -->
+    <div id="home" class="tab-content active">
+        <div class="features-heading"><u>KEY FEATURES INCLUDE</u></div>
+        <div class="features">
+            <div class="feature-item"><strong>Secure Login & Email Alerts</strong>Stay informed with real-time login alerts.</div>
+            <div class="feature-item"><strong>User Account Management</strong>Manage how other users access the system.</div>
+            <div class="feature-item"><strong>Student Profile Management</strong>Register, update, and monitor student details.</div>
+            <div class="feature-item"><strong>Performance Tracking</strong>Track academic progress, exams, and assessments.</div>
+            <div class="feature-item"><strong>Payment Tracking & Receipts</strong>Track student payments and print/email receipts instantly.</div>
+            <div class="feature-item"><strong>Invoicing</strong>Send branded invoices via email or print them.</div>
+            <div class="feature-item"><strong>Mass Email Reminders</strong>Schedule monthly automatic reminders for balances.</div>
+            <div class="feature-item"><strong>Backup & Restore</strong>Auto-backup every 14 days or manually in one click.</div>
+            <div class="feature-item"><strong>Visual Reports</strong>Make data-driven decisions with charts and graphs.</div>
+            <div class="feature-item"><strong>Certificates & IDs</strong>Generate and download certificates or IDs instantly.</div>
+        </div>
     </div>
-</header>
-</div>
 
+    <!-- DOWNLOADS TAB -->
+    <div id="downloads" class="tab-content">
+        <h2 style="color: #00ff99;"><u>DOWNLOADS</u></h2>
+        <p> Click on the links below to Downlaod:-</p>
+        <a href="https://drive.google.com/file/d/12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH/view?usp=sharing" target="_blank" class="download-btn">System User Interface Documentation (PDF)</a>
+        <a href="https://drive.google.com/file/d/1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8/view?usp=sharing" target="_blank" class="download-btn">App Customization Request Form (PDF)</a>
+    </div>
 
-<<p style="font-size:1.1em; margin-top:30px; font-weight:bold;">
-    Click on the links below to have overview of the system and App Customization request form:
-</p>
-<ul style="font-size:1em; margin-top:10px; line-height:1.6;">
-    <li>
-        <a href="https://drive.google.com/uc?export=download&id=12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH" 
-           target="_blank" rel="noopener noreferrer">
-           System User Interface Documentation (PDF)
-        </a>
-    </li>
-    <li>
-        <a href="https://drive.google.com/uc?export=download&id=1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8" 
-           target="_blank" rel="noopener noreferrer">
-           App Customization Request/Registration Form (PDF)
-        </a>
-    </li>
-</ul>
-</header>
-</div>
+    <!-- README TAB -->
+    <div id="readme" class="tab-content">
+        <h2 style="color: #00ff99;"><u>READ ME: BASEMATE - STUDENT MANAGEMENT DB</u></h2>
+        <p><strong>VERSION:</strong> 1.0.0.2 | <strong>DATE:</strong> July 2025 | <strong>DEVELOPER:</strong> Mishita Computers Centre</p>
+        <h3>ABOUT THIS APPLICATION</h3>
+        <ul>
+            <li>Automatic email reminders</li>
+            <li>Secure backup and restore</li>
+            <li>Real-time PC diagnostics</li>
+            <li>PDF exporting & silent printing</li>
+            <li>Login monitoring with email alerts</li>
+        </ul>
+        <h3>RECOMMENDED SYSTEM REQUIREMENTS</h3>
+        <ul>
+            <li>Windows 7 or higher</li><li>RAM: 2GB (4GB recommended)</li>
+            <li>Processor: Intel i3 or higher</li><li>SSD recommended</li>
+            <li>Microsoft Access 2007+ (2010 recommended)</li><li>Internet required for email features</li>
+        </ul>
+        <h3>WHY INTERNET IS IMPORTANT</h3>
+        <ul><li>Email alerts & OTP login verification</li><li>Download updates</li><li>Send backups to email</li></ul>
+        <h3>TIPS FOR BEST PERFORMANCE</h3>
+        <ul><li>Correct date/time</li><li>Stable internet</li><li>Enable Access macros</li></ul>
+        <h3>BACKUP INFORMATION</h3>
+        <p>Backups are encrypted and stored in D:\BaseMate Student Management DB\ with timestamp naming.</p>
+        <h3>WARNING</h3>
+        <p>Do not rename or move system folders unless advised. Check SMTP settings before enabling OTP.</p>
+    </div>
 
-
-<footer>
-    Support Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br/>
-    Contact: 0725482521 | 0736632205<br/>
-    <a href="javascript:void(0)" onclick="openModal('termsModal')">Terms and Conditions</a> | 
-    <a href="javascript:void(0)" onclick="openModal('readMeModal')">Read Me</a> | 
-    <a href="javascript:void(0)" onclick="openModal('faqsModal')">FAQs</a><br/>
-    &copy; 2025 Mishita Computers Centre. All rights reserved.
-</footer>
-
-<!-- Modals for Terms, Read Me, and FAQs -->
-<div id="termsModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('termsModal')">&times;</span>
-      <h2>Terms and Conditions</h2>
-    <p><strong>TERMS AND CONDITIONS OF USE & USER AGREEMENT</strong><br>
-    Effective Date: July 10, 2025<br>
-    Company: Mishita Computers Centre<br>
-    Author: Edwin L. Agola<br>
-    Contact: mishitacomputers@gmail.com | +254 725 482 521<br>
-    Copyright ? 2025 Mishita Computers Centre</p>
-
-    <h3>1. ACCEPTANCE OF TERMS</h3>
-    <p>By installing, accessing, or using this software application (Application), you agree to be bound by this User Agreement. If you do not agree with these terms, do not install, access, or use the Application.</p>
-
-    <h3>2. LICENSE GRANT</h3>
-    <p>You are granted a limited, non-exclusive, non-transferable license to use the Application solely for lawful purposes. You may not:</p>
-    <ul>
-      <li>Reverse engineer, decompile, or modify the Application.</li>
-      <li>Rent, lease, sublicense, or redistribute the Application without prior written consent.</li>
-      <li>Use the Application for commercial hosting or as part of another software without authorization.</li>
-    </ul>
-
-    <h3>3. INTELLECTUAL PROPERTY</h3>
-    <p>All content, code, designs, and related materials are the sole property of Mishita Computers Centre and Edwin L. Agola. Protected by copyright, trademark, and other applicable intellectual property laws. All rights reserved.</p>
-
-    <h3>4. USER RESPONSIBILITIES</h3>
-    <p>You agree to:</p>
-    <ul>
-      <li>Maintain regular backups of your data.</li>
-      <li>Ensure that your use complies with all applicable laws and regulations.</li>
-      <li>Keep your login details, license keys, and other credentials secure.</li>
-      <li>Immediately report any suspected unauthorized use to Mishita Computers Centre.</li>
-    </ul>
-
-    <h3>5. PROHIBITED USES</h3>
-    <p>You must not:</p>
-    <ul>
-      <li>Use the Application to engage in unlawful, fraudulent, or harmful activities.</li>
-      <li>Upload or distribute malicious software, viruses, or harmful code through the Application.</li>
-      <li>Attempt unauthorized access to servers, databases, or other connected systems.</li>
-    </ul>
-
-    <h3>6. DATA COLLECTION & PRIVACY</h3>
-    <p>The Application may collect non-personal system information for diagnostics, updates, and performance improvements. Personal data will not be shared with third parties without your consent, except when required by law. You agree to the Privacy Policy provided by Mishita Computers Centre.</p>
-
-    <h3>7. UPDATES & SUPPORT</h3>
-    <p>Updates may be provided to improve functionality, security, or compliance. Support is available via email or phone and may require proof of license or purchase. Some updates may be mandatory for continued use.</p>
-
-    <h3>8. DISCLAIMER OF WARRANTIES</h3>
-    <p>The Application is provided ?as is? without any express or implied warranties, including but not limited to fitness for a particular purpose, merchantability, or non-infringement. You assume full responsibility for risks associated with using the Application.</p>
-
-    <h3>9. LIMITATION OF LIABILITY</h3>
-    <p>Mishita Computers Centre shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from or related to the use or inability to use the Application, including data loss or corruption.</p>
-
-    <h3>10. TERMINATION</h3>
-    <p>This license automatically terminates if you breach any term of this Agreement. Upon termination, you must uninstall the Application and destroy all copies in your possession.</p>
-
-    <h3>11. GOVERNING LAW & DISPUTE RESOLUTION</h3>
-    <p>This Agreement is governed by the laws of Kenya. Any dispute will be resolved exclusively in the courts of Kenya. You agree to attempt an amicable resolution before pursuing legal action.</p>
-
-    <h3>12. CHANGES TO TERMS</h3>
-    <p>Mishita Computers Centre reserves the right to revise these terms at any time. Continued use after changes constitutes acceptance of the revised terms.</p>
-
-    <h3>13. SEVERABILITY</h3>
-    <p>If any part of this Agreement is found invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
-
-    <h3>14. THIRD-PARTY COMPONENTS</h3>
-    <p>This Application may include or work alongside third-party software components. The following are acknowledged:</p>
-    <ul>
-      <li>7-Zip, developed by Igor Pavlov, licensed under the GNU LGPL. Source and license available at <a href="https://www.7-zip.org">https://www.7-zip.org</a></li>
-      <li>Code 3 of 9 (Code39) Barcode Symbology, public domain.</li>
-    </ul>
-
-    <h3>15. CONTACT</h3>
-    <p>For support or inquiries:<br>
-    Mishita Computers Centre<br>
-    Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br>
-    Phone: +254 725 482 521<br>
-    Location: Kenya</p>
-
-    <p>By using this Application, you confirm that you have read, understood, and agreed to be bound by these terms.</p>
-  </div>
-</div>
-
-<div id="readMeModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('readMeModal')">&times;</span>
-    <h2>Read Me: BaseMate - Student Management DB</h2>
-    <p><strong>BASEMATE - STUDENT MANAGEMENT DB</strong><br>
-    <strong>VERSION:</strong> 1.0.0.2<br>
-    <strong>DATE:</strong> July 2025<br>
-    <strong>DEVELOPER:</strong> Mishita Computers Centre</p>
-
-    <h3>ABOUT THIS APPLICATION</h3>
-    <p>This application is designed to manage student records for micro, small, and medium-scale institutions, including academics, payments, attachments, and reporting. Key features include:</p>
-    <ul>
-      <li>Automatic email reminders</li>
-      <li>Secure backup and restore options</li>
-      <li>Real-time PC diagnostics</li>
-      <li>PDF exporting & silent printing</li>
-      <li>Login monitoring with email alerts</li>
-    </ul>
-
-    <h3>RECOMMENDED SYSTEM REQUIREMENTS</h3>
-    <ul>
-      <li>Operating System: Windows 7 or higher</li>
-      <li>RAM: 2 GB minimum (4 GB recommended)</li>
-      <li>Processor: Intel Core i3 or higher</li>
-      <li>Storage: SSD recommended (HDD can work but may be slower)</li>
-      <li>Microsoft Access: 2007 or later (incase of incompatility issues 2010 is recommended)</li>
-      <li>Internet Connection: Required for email features and cloud functionality</li>
-          </ul>
-
-    <h3>WHY INTERNET IS IMPORTANT</h3>
-    <p>The application uses internet connectivity for:</p>
-    <ul>
-      <li>Sending emails and automated reminders/alerts</li>
-      <li>Downloading updates (future versions)</li>
-      <li>Backup reporting to the developer</li>
-      <li>Security email alerts for login attempts</li>
-      <li>Receiving login verification codes</li>
-      <li>Forwarding a copy of your password to your email everytime you change.</li>
-      <li>Forwarding copy of Data backup to email address.</li>
-    </ul>
-
-    <h3>TIPS FOR BEST PERFORMANCE</h3>
-    <ul>
-      <li>Keep system drivers up-to-date</li>
-      <li>Ensure system date and time are correct</li>
-      <li>Maintain a stable internet connection when using the app</li>
-      <li>Always close the app properly to prevent file corruption</li>
-      <li>Avoid running heavy programs in the background</li>
-      <li>Ensure Microsoft Access macros are enabled</li>
-    </ul>
-
-    <h3>BACKUP INFORMATION</h3>
-    <ul>
-      <li>Backups are saved with a timestamp in the folder: D:\BaseMate Student Management DB\</li>
-      <li>Backups cannot be stored on the local C: drive. Use a separate partition or removable media.</li>
-      <li>Each backup is encrypted with a secure password set by the system admin.</li>
-      <li>Attachments and reports are included unless specifically excluded.</li>
-    </ul>
-
-    <h3>WARNING</h3>
-    <p>Do not rename, move, or modify critical folders or files unless explicitly advised. Ensure your email SMTP settings are correctly configured and working before enabling OTP login verification.</p>
-
-    <h3>SUPPORT / FEEDBACK</h3>
-    <p>For support or to report issues, contact:<br>
-    Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br>
-    Phone: +254 725 482 521</p>
-    <p>Thank you for using our application!</p>
-  </div>
-</div>
-
-<div id="faqsModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('faqsModal')">&times;</span>
-    <h2>FAQs</h2>
-    <p><strong>FREQUENTLY ASKED QUESTIONS (FAQ)</strong></p>
-    
-    <h3>Q: I forgot my password. How can I recover it?</h3>
-    <p>A: You can retrieve it from your registered email address. Every time you reset or change your password, a copy is automatically sent to your email. Note: Password reset is only supported while connected to the internet.</p>
-
-    <h3>Q: I didn&rsquo;t receive the login (OTP) verification code. What should I do?</h3>
+    <!-- FAQ TAB -->
+    <div id="faq" class="tab-content">
+        <h2 style="color: #00ff99;"><u>FREQUENTLY ASKED QUESTIONS</u></h2>
+        <H3><strong>Q:</strong> I forgot my password. How can I recover it?<br><strong>A:</strong> You can retrieve it from your registered email address. Every time you reset or change your password, a copy is automatically sent to your email. Note: Password reset is only supported while connected to the internet.</h3>
+        <p><strong>Q:</strong> Can the system work without internet access?<br><strong>A:</strong> Yes. Core functions like data entry, reporting, backup, and restore work offline. However, features such as email verification, password reset, and system alerts require an internet connection.</p>
+        <h3>Q: I didn&rsquo;t receive the login (OTP) verification code. What should I do?</h3>
     <p>A: Ensure your device is connected to the internet. Check your Spam or Junk folder in your email. If the issue persists, contact your system administrator for assistance.</p>
 
     <h3>Q: I keep seeing &ldquo;This Application is Blocked.&rdquo; What does this mean and what should I do?</h3>
@@ -467,17 +338,79 @@
     <h3>Q: The barcode doesn&rsquo;t display properly; I only see plain text. Why?</h3>
     <p>A: This happens when the "3 of 9 Barcode" font is not installed on your PC. To fix it, download and install the 3 of 9 Barcode font to enable correct barcode display.</p>
   </div>
+
+    <!-- TERMS TAB -->
+    <div id="terms" class="tab-content">
+        <h2 style="color: #00ff99;"><u>TERMS & CONDITIONS</u></h2>
+        <h3>1. ACCEPTANCE OF TERMS</h3><p>By installing, accessing, or using this application, you agree to be bound by this User Agreement.</p>
+        <h3>2. LICENSE GRANT</h3><ul><li>No reverse engineering or redistribution without consent.</li><li>No commercial hosting without authorization.</li></ul>
+        <h3>3. INTELLECTUAL PROPERTY</h3><p>All content is property of Mishita Computers Centre & Edwin L. Agola.</p>
+        <h3>4. USER RESPONSIBILITIES</h3><ul><li>Maintain regular backups</li><li>Keep credentials secure</li></ul>
+        <h3>5. PROHIBITED USES</h3><ul><li>No malicious software</li><li>No unauthorized access</li></ul>
+        <h3>6. DATA COLLECTION</h3><p>Non-personal system data may be collected for updates.</p>
+        <h3>7. UPDATES</h3><p>Updates may be mandatory for continued use.</p>
+        <h3>8. DISCLAIMER</h3><p>Provided "as is" without warranties.</p>
+        <h3>9. LIMITATION OF LIABILITY</h3><p>No liability for data loss or damages.</p>
+    </div>
+
+<div id="services" class="tab-content">
+    <h2 style="color: #00ff99;"><u>OTHER SERVICES WE OFFER</u></h2>
+    <p style="font-size:1.1em; font-weight:bold;">We offer a wide range of digital & printing solutions:</p>
+    
+    <div class="features">
+        <div class="feature-item">
+            <i class="fas fa-laptop-code fa-2x"></i>
+            <strong>Computer Training</strong>
+            Learn practical computer skills from beginner to advanced levels.
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-print fa-2x"></i>
+            <strong>Printing Services</strong>
+            Quality printing for documents, assignments, and reports.
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-wifi fa-2x"></i>
+            <strong>Internet Services</strong>
+            KRA PIN, eCitizen, HELB, TSC services fast and reliable assistance.
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-layer-group fa-2x"></i>
+            <strong>Lamination</strong>
+            Protect your important documents with professional lamination.
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-camera fa-2x"></i>
+            <strong>Scanning</strong>
+            High-resolution scanning for IDs, photos, and documents.
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-book fa-2x"></i>
+            <strong>Binding</strong>
+            Get professional binding for projects, reports, and books.
+        </div>
+ </div>
+
+
 </div>
 
-<!-- JavaScript to Handle Modal -->
-<script>
-    function openModal(modalId) {
-        document.getElementById(modalId).style.display = "block";
-    }
+<footer>
+    Support Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br/>
+    Contact: 0725482521 | 0736632205<br/>
+    &copy; 2025 Mishita Computers Centre. All rights reserved.
+</footer>
 
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = "none";
-    }
+<script>
+const tabLinks = document.querySelectorAll(".tab-link");
+const tabContents = document.querySelectorAll(".tab-content");
+tabLinks.forEach(button => {
+    button.addEventListener("click", () => {
+        const tabId = button.getAttribute("data-tab");
+        tabLinks.forEach(btn => btn.classList.remove("active"));
+        tabContents.forEach(content => content.classList.remove("active"));
+        button.classList.add("active");
+        document.getElementById(tabId).classList.add("active");
+    });
+});
 </script>
 </body>
 </html>
