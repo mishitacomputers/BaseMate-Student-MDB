@@ -1,595 +1,1986 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mishita Computers Centre - BaseMate Student MDB</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<link rel="stylesheet" href="css/styles.css" />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-<script src="js/disable-rightclick.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mishita Computers Centre - BaseMate Student MDB</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/styles">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Right-Click Protection -->
+    <script src="js/disable-rightclick"></script>
 </head>
+
 <body>
 
-<!-- HEADER BAR -->
-<div class="main-header">
-    <header>
-        <img src="images/logo.PNG" alt="Left Logo" class="protected">
-        <span>Mishita Computers Centre - BaseMate Student MDB</span>
-        <img src="images/mishitacologo.PNG" alt="Right Logo" class="protected">
-    </header>
-</div>
+    <!-- =====================================================
+         HEADER BAR
+         ===================================================== -->
 
+    <div class="main-header">
+        <header>
 
+            <img src="images/logo"
+                 alt="Mishita Computers Centre Logo"
+                 class="protected">
 
-<!-- LEFT & RIGHT SIDE IMAGES -->
-<div class="side-image left-side">
-    <div class="side-card">
-        <img src="images/Admin.jpg" alt="Edwin L. Agola" class="protected">
-        <p class="caption">Edwin L. Agola <br> Founder</p>
+            <span>Mishita Computers Centre - BaseMate Student MDB</span>
+
+            <img src="images/mishitacologo"
+                 alt="Mishita Computers Centre"
+                 class="protected">
+
+        </header>
     </div>
 
-<div class="side-card" id="digitalClockCard">
-    <h5 id="digitalClock">Loading...</h5>
-    <small id="digitalDate"></small>
-    <div id="calendar"></div>
-</div>
 
-<script>
-// Fetch Internet Time from WorldTimeAPI
-async function fetchInternetTime() {
-    try {
-        const res = await fetch("https://worldtimeapi.org/api/ip");
-        const data = await res.json();
-        return new Date(data.datetime);
-    } catch (error) {
-        console.error("?? Could not fetch internet time, using local system time.");
-        return new Date(); // fallback to local time
-    }
-}
+    <!-- =====================================================
+         LEFT SIDE IMAGE / CLOCK
+         ===================================================== -->
 
-let internetTimeOffset = 0;
+    <div class="side-image left-side">
 
-fetchInternetTime().then(internetDate => {
-    internetTimeOffset = internetDate.getTime() - Date.now();
-    updateDigitalClock();
-    renderCalendar(new Date(Date.now() + internetTimeOffset));
-    setInterval(updateDigitalClock, 1000);
-});
+        <!-- Founder Card -->
+        <div class="side-card">
 
-function updateDigitalClock() {
-    let now = new Date(Date.now() + internetTimeOffset);
+            <img src="images/Admin"
+                 alt="Edwin L. Agola"
+                 class="protected">
 
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
-    let seconds = now.getSeconds().toString().padStart(2, '0');
-    let ampm = hours >= 12 ? 'PM' : 'AM';
-    let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+            <p class="caption">
+                Edwin L. Agola
+                <br>
+                Founder
+            </p>
 
-    document.getElementById('digitalClock').textContent = timeString;
+        </div>
 
-    // Short Date
-    const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-    document.getElementById('digitalDate').textContent = now.toLocaleDateString(undefined, dateOptions);
 
-    // Re-render calendar every midnight (if needed)
-}
+        <!-- Digital Clock and Calendar -->
+        <div class="side-card" id="digitalClockCard">
 
-function renderCalendar(date) {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const today = date.getDate();
+            <h5 id="digitalClock">Loading...</h5>
 
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+            <small id="digitalDate"></small>
 
-    let calendarHTML = `<table class="mini-calendar">
-        <thead><tr>
-            <th colspan="7">${date.toLocaleString('default', { month: 'long' })} ${year}</th>
-        </tr><tr>
-            <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
-        </tr></thead><tbody><tr>`;
+            <div id="calendar"></div>
 
-    // Empty cells before first day
-    for (let i = 0; i < firstDay; i++) {
-        calendarHTML += "<td></td>";
-    }
+        </div>
 
-    // Days
-    for (let d = 1; d <= daysInMonth; d++) {
-        if ((firstDay + d - 1) % 7 === 0 && d !== 1) {
-            calendarHTML += "</tr><tr>";
+    </div>
+
+
+    <!-- =====================================================
+         INTERNET TIME / CALENDAR SCRIPT
+         ===================================================== -->
+
+    <script>
+
+        // -----------------------------------------------------
+        // Fetch Internet Time from WorldTimeAPI
+        // -----------------------------------------------------
+
+        async function fetchInternetTime() {
+
+            try {
+
+                const response = await fetch(
+                    "https://worldtimeapi.org/api/ip"
+                );
+
+                const data = await response.json();
+
+                return new Date(data.datetime);
+
+            } catch (error) {
+
+                console.error(
+                    "Could not fetch internet time. Using local system time."
+                );
+
+                return new Date();
+            }
         }
-        if (d === today) {
-            calendarHTML += `<td class="today">${d}</td>`;
-        } else {
-            calendarHTML += `<td>${d}</td>`;
+
+
+        // -----------------------------------------------------
+        // Internet Time Offset
+        // -----------------------------------------------------
+
+        let internetTimeOffset = 0;
+
+
+        // -----------------------------------------------------
+        // Start Clock
+        // -----------------------------------------------------
+
+        fetchInternetTime().then(function (internetDate) {
+
+            internetTimeOffset =
+                internetDate.getTime() - Date.now();
+
+            updateDigitalClock();
+
+            renderCalendar(
+                new Date(Date.now() + internetTimeOffset)
+            );
+
+            setInterval(updateDigitalClock, 1000);
+
+        });
+
+
+        // -----------------------------------------------------
+        // Update Digital Clock
+        // -----------------------------------------------------
+
+        function updateDigitalClock() {
+
+            const now =
+                new Date(Date.now() + internetTimeOffset);
+
+            let hours =
+                now.getHours().toString().padStart(2, "0");
+
+            const minutes =
+                now.getMinutes().toString().padStart(2, "0");
+
+            const seconds =
+                now.getSeconds().toString().padStart(2, "0");
+
+            const ampm =
+                now.getHours() >= 12 ? "PM" : "AM";
+
+            const timeString =
+                `${hours}:${minutes}:${seconds} ${ampm}`;
+
+            document.getElementById("digitalClock").textContent =
+                timeString;
+
+
+            // -------------------------------------------------
+            // Short Date
+            // -------------------------------------------------
+
+            const dateOptions = {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            };
+
+            document.getElementById("digitalDate").textContent =
+                now.toLocaleDateString(
+                    undefined,
+                    dateOptions
+                );
         }
-    }
-
-    calendarHTML += "</tr></tbody></table>";
-    document.getElementById("calendar").innerHTML = calendarHTML;
-}
-</script>
-
-</div>
-
-<div class="side-image right-side">
-    <img src="images/student_idd.png" alt="visual report" class="protected"> <br>
-	<img src="images/Visualreport.png" alt="Visual report2" class="protected"> <br>
-	<img src="images/academics.png" alt="Academics" class="protected"> <br>
-	<img src="images/student_id.png" alt="fees payment" class="protected">
-	
-</div>
 
 
-<div class="overlay">
-    <div>
-        <h1 style="color: red;"><u>MISHITA COMPUTERS CENTRE</u></h1>
-        <h3>BaseMate Student Management DB</h3>
-        <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently.</p>
-        <p> It's fast, secure, and zero on running and maintenance costs.</p>
+        // -----------------------------------------------------
+        // Render Calendar
+        // -----------------------------------------------------
+
+        function renderCalendar(date) {
+
+            const year =
+                date.getFullYear();
+
+            const month =
+                date.getMonth();
+
+            const today =
+                date.getDate();
+
+            const firstDay =
+                new Date(year, month, 1).getDay();
+
+            const daysInMonth =
+                new Date(year, month + 1, 0).getDate();
+
+
+            let calendarHTML = `
+                <table class="mini-calendar">
+
+                    <thead>
+
+                        <tr>
+                            <th colspan="7">
+                                ${date.toLocaleString("default", {
+                                    month: "long"
+                                })} ${year}
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th>Su</th>
+                            <th>Mo</th>
+                            <th>Tu</th>
+                            <th>We</th>
+                            <th>Th</th>
+                            <th>Fr</th>
+                            <th>Sa</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+            `;
+
+
+            // -------------------------------------------------
+            // Empty Cells Before First Day
+            // -------------------------------------------------
+
+            for (let i = 0; i < firstDay; i++) {
+
+                calendarHTML += "<td></td>";
+            }
+
+
+            // -------------------------------------------------
+            // Days of Month
+            // -------------------------------------------------
+
+            for (let day = 1; day <= daysInMonth; day++) {
+
+                if (
+                    (firstDay + day - 1) % 7 === 0 &&
+                    day !== 1
+                ) {
+
+                    calendarHTML += "</tr><tr>";
+                }
+
+
+                if (day === today) {
+
+                    calendarHTML += `
+                        <td class="today">${day}</td>
+                    `;
+
+                } else {
+
+                    calendarHTML += `
+                        <td>${day}</td>
+                    `;
+                }
+            }
+
+
+            calendarHTML += `
+                        </tr>
+                    </tbody>
+
+                </table>
+            `;
+
+
+            document.getElementById("calendar").innerHTML =
+                calendarHTML;
+        }
+
+    </script>
+
+
+    <!-- =====================================================
+         RIGHT SIDE IMAGES
+         ===================================================== -->
+
+    <div class="side-image right-side">
+
+        <img src="images/student_idd"
+             alt="Student ID"
+             class="protected">
+        <br>
+
+        <img src="images/Visualreport"
+             alt="Visual Report"
+             class="protected">
+        <br>
+
+        <img src="images/academics"
+             alt="Academics"
+             class="protected">
+        <br>
+
+        <img src="images/student_id"
+             alt="Student ID"
+             class="protected">
+
     </div>
 
-  <!-- Tab Buttons -->
-<div class="tab-buttons">
-    <button class="tab-link active" data-tab="home">Home</button>
-    <button class="tab-link" data-tab="us">About Us</button>
-    <button class="tab-link" data-tab="readme">Read Me</button>
-    <button class="tab-link" data-tab="faq">FAQ</button>
-    <button class="tab-link" data-tab="downloads">Downloads</button>
-    <button class="tab-link" data-tab="terms">Terms</button>
-    <button class="tab-link" data-tab="demo">Demo Video</button>
-    <button class="tab-link" data-tab="gui">System GUI Overview</button>
-    <button class="tab-link" data-tab="services">Other Services</button>
-</div>
 
-    <!-- HOME TAB -->
-    <div id="home" class="tab-content active">
-        <div class="features-heading"><u>KEY FEATURES INCLUDE</u></div>
-<div class="features">
-    <div class="feature-item">
-        <i class="fas fa-lock fa-2x"></i>
-        <strong>Secure Login & Email Alerts</strong>
-        Stay informed with real-time login alerts.
-    </div>
+    <!-- =====================================================
+         MAIN OVERLAY / CONTENT
+         ===================================================== -->
 
-    <div class="feature-item">
-        <i class="fas fa-user-cog fa-2x"></i>
-        <strong>User Account Management</strong>
-        Manage how other users access the system.
-    </div>
+    <div class="overlay">
 
-    <div class="feature-item">
-        <i class="fas fa-id-card fa-2x"></i>
-        <strong>Student Profile Management</strong>
-        Register, update, and monitor student details.
-    </div>
+        <!-- =================================================
+             INTRODUCTION
+             ================================================= -->
 
-    <div class="feature-item">
-        <i class="fas fa-chart-line fa-2x"></i>
-        <strong>Performance Tracking</strong>
-        Track academic progress, exams, and assessments.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-receipt fa-2x"></i>
-        <strong>Payment Tracking & Receipts</strong>
-        Track student payments and print/email receipts instantly.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-file-invoice-dollar fa-2x"></i>
-        <strong>Invoicing</strong>
-        Send branded invoices via email or print them.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-envelope-open-text fa-2x"></i>
-        <strong>Mass Email Reminders</strong>
-        Schedule monthly automatic reminders for balances.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-database fa-2x"></i>
-        <strong>Backup & Restore</strong>
-        Auto-backup every 14 days or manually in one click.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-chart-pie fa-2x"></i>
-        <strong>Visual Reports</strong>
-        Make data-driven decisions with charts and graphs.
-    </div>
-
-    <div class="feature-item">
-        <i class="fas fa-certificate fa-2x"></i>
-        <strong>Certificates & IDs</strong>
-        Generate and download certificates or IDs instantly.
-    </div>
-
-    <div class="feature-item">
-        <i class="fab fa-whatsapp fa-2x"></i>
-        <strong>WhatsApp Payment Reminder</strong>
-        At a press of a button, send customised payment reminders.
-    </div>
-</div>
-</div>    
-
-    <!-- DOWNLOADS TAB -->
-    <div id="downloads" class="tab-content">
-        <h2 style="color: #00ff99;"><u>DOWNLOADS</u></h2>
-        <p> Click on the links below to Download:-</p>
-        <a href="https://drive.google.com/file/d/12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH/view?usp=sharing" target="_blank" class="download-btn">System User Interface Documentation (PDF)</a>
-        <a href="https://drive.google.com/file/d/1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8/view?usp=sharing" target="_blank" class="download-btn">App Customization Request Form (PDF)</a>
-    </div>
-
-    <div id="readme" class="tab-content">
-    <h2 style="color: #00ff99;"><u>BASEMATE - STUDENT MANAGEMENT DB</u></h2>
-
-    <h3>ABOUT THIS APPLICATION</h3>
-    <p>This application is designed to manage student records for micro, small, and medium-scale institutions, including academics, payments, attachments, and reporting. Key features include:</p>
-    <ul>
-        <li>Automatic email reminders</li>
-        <li>Secure backup and restore options</li>
-        <li>Real-time PC diagnostics</li>
-        <li>PDF exporting & silent printing</li>
-        <li>Login monitoring with email alerts</li>
-    </ul>
-
-    <p><strong>VERSION:</strong> 1.0.0.2<br>
-    <strong>DATE:</strong> July 2025<br>
-    <strong>DEVELOPER:</strong> Mishita Computers Centre</p>
-
-    <h3>RECOMMENDED SYSTEM REQUIREMENTS</h3>
-    <ul>
-        <li>Operating System: Windows 7 or higher</li>
-        <li>RAM: 2 GB minimum (4 GB recommended)</li>
-        <li>Processor: Intel Core i3 or higher</li>
-        <li>Storage: SSD recommended (HDD can work but may be slower)</li>
-        <li>Microsoft Access: 2010 or later (32/64-bit)</li>
-        <li>Internet Connection: Required for email features and cloud functionality</li>
-    </ul>
-
-    <h3>WHY INTERNET IS IMPORTANT</h3>
-    <p>The application uses internet connectivity for:</p>
-    <ul>
-        <li>Sending emails and automated reminders/alerts</li>
-        <li>Downloading updates (future versions)</li>
-        <li>Backup reporting to the developer</li>
-        <li>Security email alerts for login attempts</li>
-        <li>Receiving login verification codes</li>
-	<li>Uploading backup to email</li>
-	<li>Forwarding copy of password to email after updating</li>
-    </ul>
-
-    <h3>TIPS FOR BEST PERFORMANCE</h3>
-    <ul>
-        <li>Keep system drivers up-to-date</li>
-        <li>Ensure system date and time are correct</li>
-        <li>Maintain a stable internet connection when using the app</li>
-        <li>Always close the app properly to prevent file corruption</li>
-        <li>Avoid running heavy programs in the background</li>
-        <li>Ensure Microsoft Access macros are enabled</li>
-    </ul>
-
-    <h3>BACKUP INFORMATION</h3>
-    <ul>
-        <li>Backups are saved with a timestamp in the folder: <strong>D:\BaseMate Student Management DB\</strong></li>
-        <li>Backups cannot be stored on the local C: drive. Use a separate partition or removable media.</li>
-        <li>Each backup is encrypted with a secure password set by the system admin.</li>
-        <li>Attachments and reports are included unless specifically excluded.</li>
-    </ul>
-
-    <h3>WARNING</h3>
-    <p>Do not rename, move, or modify critical folders or files unless explicitly advised.
-    Ensure your email SMTP settings are correctly configured and working before enabling OTP login verification.</p>
-
-    <h3>SUPPORT / FEEDBACK</h3>
-    <p>For support or to report issues, contact:<br>
-    <strong>Email:</strong> mishitacomputers@gmail.com<br>
-    <strong>Phone:</strong> +254 725 482 521</p>
-
-    <p><em>Thank you for using our application!</em></p>
-</div>
-
-    <!-- FAQ TAB -->
-    <div id="faq" class="tab-content">
-        <h2 style="color: #00ff99;"><u>FREQUENTLY ASKED QUESTIONS</u></h2>
-        <H3><strong>Q:</strong> I forgot my password. How can I recover it?<br><strong>A:</strong> You can retrieve it from your registered email address. Every time you reset or change your password, a copy is automatically sent to your email. Note: Password reset is only supported while connected to the internet.</h3>
-        <p><strong>Q:</strong> Can the system work without internet access?<br><strong>A:</strong> Yes. Core functions like data entry, reporting, backup, and restore work offline. However, features such as email verification, password reset, and system alerts require an internet connection.</p>
-        <h3>Q: I didn&rsquo;t receive the login (OTP) verification code. What should I do?</h3>
-    <p>A: Ensure your device is connected to the internet. Check your Spam or Junk folder in your email. If the issue persists, contact your system administrator for assistance.</p>
-
-    <h3>Q: I keep seeing &ldquo;This Application is Blocked.&rdquo; What does this mean and what should I do?</h3>
-    <p>A: This message indicates that your account has been restricted and you cannot use it. Please contact the system administrator or developer at 0725 482521 for assistance.</p>
-
-    <h3>Q: &ldquo;Verifying authenticity please wait?&rdquo; This is the message I see every time I log in.</h3>
-    <p>A: No need to worry. This message is part of the system&rsquo;s security process to validate your license and account status each time you log in.</p>
-
-    <h3>Q: I used to receive login notifications, but I don&rsquo;t anymore.</h3>
-    <p>A: Please ensure that login notifications are enabled in the Settings form. You will receive a notification each time someone attempts to log in to your application, provided the PC is connected to the internet.</p>
-
-    <h3>Q: All student learners show &lsquo;Learning is in progress&rsquo;. What could be the issue?</h3>
-    <p>A: This is likely related to your computer's date and time settings. The application depends entirely on your system's date and time to provide accurate information. Ensure your PC has the correct and updated date/time settings.</p>
-
-    <h3>Q: Why do some forms take longer to load?</h3>
-    <p>A: This may occur when certain automated features are enabled. During form initialization, the system checks for an active internet connection. If a connection is detected but no data is transmitted, loading may be temporarily delayed while the system verifies connectivity.</p>
-
-    <h3>Q: &lsquo;All charts and data successfully loaded&rsquo;. This is the message I see, yet some charts and graphs don&rsquo;t appear on the form.</h3>
-    <p>A: This may be due to loading delays&mdash;queries can occasionally take longer than expected to complete. Simply close and reopen the form to refresh the charts.</p>
-
-    <h3>Q: How do I back up my data?</h3>
-    <p>A: There are two backup options: Simply go to the Settings form, and pick the action button to take the desired backup (Full, Passports, or Data tables). Or automate the process every 14 days by checking &ldquo;auto data backup&rdquo;.</p>
-
-    <h3>Q: Why does the backup process fail?</h3>
-    <p>A: Ensure your PC has more than one disk partition. The system does not store backups on C:\\ for safety reasons. Tip: Plug in a removable drive or ensure D:\\ is available before running backups.</p>
-
-    <h3>Q: I see a &ldquo;No encryption tool found&rdquo; error during backup. What should I do?</h3>
-    <p>A: Make sure that a file compression tool like 7-Zip is installed on your PC. The system uses it to zip and encrypt backup files.</p>
-
-    <h3>Q: How can I restore a previous backup?</h3>
-    <p>A: Open the Settings form and select the Restore option for the data type you wish to recover (e.g., tables, passports, all data). The system will automatically locate your backup folder and begin the restoration process.</p>
-
-    <h3>Q: How do I verify legitimacy of a payment receipt?</h3>
-    <p>A: Go to the Settings form, locate the Payment Verification section, enter the payment reference number, and click Verify. The system will process the request and display the result.</p>
-
-    <h3>Q: Can the system work without internet access?</h3>
-    <p>A: Yes. Core functions like data entry, reporting, backup, and restore work offline. However, features such as email verification, password reset, and system alerts require an internet connection.</p>
-
-    <h3>Q: Can I share this application with others over a network?</h3>
-    <p>A: No. This system is designed as a standalone application to minimize dependency on external service providers (e.g., paid servers). It&rsquo;s optimized for low-cost operation while maintaining full data management capabilities.</p>
-
-    <h3>Q: The barcode doesn&rsquo;t display properly; I only see plain text. Why?</h3>
-    <p>A: This happens when the "3 of 9 Barcode" font is not installed on your PC. To fix it, download and install the 3 of 9 Barcode font to enable correct barcode display.</p>
-  </div>
-
-    <!-- TERMS TAB -->
-<div id="terms" class="tab-content">
-    <h2 style="color: #00ff99;"><u>TERMS AND CONDITIONS OF USE & USER AGREEMENT</u></h2>
-
-    <p><strong>Effective Date:</strong> July 10, 2025<br>
-    <strong>Company:</strong> Mishita Computers Centre<br>
-    <strong>Author:</strong> Edwin L. Agola<br>
-    <strong>Contact:</strong> mishitacomputers@gmail.com | +254 725 482 521<br>
-    <strong>Copyright ? 2025 Mishita Computers Centre</strong></p>
-
-    <h3>1. ACCEPTANCE OF TERMS</h3>
-    <p>By installing, accessing, or using this software application ('Application'), you agree to be bound by this User Agreement.
-    If you do not agree with these terms, do not install, access, or use the Application.</p>
-
-    <h3>2. LICENSE GRANT</h3>
-    <p>You are granted a limited, non-exclusive, non-transferable license to use the Application solely for lawful purposes.</p>
-    <ul>
-        <li>Reverse engineer, decompile, or modify the Application.</li>
-        <li>Rent, lease, sublicense, or redistribute the Application without prior written consent.</li>
-        <li>Use the Application for commercial hosting or as part of another software without authorization.</li>
-    </ul>
-
-    <h3>3. INTELLECTUAL PROPERTY</h3>
-    <p>All content, code, designs, and related materials are the sole property of Mishita Computers Centre and Edwin L. Agola.
-    Protected by copyright, trademark, and other applicable intellectual property laws. All rights reserved.</p>
-
-    <h3>4. USER RESPONSIBILITIES</h3>
-    <ul>
-        <li>Maintain regular backups of your data.</li>
-        <li>Ensure that your use complies with all applicable laws and regulations.</li>
-        <li>Keep your login details, license keys, and other credentials secure.</li>
-        <li>Immediately report any suspected unauthorized use to Mishita Computers Centre.</li>
-    </ul>
-
-    <h3>5. PROHIBITED USES</h3>
-    <ul>
-        <li>Use the Application to engage in unlawful, fraudulent, or harmful activities.</li>
-        <li>Upload or distribute malicious software, viruses, or harmful code through the Application.</li>
-        <li>Attempt unauthorized access to servers, databases, or other connected systems.</li>
-    </ul>
-
-    <h3>6. DATA COLLECTION & PRIVACY</h3>
-    <p>The Application may collect non-personal system information for diagnostics, updates, and performance improvements.
-    Personal data will not be shared with third parties without your consent, except when required by law.
-    You agree to the Privacy Policy provided by Mishita Computers Centre.</p>
-
-    <h3>7. UPDATES & SUPPORT</h3>
-    <p>Updates may be provided to improve functionality, security, or compliance.
-    Support is available via email or phone and may require proof of license or purchase.
-    Some updates may be mandatory for continued use.</p>
-
-    <h3>8. DISCLAIMER OF WARRANTIES</h3>
-    <p>The Application is provided ?as is? without any express or implied warranties, including but not limited to fitness
-    for a particular purpose, merchantability, or non-infringement. You assume full responsibility for risks associated with
-    using the Application.</p>
-
-    <h3>9. LIMITATION OF LIABILITY</h3>
-    <p>Mishita Computers Centre shall not be liable for any direct, indirect, incidental, consequential, or special damages
-    arising from or related to the use or inability to use the Application, including data loss or corruption.</p>
-
-    <h3>10. TERMINATION</h3>
-    <p>This license automatically terminates if you breach any term of this Agreement.
-    Upon termination, you must uninstall the Application and destroy all copies in your possession.</p>
-
-    <h3>11. GOVERNING LAW & DISPUTE RESOLUTION</h3>
-    <p>This Agreement is governed by the laws of Kenya.
-    Any dispute will be resolved exclusively in the courts of Kenya.
-    You agree to attempt an amicable resolution before pursuing legal action.</p>
-
-    <h3>12. CHANGES TO TERMS</h3>
-    <p>Mishita Computers Centre reserves the right to revise these terms at any time.
-    Continued use after changes constitutes acceptance of the revised terms.</p>
-
-    <h3>13. SEVERABILITY</h3>
-    <p>If any part of this Agreement is found invalid or unenforceable, the remaining provisions will remain in full force
-    and effect.</p>
-
-    <h3>14. THIRD-PARTY COMPONENTS</h3>
-    <p>This Application may include or work alongside third-party software components. The following are acknowledged:</p>
-    <ul>
-        <li>7-Zip, developed by Igor Pavlov, licensed under the GNU LGPL. Source and license available at <a href="https://www.7-zip.org" target="_blank">https://www.7-zip.org</a></li>
-        <li>Code 3 of 9 (Code39) Barcode Symbology, public domain.</li>
-    </ul>
-    <p>These components are provided under their respective licenses. Mishita Computers Centre does not claim ownership of
-    them and provides them "as-is" without warranty.</p>
-
-    <h3>15. CONTACT</h3>
-    <p>For support or inquiries:<br>
-    Mishita Computers Centre<br>
-    Email: mishitacomputers@gmail.com<br>
-    Phone: +254 725 482 521<br>
-    Location: Kenya</p>
-
-    <p><strong>By using this Application, you confirm that you have read, understood, and agreed to be bound by these terms.</strong></p>
-</div>
-
-<!-- ? OTHER SERVICES TAB -->
-<div id="services" class="tab-content">
-    <h2 style="color: #00ff99;"><u>OTHER SERVICES WE OFFER</u></h2>
-    <p style="font-size:1.1em; font-weight:bold;">We offer a wide range of digital & printing solutions:</p>
-    
-    <div class="features">
-        <div class="feature-item">
-            <i class="fas fa-laptop-code fa-2x"></i>
-            <strong>Computer Training</strong>
-            We teach 12 computer packages at pocket friendsly price, Mondays-Fridays: 9am - 1 Pm, 2 Pm - 6 PM.
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-print fa-2x"></i>
-            <strong>Printing Services</strong>
-            Quality printing for documents, assignments, and reports.
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-wifi fa-2x"></i>
-            <strong>Internet Services</strong>
-            KRA PIN, eCitizen, HELB, TSC services fast and reliable assistance.
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-layer-group fa-2x"></i>
-            <strong>Lamination</strong>
-            Protect your important documents with professional lamination.
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-camera fa-2x"></i>
-            <strong>Scanning</strong>
-            High-resolution scanning for IDs, photos, and documents.
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-book fa-2x"></i>
-            <strong>Binding</strong>
-            Get professional binding for projects, reports, and books.
-        </div>
-    </div>
-</div>
-
-<!-- ? ABOUT US TAB -->
-<div id="us" class="tab-content">
-    <h2 style="color: #00ff99;"><u>ABOUT US</u></h2>
-    <p style="font-size: 1.1em;">
-        Mishita Computers is a dedicated computer service provider focused on delivering reliable solutions for students, professionals, and businesses. 
-        It offers a wide range of services including computer sales, repairs, software installation, networking, and IT consultation. 
-        With a mission to make technology accessible and affordable, Mishita Computers emphasizes quality, transparency, and personalized service to meet client needs.
-    </p>
-    <p style="font-size: 1.1em;">
-        By combining technical expertise with friendly customer care, Mishita Computers has earned a reputation as a trusted local hub for all things tech. 
-        Customers benefit from competitive pricing, after-sales support, and professional advice, ensuring they receive the best value for their investment. 
-        Whether you are upgrading a laptop, setting up a network, or looking for software solutions, Mishita Computers is ready to deliver reliable, customer-focused service.
-    </p>
-</div>
-
-
-
-<!-- DEMO VIDEO TAB -->
-<div id="demo" class="tab-content">
-    <h2 style="color: #00ff99;"><u>DEMO VIDEO</u></h2>
-    <div style="display: flex; justify-content: center; align-items: center;">
-<video class="demo-video" controls>
-  <source src="videos/demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-    </div>
-</div>
-
-
-<!-- ? SYSTEM GUI OVERVIEW TAB -->
-<div id="gui" class="tab-content">
-    <h2 style="color: #00ff99;"><u>SYSTEM GUI OVERVIEW</u></h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: center;">
-        <!-- Example Screenshot Items -->
         <div>
-            <img src="images/setup.png" alt="Login Screen" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Follow the installation proceduresuntil the program is successfully installed.</p>
+
+            <h1 style="color: red;">
+                <u>MISHITA COMPUTERS CENTRE</u>
+            </h1>
+
+            <h3>BaseMate Student Management DB</h3>
+
+            <p>
+                BaseMate Student MDB is an ultimate Desktop
+                Application for managing your Computer Student
+                Records efficiently.
+            </p>
+
+            <p>
+                It's fast, secure, and zero on running and
+                maintenance costs.
+            </p>
+
         </div>
-        <div>
-            <img src="images/login.png" alt="Dashboard" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Login using default login credentials provided; User name : Admin and Password: 1234</p>
+
+
+        <!-- =================================================
+             TAB BUTTONS
+             ================================================= -->
+
+        <div class="tab-buttons">
+
+            <button class="tab-link active" data-tab="home">
+                Home
+            </button>
+
+            <button class="tab-link" data-tab="us">
+                About Us
+            </button>
+
+            <button class="tab-link" data-tab="readme">
+                Read Me
+            </button>
+
+            <button class="tab-link" data-tab="faq">
+                FAQ
+            </button>
+
+            <button class="tab-link" data-tab="downloads">
+                Downloads
+            </button>
+
+            <button class="tab-link" data-tab="terms">
+                Terms
+            </button>
+
+            <button class="tab-link" data-tab="demo">
+                Demo Video
+            </button>
+
+            <button class="tab-link" data-tab="gui">
+                System GUI Overview
+            </button>
+
+            <button class="tab-link" data-tab="services">
+                Other Services
+            </button>
+
         </div>
-        <div>
-            <img src="images/switchboard.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">On the main switchboard go to 'Settings' and key in primary settings for the application. </p>
+
+
+        <!-- =================================================
+             HOME TAB
+             ================================================= -->
+
+        <div id="home" class="tab-content active">
+
+            <div class="features-heading">
+                <u>KEY FEATURES INCLUDE</u>
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature-item">
+
+                    <i class="fas fa-lock fa-2x"></i>
+
+                    <strong>
+                        Secure Login &amp; Email Alerts
+                    </strong>
+
+                    Stay informed with real-time login alerts.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-user-cog fa-2x"></i>
+
+                    <strong>
+                        User Account Management
+                    </strong>
+
+                    Manage how other users access the system.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-id-card fa-2x"></i>
+
+                    <strong>
+                        Student Profile Management
+                    </strong>
+
+                    Register, update, and monitor student details.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-chart-line fa-2x"></i>
+
+                    <strong>
+                        Performance Tracking
+                    </strong>
+
+                    Track academic progress, exams, and assessments.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-receipt fa-2x"></i>
+
+                    <strong>
+                        Payment Tracking &amp; Receipts
+                    </strong>
+
+                    Track student payments and print or email
+                    receipts instantly.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-file-invoice-dollar fa-2x"></i>
+
+                    <strong>
+                        Invoicing
+                    </strong>
+
+                    Send branded invoices via email or print them.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-envelope-open-text fa-2x"></i>
+
+                    <strong>
+                        Mass Email Reminders
+                    </strong>
+
+                    Schedule monthly automatic reminders for
+                    outstanding balances.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-database fa-2x"></i>
+
+                    <strong>
+                        Backup &amp; Restore
+                    </strong>
+
+                    Auto-backup every 14 days or manually in
+                    one click.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-chart-pie fa-2x"></i>
+
+                    <strong>
+                        Visual Reports
+                    </strong>
+
+                    Make data-driven decisions with charts
+                    and graphs.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-certificate fa-2x"></i>
+
+                    <strong>
+                        Certificates &amp; IDs
+                    </strong>
+
+                    Generate and download certificates or
+                    IDs instantly.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fab fa-whatsapp fa-2x"></i>
+
+                    <strong>
+                        WhatsApp Payment Reminder
+                    </strong>
+
+                    At the press of a button, send customised
+                    payment reminders.
+
+                </div>
+
+            </div>
+
         </div>
+
+
+        <!-- =================================================
+             DOWNLOADS TAB
+             ================================================= -->
+
+        <div id="downloads" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>DOWNLOADS</u>
+            </h2>
+
+            <p>
+                Click on the links below to download:
+            </p>
+
+
+            <a href="https://drive.google.com/file/d/12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH/view?usp=sharing"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="download-btn">
+
+                System User Interface Documentation (PDF)
+
+            </a>
+
+
+            <a href="https://drive.google.com/file/d/1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8/view?usp=sharing"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="download-btn">
+
+                App Customization Request Form (PDF)
+
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             READ ME TAB
+             ================================================= -->
+
+        <div id="readme" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>BASEMATE - STUDENT MANAGEMENT DB</u>
+            </h2>
+
+
+            <h3>ABOUT THIS APPLICATION</h3>
+
+            <p>
+                This application is designed to manage student
+                records for micro, small, and medium-scale
+                institutions, including academics, payments,
+                attachments, and reporting. Key features include:
+            </p>
+
+
+            <ul>
+
+                <li>Automatic email reminders</li>
+
+                <li>Secure backup and restore options</li>
+
+                <li>Real-time PC diagnostics</li>
+
+                <li>PDF exporting &amp; silent printing</li>
+
+                <li>Login monitoring with email alerts</li>
+
+            </ul>
+
+
+            <p>
+
+                <strong>VERSION:</strong> 1.0.0.2
+                <br>
+
+                <strong>DATE:</strong> July 2025
+                <br>
+
+                <strong>DEVELOPER:</strong>
+                Mishita Computers Centre
+
+            </p>
+
+
+            <h3>RECOMMENDED SYSTEM REQUIREMENTS</h3>
+
+            <ul>
+
+                <li>
+                    Operating System: Windows 7 or higher
+                </li>
+
+                <li>
+                    RAM: 2 GB minimum (4 GB recommended)
+                </li>
+
+                <li>
+                    Processor: Intel Core i3 or higher
+                </li>
+
+                <li>
+                    Storage: SSD recommended (HDD can work
+                    but may be slower)
+                </li>
+
+                <li>
+                    Microsoft Access: 2010 or later (32/64-bit)
+                </li>
+
+                <li>
+                    Internet Connection: Required for email
+                    features and cloud functionality
+                </li>
+
+            </ul>
+
+
+            <h3>WHY INTERNET IS IMPORTANT</h3>
+
+            <p>
+                The application uses internet connectivity for:
+            </p>
+
+            <ul>
+
+                <li>
+                    Sending emails and automated reminders/alerts
+                </li>
+
+                <li>
+                    Downloading updates (future versions)
+                </li>
+
+                <li>
+                    Backup reporting to the developer
+                </li>
+
+                <li>
+                    Security email alerts for login attempts
+                </li>
+
+                <li>
+                    Receiving login verification codes
+                </li>
+
+                <li>
+                    Uploading backup information to email
+                </li>
+
+                <li>
+                    Forwarding a copy of the password to email
+                    after updating
+                </li>
+
+            </ul>
+
+
+            <h3>TIPS FOR BEST PERFORMANCE</h3>
+
+            <ul>
+
+                <li>Keep system drivers up-to-date</li>
+
+                <li>
+                    Ensure system date and time are correct
+                </li>
+
+                <li>
+                    Maintain a stable internet connection
+                    when using the app
+                </li>
+
+                <li>
+                    Always close the app properly to prevent
+                    file corruption
+                </li>
+
+                <li>
+                    Avoid running heavy programs in the background
+                </li>
+
+                <li>
+                    Ensure Microsoft Access macros are enabled
+                </li>
+
+            </ul>
+
+
+            <h3>BACKUP INFORMATION</h3>
+
+            <ul>
+
+                <li>
+                    Backups are saved with a timestamp in the
+                    folder:
+                    <strong>D:\BaseMate Student Management DB\</strong>
+                </li>
+
+                <li>
+                    Backups cannot be stored on the local C:
+                    drive. Use a separate partition or removable
+                    media.
+                </li>
+
+                <li>
+                    Each backup is encrypted with a secure
+                    password set by the system administrator.
+                </li>
+
+                <li>
+                    Attachments and reports are included unless
+                    specifically excluded.
+                </li>
+
+            </ul>
+
+
+            <h3>WARNING</h3>
+
+            <p>
+                Do not rename, move, or modify critical folders
+                or files unless explicitly advised.
+
+                Ensure your email SMTP settings are correctly
+                configured and working before enabling OTP
+                login verification.
+            </p>
+
+
+            <h3>SUPPORT / FEEDBACK</h3>
+
+            <p>
+
+                For support or to report issues, contact:
+                <br>
+
+                <strong>Email:</strong>
+                mishitacomputers@gmail.com
+                <br>
+
+                <strong>Phone:</strong>
+                +254 725 482 521
+
+            </p>
+
+
+            <p>
+                <em>
+                    Thank you for using our application!
+                </em>
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             FAQ TAB
+             ================================================= -->
+
+        <div id="faq" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>FREQUENTLY ASKED QUESTIONS</u>
+            </h2>
+
+
+            <h3>
+                <strong>Q:</strong>
+                I forgot my password. How can I recover it?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                You can recover access using the password-reset
+                procedure and your registered email address.
+                Password reset is supported while connected to
+                the internet.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                Can the system work without internet access?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Yes. Core functions like data entry, reporting,
+                backup, and restore work offline. However,
+                features such as email verification, password
+                reset, and system alerts require an internet
+                connection.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                I didn't receive the login (OTP) verification
+                code. What should I do?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Ensure your device is connected to the internet.
+                Check your Spam or Junk folder in your email.
+                If the issue persists, contact your system
+                administrator for assistance.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                I keep seeing "This Application is Blocked."
+                What does this mean and what should I do?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                This message indicates that your account has
+                been restricted and you cannot use it. Please
+                contact the system administrator or developer
+                at 0725 482521 for assistance.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                "Verifying authenticity, please wait" is the
+                message I see every time I log in.
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                No need to worry. This message is part of the
+                system's security process to validate your
+                license and account status each time you log in.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                I used to receive login notifications, but I
+                don't anymore.
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Please ensure that login notifications are
+                enabled in the Settings form. You will receive
+                a notification each time someone attempts to
+                log in to your application, provided the PC is
+                connected to the internet.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                All student learners show "Learning is in
+                progress." What could be the issue?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                This is likely related to your computer's date
+                and time settings. The application depends on
+                the system date and time to provide accurate
+                information. Ensure your PC has the correct and
+                updated date/time settings.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                Why do some forms take longer to load?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                This may occur when certain automated features
+                are enabled. During form initialization, the
+                system checks for an active internet connection.
+                If a connection is detected but no data is
+                transmitted, loading may be temporarily delayed
+                while the system verifies connectivity.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                "All charts and data successfully loaded" is
+                displayed, yet some charts and graphs don't
+                appear on the form.
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                This may be due to loading delays. Queries can
+                occasionally take longer than expected to
+                complete. Simply close and reopen the form to
+                refresh the charts.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                How do I back up my data?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                There are two backup options. Go to the Settings
+                form and select the desired backup action
+                (Full, Passports, or Data Tables). You can also
+                automate the process every 14 days by checking
+                "Auto Data Backup."
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                Why does the backup process fail?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Ensure your PC has more than one disk partition.
+                The system does not store backups on the C:
+                drive for safety reasons. Plug in a removable
+                drive or ensure the D: drive is available before
+                running backups.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                I see a "No encryption tool found" error during
+                backup. What should I do?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Make sure that a file compression tool such as
+                7-Zip is installed on your PC. The system uses
+                it to create and encrypt backup files.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                How can I restore a previous backup?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Open the Settings form and select the Restore
+                option for the data type you wish to recover,
+                such as tables, passports, or all data. The
+                system will automatically locate your backup
+                folder and begin the restoration process.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                How do I verify the legitimacy of a payment
+                receipt?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                Go to the Settings form, locate the Payment
+                Verification section, enter the payment
+                reference number, and click Verify. The system
+                will process the request and display the result.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                Can I share this application with others over
+                a network?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                No. This system is designed as a standalone
+                application to minimize dependency on external
+                service providers such as paid servers. It is
+                optimized for low-cost operation while
+                maintaining full data management capabilities.
+            </p>
+
+
+            <h3>
+                <strong>Q:</strong>
+                The barcode doesn't display properly; I only
+                see plain text. Why?
+            </h3>
+
+            <p>
+                <strong>A:</strong>
+                This happens when the "3 of 9 Barcode" font is
+                not installed on your PC. To fix it, download
+                and install the 3 of 9 Barcode font to enable
+                correct barcode display.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             TERMS TAB
+             ================================================= -->
+
+        <div id="terms" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>TERMS AND CONDITIONS OF USE &amp; USER AGREEMENT</u>
+            </h2>
+
+
+            <p>
+
+                <strong>Effective Date:</strong>
+                July 10, 2025
+                <br>
+
+                <strong>Company:</strong>
+                Mishita Computers Centre
+                <br>
+
+                <strong>Author:</strong>
+                Edwin L. Agola
+                <br>
+
+                <strong>Contact:</strong>
+                mishitacomputers@gmail.com |
+                +254 725 482 521
+                <br>
+
+                <strong>
+                    Copyright &copy; 2025 Mishita Computers Centre
+                </strong>
+
+            </p>
+
+
+            <h3>1. ACCEPTANCE OF TERMS</h3>
+
+            <p>
+                By installing, accessing, or using this software
+                application ("Application"), you agree to be
+                bound by this User Agreement.
+
+                If you do not agree with these terms, do not
+                install, access, or use the Application.
+            </p>
+
+
+            <h3>2. LICENSE GRANT</h3>
+
+            <p>
+                You are granted a limited, non-exclusive,
+                non-transferable license to use the Application
+                solely for lawful purposes.
+            </p>
+
+            <ul>
+
+                <li>
+                    Reverse engineer, decompile, or modify the
+                    Application.
+                </li>
+
+                <li>
+                    Rent, lease, sublicense, or redistribute the
+                    Application without prior written consent.
+                </li>
+
+                <li>
+                    Use the Application for commercial hosting
+                    or as part of another software without
+                    authorization.
+                </li>
+
+            </ul>
+
+
+            <h3>3. INTELLECTUAL PROPERTY</h3>
+
+            <p>
+                All content, code, designs, and related materials
+                are the sole property of Mishita Computers Centre
+                and Edwin L. Agola.
+
+                They are protected by copyright, trademark, and
+                other applicable intellectual property laws.
+                All rights reserved.
+            </p>
+
+
+            <h3>4. USER RESPONSIBILITIES</h3>
+
+            <ul>
+
+                <li>
+                    Maintain regular backups of your data.
+                </li>
+
+                <li>
+                    Ensure that your use complies with all
+                    applicable laws and regulations.
+                </li>
+
+                <li>
+                    Keep your login details, license keys, and
+                    other credentials secure.
+                </li>
+
+                <li>
+                    Immediately report any suspected unauthorized
+                    use to Mishita Computers Centre.
+                </li>
+
+            </ul>
+
+
+            <h3>5. PROHIBITED USES</h3>
+
+            <ul>
+
+                <li>
+                    Use the Application to engage in unlawful,
+                    fraudulent, or harmful activities.
+                </li>
+
+                <li>
+                    Upload or distribute malicious software,
+                    viruses, or harmful code through the
+                    Application.
+                </li>
+
+                <li>
+                    Attempt unauthorized access to servers,
+                    databases, or other connected systems.
+                </li>
+
+            </ul>
+
+
+            <h3>6. DATA COLLECTION &amp; PRIVACY</h3>
+
+            <p>
+                The Application may collect non-personal system
+                information for diagnostics, updates, and
+                performance improvements.
+
+                Personal data will not be shared with third
+                parties without your consent, except when
+                required by law.
+
+                You agree to the Privacy Policy provided by
+                Mishita Computers Centre.
+            </p>
+
+
+            <h3>7. UPDATES &amp; SUPPORT</h3>
+
+            <p>
+                Updates may be provided to improve functionality,
+                security, or compliance.
+
+                Support is available via email or phone and may
+                require proof of license or purchase.
+
+                Some updates may be mandatory for continued use.
+            </p>
+
+
+            <h3>8. DISCLAIMER OF WARRANTIES</h3>
+
+            <p>
+                The Application is provided "as is" without any
+                express or implied warranties, including but not
+                limited to fitness for a particular purpose,
+                merchantability, or non-infringement.
+
+                You assume full responsibility for risks
+                associated with using the Application.
+            </p>
+
+
+            <h3>9. LIMITATION OF LIABILITY</h3>
+
+            <p>
+                Mishita Computers Centre shall not be liable for
+                any direct, indirect, incidental, consequential,
+                or special damages arising from or related to
+                the use or inability to use the Application,
+                including data loss or corruption.
+            </p>
+
+
+            <h3>10. TERMINATION</h3>
+
+            <p>
+                This license automatically terminates if you
+                breach any term of this Agreement.
+
+                Upon termination, you must uninstall the
+                Application and destroy all copies in your
+                possession.
+            </p>
+
+
+            <h3>11. GOVERNING LAW &amp; DISPUTE RESOLUTION</h3>
+
+            <p>
+                This Agreement is governed by the laws of Kenya.
+
+                Any dispute will be resolved exclusively in the
+                courts of Kenya.
+
+                You agree to attempt an amicable resolution
+                before pursuing legal action.
+            </p>
+
+
+            <h3>12. CHANGES TO TERMS</h3>
+
+            <p>
+                Mishita Computers Centre reserves the right to
+                revise these terms at any time.
+
+                Continued use after changes constitutes
+                acceptance of the revised terms.
+            </p>
+
+
+            <h3>13. SEVERABILITY</h3>
+
+            <p>
+                If any part of this Agreement is found invalid
+                or unenforceable, the remaining provisions will
+                remain in full force and effect.
+            </p>
+
+
+            <h3>14. THIRD-PARTY COMPONENTS</h3>
+
+            <p>
+                This Application may include or work alongside
+                third-party software components. The following
+                are acknowledged:
+            </p>
+
+            <ul>
+
+                <li>
+                    7-Zip, developed by Igor Pavlov, licensed
+                    under the GNU LGPL.
+                    Source and license available at
+                    <a href="https://www.7-zip.org"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        7-Zip
+                    </a>.
+                </li>
+
+                <li>
+                    Code 3 of 9 (Code39) Barcode Symbology,
+                    public domain.
+                </li>
+
+            </ul>
+
+            <p>
+                These components are provided under their
+                respective licenses.
+
+                Mishita Computers Centre does not claim
+                ownership of them and provides them "as-is"
+                without warranty.
+            </p>
+
+
+            <h3>15. CONTACT</h3>
+
+            <p>
+
+                For support or inquiries:
+                <br>
+
+                Mishita Computers Centre
+                <br>
+
+                Email:
+                mishitacomputers@gmail.com
+                <br>
+
+                Phone:
+                +254 725 482 521
+                <br>
+
+                Location:
+                Kenya
+
+            </p>
+
+
+            <p>
+                <strong>
+                    By using this Application, you confirm that
+                    you have read, understood, and agreed to be
+                    bound by these terms.
+                </strong>
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             OTHER SERVICES TAB
+             ================================================= -->
+
+        <div id="services" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>OTHER SERVICES WE OFFER</u>
+            </h2>
+
+
+            <p style="font-size: 1.1em; font-weight: bold;">
+                We offer a wide range of digital &amp; printing
+                solutions:
+            </p>
+
+
+            <div class="features">
+
+                <div class="feature-item">
+
+                    <i class="fas fa-laptop-code fa-2x"></i>
+
+                    <strong>
+                        Computer Training
+                    </strong>
+
+                    We teach 12 computer packages at pocket-friendly
+                    prices.
+
+                    <br>
+
+                    Monday-Friday:
+                    9:00 AM - 1:00 PM,
+                    2:00 PM - 6:00 PM.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-print fa-2x"></i>
+
+                    <strong>
+                        Printing Services
+                    </strong>
+
+                    Quality printing for documents,
+                    assignments, and reports.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-wifi fa-2x"></i>
+
+                    <strong>
+                        Internet Services
+                    </strong>
+
+                    KRA PIN, eCitizen, HELB, TSC services,
+                    and fast, reliable assistance.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-layer-group fa-2x"></i>
+
+                    <strong>
+                        Lamination
+                    </strong>
+
+                    Protect your important documents with
+                    professional lamination.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-camera fa-2x"></i>
+
+                    <strong>
+                        Scanning
+                    </strong>
+
+                    High-resolution scanning for IDs,
+                    photos, and documents.
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <i class="fas fa-book fa-2x"></i>
+
+                    <strong>
+                        Binding
+                    </strong>
+
+                    Get professional binding for projects,
+                    reports, and books.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ABOUT US TAB
+             ================================================= -->
+
+        <div id="us" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>ABOUT US</u>
+            </h2>
+
+
+            <p style="font-size: 1.1em;">
+
+                Mishita Computers is a dedicated computer
+                service provider focused on delivering reliable
+                solutions for students, professionals, and
+                businesses.
+
+                It offers a wide range of services including
+                computer sales, repairs, software installation,
+                networking, and IT consultation.
+
+                With a mission to make technology accessible
+                and affordable, Mishita Computers emphasizes
+                quality, transparency, and personalized service
+                to meet client needs.
+
+            </p>
+
+
+            <p style="font-size: 1.1em;">
+
+                By combining technical expertise with friendly
+                customer care, Mishita Computers strives to be
+                a trusted local hub for all things technology.
+
+                Customers benefit from competitive pricing,
+                after-sales support, and professional advice,
+                helping them receive value from their technology
+                investments.
+
+                Whether you are upgrading a laptop, setting up
+                a network, or looking for software solutions,
+                Mishita Computers is ready to provide reliable,
+                customer-focused service.
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             DEMO VIDEO TAB
+             ================================================= -->
+
+        <div id="demo" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>DEMO VIDEO</u>
+            </h2>
+
+
+            <div style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            ">
+
+                <video class="demo-video"
+                       controls
+                       preload="metadata">
+
+                    <source src="videos/demo"
+                            type="video/mp4">
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SYSTEM GUI OVERVIEW TAB
+             ================================================= -->
+
+        <div id="gui" class="tab-content">
+
+            <h2 style="color: #00ff99;">
+                <u>SYSTEM GUI OVERVIEW</u>
+            </h2>
+
+
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(
+                    auto-fit,
+                    minmax(250px, 1fr)
+                );
+                gap: 20px;
+                text-align: center;
+            ">
+
+
+                <!-- Installation -->
+
                 <div>
-            <img src="images/settings.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">System settings window. Key in your personal email address, business email address and other business information as required.</p>
-        </div>
-        <div>
-            <img src="images/new_student.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">New student admission window. Key in student information are required and upon complition of all required information, functional buttons will show.</p>
-        </div>
-        <div>
-            <img src="images/academics.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">>
-            <p style="font-size: 0.8em;">Interface to keyin and track student academic performance.</p>
-        </div>
-        <div>
-            <img src="images/fees_payment.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Interface to track student payment records. under it user will be able to send invices, issue out/ send payment reciepts,payment statement etc. </p>
-        </div>
-        <div>
-            <img src="images/student_information.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Student profile management. under this window user will be able to access all information about the student.</p>
-        </div>
-        <div>
-            <img src="images/summary.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Under this window system user will be able to view summary report how finance flow into the business.</p>
-        </div>
-        <div>
-            <img src="images/Visualreport.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Under this window system user can be able to make precise decitions judging from visual report about business prgress. </p>
-        </div>
-        <div>
-            <img src="images/Visualreport2.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">Under this window system user can be able to make precise decitions judging from visual report about business prgress. </p>
-        </div>
-        <div>
-            <img src="images/student_id.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
-            <p style="font-size: 0.8em;">System generated student ID. Other reports generated by sytem include;payment recipts secured with 15 Alpha numeric digits, Student award certificates, results slips, invoices etc</p>
+
+                    <img src="images/setup"
+                         alt="Installation screen"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Follow the installation procedures
+                        until the program is successfully
+                        installed.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Login -->
+
+                <div>
+
+                    <img src="images/login"
+                         alt="Login screen"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Log in using the credentials configured
+                        for your BaseMate application.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Switchboard -->
+
+                <div>
+
+                    <img src="images/switchboard"
+                         alt="Main switchboard"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        On the main switchboard, go to
+                        "Settings" and enter the primary
+                        settings for the application.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Settings -->
+
+                <div>
+
+                    <img src="images/settings"
+                         alt="System settings"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        System settings window. Enter your
+                        personal email address, business email
+                        address, and other business information
+                        as required.
+
+                    </p>
+
+                </div>
+
+
+                <!-- New Student -->
+
+                <div>
+
+                    <img src="images/new_student"
+                         alt="New student admission window"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        New student admission window. Enter the
+                        required student information. Once all
+                        required information is completed,
+                        functional buttons will become available.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Academics -->
+
+                <div>
+
+                    <img src="images/academics"
+                         alt="Academic performance interface"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Interface for entering and tracking
+                        student academic performance.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Fees Payment -->
+
+                <div>
+
+                    <img src="images/fees_payment"
+                         alt="Fees payment interface"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Interface for tracking student payment
+                        records. Users can send invoices, issue
+                        or send payment receipts, generate
+                        payment statements, and more.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Student Information -->
+
+                <div>
+
+                    <img src="images/student_information"
+                         alt="Student information interface"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Student profile management. Users can
+                        access comprehensive information about
+                        each student.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Summary -->
+
+                <div>
+
+                    <img src="images/summary"
+                         alt="Financial summary report"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        View summary reports showing how finances
+                        flow into the business.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Visual Report -->
+
+                <div>
+
+                    <img src="images/Visualreport"
+                         alt="Visual business report"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Use visual reports to support precise
+                        business decisions and monitor business
+                        progress.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Visual Report 2 -->
+
+                <div>
+
+                    <img src="images/Visualreport2"
+                         alt="Additional visual report"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        Additional visual reporting interface
+                        for monitoring business progress.
+
+                    </p>
+
+                </div>
+
+
+                <!-- Student ID -->
+
+                <div>
+
+                    <img src="images/student_id"
+                         alt="System generated student ID"
+                         style="
+                            width: 100%;
+                            border-radius: 8px;
+                         "
+                         class="protected">
+
+                    <p style="font-size: 0.8em;">
+
+                        System-generated student ID.
+
+                        Other reports generated by the system
+                        include payment receipts secured with
+                        15 alphanumeric digits, student award
+                        certificates, results slips, invoices,
+                        and more.
+
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
-</div>
 
 
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
- </div>
+    <footer>
 
-</div>
+        Support Email:
+        <a href="mailto:mishitacomputers@gmail.com">
+            mishitacomputers@gmail.com
+        </a>
 
-<footer>
-    Support Email: <a href="mailto:mishitacomputers@gmail.com">mishitacomputers@gmail.com</a><br/>
-    Contact: 0725482521 | 0736632205<br/>
-    &copy; 2025 Mishita Computers Centre. All rights reserved.
-</footer>
+        <br>
 
-<script>
-const tabLinks = document.querySelectorAll(".tab-link");
-const tabContents = document.querySelectorAll(".tab-content");
-tabLinks.forEach(button => {
-    button.addEventListener("click", () => {
-        const tabId = button.getAttribute("data-tab");
-        tabLinks.forEach(btn => btn.classList.remove("active"));
-        tabContents.forEach(content => content.classList.remove("active"));
-        button.classList.add("active");
-        document.getElementById(tabId).classList.add("active");
-    });
-});
-</script>
+        Contact:
+        0725482521 | 0736632205
+
+        <br>
+
+        &copy; 2025 Mishita Computers Centre.
+        All rights reserved.
+
+    </footer>
+
+
+    <!-- =====================================================
+         TAB NAVIGATION SCRIPT
+         ===================================================== -->
+
+    <script>
+
+        const tabLinks =
+            document.querySelectorAll(".tab-link");
+
+        const tabContents =
+            document.querySelectorAll(".tab-content");
+
+
+        tabLinks.forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                const tabId =
+                    button.getAttribute("data-tab");
+
+
+                // Remove active state from all buttons
+
+                tabLinks.forEach(function (btn) {
+
+                    btn.classList.remove("active");
+
+                });
+
+
+                // Hide all tab contents
+
+                tabContents.forEach(function (content) {
+
+                    content.classList.remove("active");
+
+                });
+
+
+                // Activate selected button
+
+                button.classList.add("active");
+
+
+                // Display selected tab
+
+                const selectedTab =
+                    document.getElementById(tabId);
+
+                if (selectedTab) {
+
+                    selectedTab.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+    </script>
 
 </body>
+
 </html>
