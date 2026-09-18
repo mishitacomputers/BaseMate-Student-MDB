@@ -7,8 +7,6 @@
 
 <title>Certificate Verification - BaseMate Student MDB</title>
 
-<!-- Font Awesome -->
-
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -49,10 +47,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-/* =========================================================
-   BACKGROUND ANIMATION
-   ========================================================= */
 
 @keyframes backgroundMove {
 
@@ -242,10 +236,6 @@ h1 {
 
 }
 
-/* =========================================================
-   DEFAULT / CHECKING STATE
-   ========================================================= */
-
 .checking {
 
     background: #e8f1ff;
@@ -253,10 +243,6 @@ h1 {
     color: #0056b3;
 
 }
-
-/* =========================================================
-   VALID STATE
-   ========================================================= */
 
 .valid {
 
@@ -266,10 +252,6 @@ h1 {
 
 }
 
-/* =========================================================
-   INVALID STATE
-   ========================================================= */
-
 .invalid {
 
     background: #fdecec;
@@ -277,10 +259,6 @@ h1 {
     color: #c62828;
 
 }
-
-/* =========================================================
-   NOT FOUND STATE
-   ========================================================= */
 
 .not-found {
 
@@ -439,7 +417,7 @@ h1 {
 }
 
 /* =========================================================
-   MANUAL VERIFICATION BOX
+   MANUAL VERIFICATION
    ========================================================= */
 
 .manual-section {
@@ -723,7 +701,6 @@ footer a:hover {
         alt="Mishita Computers Centre"
         class="main-logo">
 
-
     <h1>
         Certificate Verification
     </h1>
@@ -731,7 +708,6 @@ footer a:hover {
     <p class="subtitle">
         BaseMate Student Management DB
     </p>
-
 
     <!-- =================================================
          VERIFICATION STATUS
@@ -745,7 +721,6 @@ footer a:hover {
 
     </div>
 
-
     <div
         id="statusTitle"
         class="status-title">
@@ -753,7 +728,6 @@ footer a:hover {
         Checking Certificate...
 
     </div>
-
 
     <div
         id="statusDescription"
@@ -763,7 +737,6 @@ footer a:hover {
         information is being processed.
 
     </div>
-
 
     <!-- =================================================
          CERTIFICATE DETAILS
@@ -787,7 +760,6 @@ footer a:hover {
 
         </div>
 
-
         <div class="detail-row">
 
             <div class="detail-label">
@@ -801,7 +773,6 @@ footer a:hover {
             </div>
 
         </div>
-
 
         <div class="detail-row">
 
@@ -817,7 +788,6 @@ footer a:hover {
 
         </div>
 
-
         <div class="detail-row">
 
             <div class="detail-label">
@@ -831,7 +801,6 @@ footer a:hover {
             </div>
 
         </div>
-
 
         <div class="detail-row">
 
@@ -847,6 +816,19 @@ footer a:hover {
 
         </div>
 
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Issue Date
+            </div>
+
+            <div
+                class="detail-value"
+                id="issueDate">
+                —
+            </div>
+
+        </div>
 
         <div class="detail-row">
 
@@ -864,7 +846,6 @@ footer a:hover {
 
     </div>
 
-
     <!-- =================================================
          VERIFICATION REFERENCE
          ================================================= -->
@@ -881,7 +862,6 @@ footer a:hover {
 
     </div>
 
-
     <!-- =================================================
          SECURITY NOTICE
          ================================================= -->
@@ -896,7 +876,6 @@ footer a:hover {
         certificate verification system.
 
     </div>
-
 
     <!-- =================================================
          MANUAL VERIFICATION
@@ -983,19 +962,16 @@ All rights reserved.
    ========================================================= */
 
 /*
-    IMPORTANT:
-
-    This first version prepares the complete verification
-    interface.
-
-    The actual online database/API will be connected in
-    the next stage.
-
-    Expected QR format:
-
-    verify.html?token=BMV-XXXXXXXX-XXXXXXXX
+   Cloudflare Worker API
 */
 
+const VERIFICATION_API =
+    "https://basemate-certificate-verification.mishitacomputers.workers.dev/api/verify";
+
+
+/* =========================================================
+   PAGE START
+   ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -1007,29 +983,9 @@ document.addEventListener(
         const token =
             params.get("token");
 
-
         if (token && token.trim() !== "") {
 
-            document.getElementById(
-                "verificationToken"
-            ).textContent = token.trim();
-
-            document.getElementById(
-                "verificationReference"
-            ).style.display = "block";
-
-
-            /*
-                TEMPORARY TEST MODE
-
-                We are not connecting to the online
-                verification database yet.
-
-                The next development stage will replace
-                this section with a secure API request.
-            */
-
-            showPendingVerification(token.trim());
+            verifyCertificate(token.trim());
 
         }
         else {
@@ -1043,10 +999,402 @@ document.addEventListener(
 
 
 /* =========================================================
-   SHOW PENDING VERIFICATION
+   VERIFY CERTIFICATE ONLINE
    ========================================================= */
 
-function showPendingVerification(token) {
+async function verifyCertificate(token) {
+
+    showChecking(token);
+
+    try {
+
+        const response =
+            await fetch(
+                VERIFICATION_API +
+                "?token=" +
+                encodeURIComponent(token),
+                {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json"
+                    },
+                    cache: "no-store"
+                }
+            );
+
+        let data;
+
+        try {
+
+            data = await response.json();
+
+        }
+        catch (jsonError) {
+
+            throw new Error(
+                "Invalid response received from verification server."
+            );
+
+        }
+
+
+        /* -----------------------------------------------
+           CERTIFICATE NOT FOUND
+           ----------------------------------------------- */
+
+        if (
+            response.status === 404 ||
+            data.status === "NOT_FOUND"
+        ) {
+
+            showNotFound(token);
+
+            return;
+
+        }
+
+
+        /* -----------------------------------------------
+           SERVER ERROR
+           ----------------------------------------------- */
+
+        if (
+            !response.ok ||
+            data.success !== true
+        ) {
+
+            showVerificationError();
+
+            return;
+
+        }
+
+
+        /* -----------------------------------------------
+           CERTIFICATE FOUND
+           ----------------------------------------------- */
+
+        displayCertificate(
+            token,
+            data.certificate
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "Certificate verification error:",
+            error
+        );
+
+        showVerificationError();
+
+    }
+
+}
+
+
+/* =========================================================
+   CHECKING STATE
+   ========================================================= */
+
+function showChecking(token) {
+
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+    icon.className =
+        "verification-icon checking";
+
+    icon.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i>';
+
+    title.textContent =
+        "Checking Certificate...";
+
+    description.textContent =
+        "Please wait while we securely verify this certificate with the BaseMate online verification database.";
+
+    document.getElementById(
+        "verificationToken"
+    ).textContent = token;
+
+    document.getElementById(
+        "verificationReference"
+    ).style.display = "block";
+
+}
+
+
+/* =========================================================
+   VALID / REVOKED CERTIFICATE DISPLAY
+   ========================================================= */
+
+function displayCertificate(token, certificate) {
+
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+    const details =
+        document.getElementById(
+            "certificateDetails"
+        );
+
+
+    const certificateStatus =
+        String(
+            certificate.certificateStatus || ""
+        ).toUpperCase();
+
+
+    /*
+       VALID CERTIFICATE
+    */
+
+    if (certificateStatus === "VALID") {
+
+        icon.className =
+            "verification-icon valid";
+
+        icon.innerHTML =
+            '<i class="fas fa-circle-check"></i>';
+
+        title.textContent =
+            "Certificate Verified";
+
+        description.textContent =
+            "This certificate has been successfully verified against the BaseMate Student Management DB online verification records.";
+
+    }
+
+    /*
+       REVOKED CERTIFICATE
+    */
+
+    else if (certificateStatus === "REVOKED") {
+
+        icon.className =
+            "verification-icon invalid";
+
+        icon.innerHTML =
+            '<i class="fas fa-circle-xmark"></i>';
+
+        title.textContent =
+            "Certificate Revoked";
+
+        description.textContent =
+            "This certificate exists in the BaseMate verification database, but its current status is REVOKED. Please contact Mishita Computers Centre for clarification.";
+
+    }
+
+    /*
+       OTHER / UNKNOWN STATUS
+    */
+
+    else {
+
+        icon.className =
+            "verification-icon checking";
+
+        icon.innerHTML =
+            '<i class="fas fa-circle-question"></i>';
+
+        title.textContent =
+            "Certificate Found";
+
+        description.textContent =
+            "The certificate record was found in the BaseMate verification database.";
+
+    }
+
+
+    /* -----------------------------------------------
+       Fill certificate information
+       ----------------------------------------------- */
+
+    document.getElementById(
+        "certificateNumber"
+    ).textContent =
+        certificate.certificateNumber || "—";
+
+
+    document.getElementById(
+        "studentName"
+    ).textContent =
+        certificate.studentName || "—";
+
+
+    document.getElementById(
+        "admissionNumber"
+    ).textContent =
+        certificate.admissionNumber || "—";
+
+
+    document.getElementById(
+        "course"
+    ).textContent =
+        certificate.course || "—";
+
+
+    document.getElementById(
+        "completionDate"
+    ).textContent =
+        formatDate(
+            certificate.completionDate
+        );
+
+
+    document.getElementById(
+        "issueDate"
+    ).textContent =
+        formatDate(
+            certificate.issueDate
+        );
+
+
+    const statusElement =
+        document.getElementById(
+            "certificateStatus"
+        );
+
+    statusElement.textContent =
+        certificateStatus || "—";
+
+
+    /*
+       Status appearance
+    */
+
+    if (certificateStatus === "VALID") {
+
+        statusElement.style.color =
+            "#16803c";
+
+        statusElement.style.fontWeight =
+            "bold";
+
+    }
+    else if (certificateStatus === "REVOKED") {
+
+        statusElement.style.color =
+            "#c62828";
+
+        statusElement.style.fontWeight =
+            "bold";
+
+    }
+    else {
+
+        statusElement.style.color =
+            "#444";
+
+        statusElement.style.fontWeight =
+            "bold";
+
+    }
+
+
+    details.style.display =
+        "block";
+
+
+    document.getElementById(
+        "verificationToken"
+    ).textContent =
+        token;
+
+    document.getElementById(
+        "verificationReference"
+    ).style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   NOT FOUND STATE
+   ========================================================= */
+
+function showNotFound(token) {
+
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+    const details =
+        document.getElementById(
+            "certificateDetails"
+        );
+
+
+    icon.className =
+        "verification-icon not-found";
+
+    icon.innerHTML =
+        '<i class="fas fa-circle-exclamation"></i>';
+
+    title.textContent =
+        "Certificate Not Found";
+
+    description.textContent =
+        "No certificate matching this verification reference could be found in the BaseMate online verification database. Please check the reference and try again.";
+
+    details.style.display =
+        "none";
+
+    document.getElementById(
+        "verificationToken"
+    ).textContent =
+        token;
+
+    document.getElementById(
+        "verificationReference"
+    ).style.display =
+        "block";
+
+}
+
+
+/* =========================================================
+   SERVER / CONNECTION ERROR
+   ========================================================= */
+
+function showVerificationError() {
 
     const icon =
         document.getElementById(
@@ -1065,18 +1413,21 @@ function showPendingVerification(token) {
 
 
     icon.className =
-        "verification-icon checking";
+        "verification-icon invalid";
 
     icon.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i>';
-
+        '<i class="fas fa-triangle-exclamation"></i>';
 
     title.textContent =
-        "Verification Ready";
-
+        "Verification Service Unavailable";
 
     description.textContent =
-        "Verification reference received. The online certificate database will be connected here in the next stage.";
+        "We were unable to complete the online certificate verification at this time. Please check your internet connection and try again later.";
+
+    document.getElementById(
+        "certificateDetails"
+    ).style.display =
+        "none";
 
 }
 
@@ -1109,13 +1460,47 @@ function showNoToken() {
     icon.innerHTML =
         '<i class="fas fa-qrcode"></i>';
 
-
     title.textContent =
         "Certificate Verification";
 
-
     description.textContent =
         "Scan the QR code on a BaseMate certificate or enter the verification reference manually below.";
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+   ========================================================= */
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+
+        return "—";
+
+    }
+
+
+    const date =
+        new Date(dateValue + "T00:00:00");
+
+
+    if (isNaN(date.getTime())) {
+
+        return dateValue;
+
+    }
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
 
 }
 
@@ -1143,10 +1528,6 @@ function manualVerify() {
 
     }
 
-
-    /*
-        Reload the page using the verification token.
-    */
 
     const baseURL =
         window.location.pathname;
