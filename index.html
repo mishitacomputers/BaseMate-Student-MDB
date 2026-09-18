@@ -5,263 +5,226 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mishita Computers Centre - BaseMate Student MDB</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        text-align: center;
-        background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7, #ff7e5f);
-        background-size: 1000% 1000%;
-        animation: gradientBG 30s ease infinite;
-        color: #fff;
-    }
-    @keyframes gradientBG {
-        0%{background-position:0% 50%}
-        50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
-    }
-
-    /* Sticky HEADER BAR */
-    .main-header {
-        background: #0056b3;
-        padding: 20px 10px;
-        color: white;
-        text-align: center;
-        font-size: 1.8em;
-        font-weight: bold;
-        letter-spacing: 1px;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
-
-    .overlay {
-        background: rgba(0,0,0,0.65);
-        padding: 30px 20px;
-    }
-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-    text-align: left;
-}
-
-header img {
-    max-width: 90px;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-header h1 {
-    font-size: 2.2em;
-    margin: 5px 0;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-header h3 {
-    font-size: 1.2em;
-    margin: 0;
-    color: #ddd;
-}
-
-header p {
-    font-size: 1em;
-    max-width: 750px;
-    margin-top: 5px;
-    line-height: 1.4em;
-}
-
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers the whole header horizontally */
-    gap: 20px; /* Space between logo and text */
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
-    text-align: left; /* Align text to the left */
-}
-
-header img {
-    max-width: 130px;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-
-    /* Tabs */
-    .tab-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 10px;
-        margin: 30px auto;
-        max-width: 800px;
-        overflow: hidden;
-    }
-    .tab-buttons button {
-        flex: 1;
-        padding: 14px;
-        border: none;
-        background: transparent;
-        color: #fff;
-        font-weight: bold;
-        font-size: 1.1em;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    .tab-buttons button:hover {
-        background: rgba(255, 255, 255, 0.15);
-        color: #ffeb3b;
-    }
-    .tab-buttons button.active {
-        background: rgba(255, 255, 255, 0.2);
-        border-bottom: 3px solid #ffeb3b;
-        color: #ffeb3b;
-    }
-    .tab-content {
-        display: none;
-        max-width: 900px;
-        margin: 0 auto;
-        text-align: left;
-        animation: fadeIn 0.4s ease;
-        background: rgba(0, 0, 0, 0.45);
-        padding: 20px;
-        border-radius: 10px;
-    }
-    .tab-content.active { display: block; }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Features Section */
-    .features-heading {
-        font-size: 1.6em;
-        font-weight: bold;
-        text-decoration: underline;
-        margin: 20px 0 15px;
-        background: linear-gradient(90deg, #43e97b, #38f9d7);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 15px;
-        margin: 20px auto 30px auto;
-    }
-    .feature-item {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 15px;
-        border-radius: 10px;
-        transition: all 0.4s ease;
-    }
-    .feature-item:hover {
-        transform: translateY(-8px) scale(1.05);
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    }
-    .feature-item strong { display: block; color: #ffeb3b; margin-bottom: 5px; }
-
-    /* Download buttons */
-    .download-btn {
-        display: inline-block;
-        margin: 10px;
-        padding: 12px 20px;
-        background: #ff7e5f;
-        color: #fff;
-        font-weight: bold;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-    .download-btn:hover { background: #feb47b; color: #000; }
-
-    footer {
-        margin-top: 40px;
-        padding: 25px;
-        font-size: 0.95em;
-        background: rgba(0,0,0,0.65);
-        border-top: 2px solid #ff7e5f;
-    }
-    footer a { color: #fff; text-decoration: underline; }
-    footer a:hover { color: #ffeb3b; }
-
-.main-header header {
-    display: flex;
-    align-items: center; /* Vertically centers image and text */
-    justify-content: center; /* Center horizontally */
-    gap: 15px; /* Space between image and text */
-}
-
-.main-header img {
-    max-width: 50px; /* Adjust logo size */
-    height: auto;
-}
-
-</style>
+<link rel="stylesheet" href="css/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="js/disable-rightclick.js"></script>
 </head>
 <body>
 
 <!-- HEADER BAR -->
-
-
 <div class="main-header">
     <header>
-        <img src="https://i.imgur.com/5w3SK9X.png" alt="Mishita Computers Centre Logo" />
+        <img src="images/logo.PNG" alt="Left Logo" class="protected">
         <span>Mishita Computers Centre - BaseMate Student MDB</span>
+        <img src="images/mishitacologo.PNG" alt="Right Logo" class="protected">
     </header>
 </div>
+
+
+
+<!-- LEFT & RIGHT SIDE IMAGES -->
+<div class="side-image left-side">
+    <div class="side-card">
+        <img src="images/Admin.jpg" alt="Edwin L. Agola" class="protected">
+        <p class="caption">Edwin L. Agola <br> Founder</p>
+    </div>
+
+<div class="side-card" id="digitalClockCard">
+    <h5 id="digitalClock">Loading...</h5>
+    <small id="digitalDate"></small>
+    <div id="calendar"></div>
+</div>
+
+<script>
+// Fetch Internet Time from WorldTimeAPI
+async function fetchInternetTime() {
+    try {
+        const res = await fetch("https://worldtimeapi.org/api/ip");
+        const data = await res.json();
+        return new Date(data.datetime);
+    } catch (error) {
+        console.error("?? Could not fetch internet time, using local system time.");
+        return new Date(); // fallback to local time
+    }
+}
+
+let internetTimeOffset = 0;
+
+fetchInternetTime().then(internetDate => {
+    internetTimeOffset = internetDate.getTime() - Date.now();
+    updateDigitalClock();
+    renderCalendar(new Date(Date.now() + internetTimeOffset));
+    setInterval(updateDigitalClock, 1000);
+});
+
+function updateDigitalClock() {
+    let now = new Date(Date.now() + internetTimeOffset);
+
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    let seconds = now.getSeconds().toString().padStart(2, '0');
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    let timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+    document.getElementById('digitalClock').textContent = timeString;
+
+    // Short Date
+    const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    document.getElementById('digitalDate').textContent = now.toLocaleDateString(undefined, dateOptions);
+
+    // Re-render calendar every midnight (if needed)
+}
+
+function renderCalendar(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const today = date.getDate();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    let calendarHTML = `<table class="mini-calendar">
+        <thead><tr>
+            <th colspan="7">${date.toLocaleString('default', { month: 'long' })} ${year}</th>
+        </tr><tr>
+            <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
+        </tr></thead><tbody><tr>`;
+
+    // Empty cells before first day
+    for (let i = 0; i < firstDay; i++) {
+        calendarHTML += "<td></td>";
+    }
+
+    // Days
+    for (let d = 1; d <= daysInMonth; d++) {
+        if ((firstDay + d - 1) % 7 === 0 && d !== 1) {
+            calendarHTML += "</tr><tr>";
+        }
+        if (d === today) {
+            calendarHTML += `<td class="today">${d}</td>`;
+        } else {
+            calendarHTML += `<td>${d}</td>`;
+        }
+    }
+
+    calendarHTML += "</tr></tbody></table>";
+    document.getElementById("calendar").innerHTML = calendarHTML;
+}
+</script>
+
+</div>
+
+<div class="side-image right-side">
+    <img src="images/student_idd.png" alt="visual report" class="protected"> <br>
+	<img src="images/Visualreport.png" alt="Visual report2" class="protected"> <br>
+	<img src="images/academics.png" alt="Academics" class="protected"> <br>
+	<img src="images/student_id.png" alt="fees payment" class="protected">
+	
+</div>
+
 
 <div class="overlay">
     <div>
         <h1 style="color: red;"><u>MISHITA COMPUTERS CENTRE</u></h1>
         <h3>BaseMate Student Management DB</h3>
         <p>BaseMate Student MDB is an ultimate Desktop Application for managing your Computer Student Records efficiently.</p>
-	<p> It's fast, secure, and zero on running and maintenance costs.</p>
-    </div>
-    <!-- Tab Buttons -->
-    <div class="tab-buttons">
-        <button class="tab-link active" data-tab="home">Home</button>
-        <button class="tab-link" data-tab="readme">Read Me</button>
-        <button class="tab-link" data-tab="faq">FAQ</button>
-        <button class="tab-link" data-tab="terms">Terms</button>
-	<button class="tab-link" data-tab="downloads">Downloads</button>
- 	<button class="tab-link" data-tab="services">Other Services</button> 
+        <p> It's fast, secure, and zero on running and maintenance costs.</p>
     </div>
 
-       <!-- HOME TAB -->
+  <!-- Tab Buttons -->
+<div class="tab-buttons">
+    <button class="tab-link active" data-tab="home">Home</button>
+    <button class="tab-link" data-tab="us">About Us</button>
+    <button class="tab-link" data-tab="readme">Read Me</button>
+    <button class="tab-link" data-tab="faq">FAQ</button>
+    <button class="tab-link" data-tab="downloads">Downloads</button>
+    <button class="tab-link" data-tab="terms">Terms</button>
+    <button class="tab-link" data-tab="demo">Demo Video</button>
+    <button class="tab-link" data-tab="gui">System GUI Overview</button>
+    <button class="tab-link" data-tab="services">Other Services</button>
+</div>
+
+    <!-- HOME TAB -->
     <div id="home" class="tab-content active">
         <div class="features-heading"><u>KEY FEATURES INCLUDE</u></div>
-        <div class="features">
-            <div class="feature-item"><strong>Secure Login & Email Alerts</strong>Stay informed with real-time login alerts.</div>
-            <div class="feature-item"><strong>User Account Management</strong>Manage how other users access the system.</div>
-            <div class="feature-item"><strong>Student Profile Management</strong>Register, update, and monitor student details.</div>
-            <div class="feature-item"><strong>Performance Tracking</strong>Track academic progress, exams, and assessments.</div>
-            <div class="feature-item"><strong>Payment Tracking & Receipts</strong>Track student payments and print/email receipts instantly.</div>
-            <div class="feature-item"><strong>Invoicing</strong>Send branded invoices via email or print them.</div>
-            <div class="feature-item"><strong>Mass Email Reminders</strong>Schedule monthly automatic reminders for balances.</div>
-            <div class="feature-item"><strong>Backup & Restore</strong>Auto-backup every 14 days or manually in one click.</div>
-            <div class="feature-item"><strong>Visual Reports</strong>Make data-driven decisions with charts and graphs.</div>
-            <div class="feature-item"><strong>Certificates & IDs</strong>Generate and download certificates or IDs instantly.</div>
-        </div>
+<div class="features">
+    <div class="feature-item">
+        <i class="fas fa-lock fa-2x"></i>
+        <strong>Secure Login & Email Alerts</strong>
+        Stay informed with real-time login alerts.
     </div>
+
+    <div class="feature-item">
+        <i class="fas fa-user-cog fa-2x"></i>
+        <strong>User Account Management</strong>
+        Manage how other users access the system.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-id-card fa-2x"></i>
+        <strong>Student Profile Management</strong>
+        Register, update, and monitor student details.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-chart-line fa-2x"></i>
+        <strong>Performance Tracking</strong>
+        Track academic progress, exams, and assessments.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-receipt fa-2x"></i>
+        <strong>Payment Tracking & Receipts</strong>
+        Track student payments and print/email receipts instantly.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-file-invoice-dollar fa-2x"></i>
+        <strong>Invoicing</strong>
+        Send branded invoices via email or print them.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-envelope-open-text fa-2x"></i>
+        <strong>Mass Email Reminders</strong>
+        Schedule monthly automatic reminders for balances.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-database fa-2x"></i>
+        <strong>Backup & Restore</strong>
+        Auto-backup every 14 days or manually in one click.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-chart-pie fa-2x"></i>
+        <strong>Visual Reports</strong>
+        Make data-driven decisions with charts and graphs.
+    </div>
+
+    <div class="feature-item">
+        <i class="fas fa-certificate fa-2x"></i>
+        <strong>Certificates & IDs</strong>
+        Generate and download certificates or IDs instantly.
+    </div>
+
+    <div class="feature-item">
+        <i class="fab fa-whatsapp fa-2x"></i>
+        <strong>WhatsApp Payment Reminder</strong>
+        At a press of a button, send customised payment reminders.
+    </div>
+</div>
+</div>    
 
     <!-- DOWNLOADS TAB -->
     <div id="downloads" class="tab-content">
         <h2 style="color: #00ff99;"><u>DOWNLOADS</u></h2>
-        <p> Click on the links below to Downlaod:-</p>
+        <p> Click on the links below to Download:-</p>
         <a href="https://drive.google.com/file/d/12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH/view?usp=sharing" target="_blank" class="download-btn">System User Interface Documentation (PDF)</a>
         <a href="https://drive.google.com/file/d/1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8/view?usp=sharing" target="_blank" class="download-btn">App Customization Request Form (PDF)</a>
     </div>
 
-    <!-- README TAB -->
-<div id="readme" class="tab-content">
+    <div id="readme" class="tab-content">
     <h2 style="color: #00ff99;"><u>BASEMATE - STUDENT MANAGEMENT DB</u></h2>
 
     <h3>ABOUT THIS APPLICATION</h3>
@@ -284,7 +247,7 @@ header img {
         <li>RAM: 2 GB minimum (4 GB recommended)</li>
         <li>Processor: Intel Core i3 or higher</li>
         <li>Storage: SSD recommended (HDD can work but may be slower)</li>
-        <li>Microsoft Access: 2010 or later (32-bit recommended)</li>
+        <li>Microsoft Access: 2010 or later (32/64-bit)</li>
         <li>Internet Connection: Required for email features and cloud functionality</li>
     </ul>
 
@@ -296,6 +259,8 @@ header img {
         <li>Backup reporting to the developer</li>
         <li>Security email alerts for login attempts</li>
         <li>Receiving login verification codes</li>
+	<li>Uploading backup to email</li>
+	<li>Forwarding copy of password to email after updating</li>
     </ul>
 
     <h3>TIPS FOR BEST PERFORMANCE</h3>
@@ -387,10 +352,10 @@ header img {
     <strong>Company:</strong> Mishita Computers Centre<br>
     <strong>Author:</strong> Edwin L. Agola<br>
     <strong>Contact:</strong> mishitacomputers@gmail.com | +254 725 482 521<br>
-    <strong>Copyright © 2025 Mishita Computers Centre</strong></p>
+    <strong>Copyright ? 2025 Mishita Computers Centre</strong></p>
 
     <h3>1. ACCEPTANCE OF TERMS</h3>
-    <p>By installing, accessing, or using this software application (“Application”), you agree to be bound by this User Agreement.
+    <p>By installing, accessing, or using this software application ('Application'), you agree to be bound by this User Agreement.
     If you do not agree with these terms, do not install, access, or use the Application.</p>
 
     <h3>2. LICENSE GRANT</h3>
@@ -431,7 +396,7 @@ header img {
     Some updates may be mandatory for continued use.</p>
 
     <h3>8. DISCLAIMER OF WARRANTIES</h3>
-    <p>The Application is provided “as is” without any express or implied warranties, including but not limited to fitness
+    <p>The Application is provided ?as is? without any express or implied warranties, including but not limited to fitness
     for a particular purpose, merchantability, or non-infringement. You assume full responsibility for risks associated with
     using the Application.</p>
 
@@ -475,6 +440,7 @@ header img {
     <p><strong>By using this Application, you confirm that you have read, understood, and agreed to be bound by these terms.</strong></p>
 </div>
 
+<!-- ? OTHER SERVICES TAB -->
 <div id="services" class="tab-content">
     <h2 style="color: #00ff99;"><u>OTHER SERVICES WE OFFER</u></h2>
     <p style="font-size:1.1em; font-weight:bold;">We offer a wide range of digital & printing solutions:</p>
@@ -483,7 +449,7 @@ header img {
         <div class="feature-item">
             <i class="fas fa-laptop-code fa-2x"></i>
             <strong>Computer Training</strong>
-            We instruct how to use 12 computer Applications for aperiod of 2 months, 4 hours each official working day.
+            We teach 12 computer packages at pocket friendsly price, Mondays-Fridays: 9am - 1 Pm, 2 Pm - 6 PM.
         </div>
         <div class="feature-item">
             <i class="fas fa-print fa-2x"></i>
@@ -492,7 +458,7 @@ header img {
         </div>
         <div class="feature-item">
             <i class="fas fa-wifi fa-2x"></i>
-            <strong>Online Services</strong>
+            <strong>Internet Services</strong>
             KRA PIN, eCitizen, HELB, TSC services fast and reliable assistance.
         </div>
         <div class="feature-item">
@@ -510,8 +476,98 @@ header img {
             <strong>Binding</strong>
             Get professional binding for projects, reports, and books.
         </div>
- </div>
+    </div>
+</div>
 
+<!-- ? ABOUT US TAB -->
+<div id="us" class="tab-content">
+    <h2 style="color: #00ff99;"><u>ABOUT US</u></h2>
+    <p style="font-size: 1.1em;">
+        Mishita Computers is a dedicated computer service provider focused on delivering reliable solutions for students, professionals, and businesses. 
+        It offers a wide range of services including computer sales, repairs, software installation, networking, and IT consultation. 
+        With a mission to make technology accessible and affordable, Mishita Computers emphasizes quality, transparency, and personalized service to meet client needs.
+    </p>
+    <p style="font-size: 1.1em;">
+        By combining technical expertise with friendly customer care, Mishita Computers has earned a reputation as a trusted local hub for all things tech. 
+        Customers benefit from competitive pricing, after-sales support, and professional advice, ensuring they receive the best value for their investment. 
+        Whether you are upgrading a laptop, setting up a network, or looking for software solutions, Mishita Computers is ready to deliver reliable, customer-focused service.
+    </p>
+</div>
+
+
+
+<!-- DEMO VIDEO TAB -->
+<div id="demo" class="tab-content">
+    <h2 style="color: #00ff99;"><u>DEMO VIDEO</u></h2>
+    <div style="display: flex; justify-content: center; align-items: center;">
+<video class="demo-video" controls>
+  <source src="videos/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    </div>
+</div>
+
+
+<!-- ? SYSTEM GUI OVERVIEW TAB -->
+<div id="gui" class="tab-content">
+    <h2 style="color: #00ff99;"><u>SYSTEM GUI OVERVIEW</u></h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: center;">
+        <!-- Example Screenshot Items -->
+        <div>
+            <img src="images/setup.png" alt="Login Screen" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Follow the installation proceduresuntil the program is successfully installed.</p>
+        </div>
+        <div>
+            <img src="images/login.png" alt="Dashboard" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Login using default login credentials provided; User name : Admin and Password: 1234</p>
+        </div>
+        <div>
+            <img src="images/switchboard.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">On the main switchboard go to 'Settings' and key in primary settings for the application. </p>
+        </div>
+                <div>
+            <img src="images/settings.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">System settings window. Key in your personal email address, business email address and other business information as required.</p>
+        </div>
+        <div>
+            <img src="images/new_student.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">New student admission window. Key in student information are required and upon complition of all required information, functional buttons will show.</p>
+        </div>
+        <div>
+            <img src="images/academics.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">>
+            <p style="font-size: 0.8em;">Interface to keyin and track student academic performance.</p>
+        </div>
+        <div>
+            <img src="images/fees_payment.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Interface to track student payment records. under it user will be able to send invices, issue out/ send payment reciepts,payment statement etc. </p>
+        </div>
+        <div>
+            <img src="images/student_information.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Student profile management. under this window user will be able to access all information about the student.</p>
+        </div>
+        <div>
+            <img src="images/summary.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Under this window system user will be able to view summary report how finance flow into the business.</p>
+        </div>
+        <div>
+            <img src="images/Visualreport.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Under this window system user can be able to make precise decitions judging from visual report about business prgress. </p>
+        </div>
+        <div>
+            <img src="images/Visualreport2.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">Under this window system user can be able to make precise decitions judging from visual report about business prgress. </p>
+        </div>
+        <div>
+            <img src="images/student_id.png" alt="Student Records" style="width: 100%; border-radius: 8px;" class="protected">
+            <p style="font-size: 0.8em;">System generated student ID. Other reports generated by sytem include;payment recipts secured with 15 Alpha numeric digits, Student award certificates, results slips, invoices etc</p>
+        </div>
+
+    </div>
+</div>
+
+
+
+ </div>
 
 </div>
 
@@ -534,5 +590,6 @@ tabLinks.forEach(button => {
     });
 });
 </script>
+
 </body>
 </html>
