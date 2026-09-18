@@ -1,0 +1,348 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(270deg, #4facfe, #00f2fe, #43e97b, #38f9d7, #ff7e5f);
+    background-size: 1000% 1000%;
+    animation: gradientBG 30s ease infinite;
+    color: #fff;
+}
+@keyframes gradientBG {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Sticky HEADER BAR */
+.main-header {
+    background: #0056b3;
+    padding: 20px 10px;
+    color: white;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.overlay {
+    background: rgba(0,0,0,0.65);
+    padding: 30px 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+header img {
+    max-width: 130px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin: 5px 0;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header h3 {
+    font-size: 1.2em;
+    margin: 0;
+    color: #ddd;
+}
+
+header p {
+    font-size: 1em;
+    max-width: 750px;
+    margin-top: 5px;
+    line-height: 1.4em;
+}
+
+/* Tabs */
+.tab-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    margin: 30px auto;
+    max-width: 930px; /* Match the tab-content width */
+    padding: 0 5px;   /* Add a little spacing inside */
+    overflow: hidden;
+}
+.tab-buttons button {
+    flex: 1;
+    padding: 13px; /* slightly reduced for better fit */
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-weight: normal; /* removed boldness */
+    font-size: 0.9em; /* reduced text size */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.tab-buttons button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffeb3b;
+}
+.tab-buttons button.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid #ffeb3b;
+    color: #ffeb3b;
+}
+
+.tab-content {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+    animation: fadeIn 0.4s ease;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 20px;
+    border-radius: 10px;
+}
+.tab-content.active { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Features Section */
+.features-heading {
+    font-size: 1.6em;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: 20px 0 15px;
+    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin: 20px auto 30px auto;
+}
+.feature-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.4s ease;
+}
+.feature-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+}
+.feature-item strong { display: block; color: #ffeb3b; margin-bottom: 5px; }
+
+/* Download buttons */
+.download-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background: #ff7e5f;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.download-btn:hover { background: #feb47b; color: #000; }
+
+footer {
+    margin-top: 40px;
+    padding: 25px;
+    font-size: 0.95em;
+    background: rgba(0,0,0,0.65);
+    border-top: 2px solid #ff7e5f;
+}
+footer a { color: #fff; text-decoration: underline; }
+footer a:hover { color: #ffeb3b; }
+
+.main-header header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.main-header img {
+    max-width: 50px;
+    height: auto;
+}
+/* ====== BANNER ====== */
+.banner img {
+    width: 100%;              /* fill the banner container */
+    height: auto;             /* keep correct aspect ratio */
+    display: block;           /* remove inline gap */
+    border-bottom: 4px solid #0056b3; /* nice blue bottom border */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3); /* subtle shadow */
+}
+
+/* ====== SIDE IMAGES ====== */
+.side-image {
+    position: fixed;
+    top: 120px; /* start below header */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 50;
+}
+.side-image img {
+    width: 120px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease;
+}
+.side-image img:hover {
+    transform: scale(1.1);
+}
+
+/* Position left and right separately */
+.left-side {
+    left: 10px;
+}
+.right-side {
+    right: 10px;
+}
+
+/* Make side images disappear on small screens for better UX */
+@media (max-width: 900px) {
+    .side-image { display: none; }
+}
+.side-card {
+    text-align: center;
+    max-width: 140px;
+}
+
+.side-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
+
+.side-card h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.features i {
+  color: #007bff; /* Nice blue color */
+}
+
+.features i:hover {
+  color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.2); /* Slight zoom effect */
+  transition: 0.3s ease-in-out;
+}
+
+.side-card h5 {
+    margin: 0;
+    font-size: 1.1rem; /* perfect size for a compact digital look */
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #00f2fe;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: 'Orbitron', sans-serif; /* ? DIGITAL FONT */
+    text-shadow: 0 0 6px rgba(0, 242, 254, 0.7);
+}
+
+.side-card small {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.65rem;
+    color: #ddd;
+    font-family: 'Orbitron', sans-serif; /* ? MATCHING FONT */
+    letter-spacing: 1px;
+}
+
+
+.mini-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.65rem;
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.85);
+    color: #000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mini-calendar th {
+    text-align: center;
+    background: #0056b3;
+    color: white;
+    padding: 3px;
+    font-weight: bold;
+}
+
+.mini-calendar td {
+    text-align: center;
+    padding: 2px;
+    height: 20px;
+    width: 14%;
+}
+
+.mini-calendar .today {
+    background: #43e97b;
+    font-weight: bold;
+    border-radius: 50%;
+    color: white;
+}
+
+#calendar {
+    margin-top: 12px; /* Space between clock/date and calendar */
+    width: 100%; /* Make calendar take full width of its container */
+    max-width: 280px; /* Optional: Set a nice max-width so it doesn’t get too wide */
+    margin-left: auto;
+    margin-right: auto; /* Center it inside its container */
+}
+.demo-video {
+  width: 70%;       /* takes 70% of the container width */
+  height: auto;     /* keeps the aspect ratio */
+  display: block;   /* makes it respect margins */
+  margin: 1rem auto; /* centers the video */
+  max-width: 900px; /* optional, prevents it from being too big on large screens */
+  border-radius: 10px; /* optional, gives smooth rounded corners */
+}
+
+
+.image-protect-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.image-protect-wrapper img {
+    display: block;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0); /* fully transparent */
+    cursor: not-allowed; /* shows blocked cursor */
+}
+
