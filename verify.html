@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Certificate Verification - BaseMate Student MDB</title>
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   BASEMATE CERTIFICATE VERIFICATION
+   Mishita Computers Centre
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0056b3,
+            #007bff,
+            #00a8e8,
+            #0056b3
+        );
+
+    background-size: 300% 300%;
+    animation: backgroundMove 15s ease infinite;
+
+    color: #222;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================================
+   BACKGROUND ANIMATION
+   ========================================================= */
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.main-header {
+
+    background: rgba(0, 55, 115, 0.97);
+
+    color: white;
+
+    padding: 15px 20px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
+}
+
+.header-content {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    text-align: center;
+
+}
+
+.header-logo {
+
+    width: 52px;
+    height: 52px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    background: white;
+
+    padding: 3px;
+
+}
+
+.header-title {
+
+    font-size: 1.25rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+}
+
+/* =========================================================
+   MAIN AREA
+   ========================================================= */
+
+main {
+
+    flex: 1;
+
+    width: 100%;
+
+    padding: 35px 15px 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+}
+
+/* =========================================================
+   VERIFICATION CARD
+   ========================================================= */
+
+.verification-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 18px;
+
+    padding: 35px 30px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.main-logo {
+
+    width: 105px;
+
+    height: 105px;
+
+    object-fit: contain;
+
+    border-radius: 50%;
+
+    margin-bottom: 10px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.18);
+
+}
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1 {
+
+    margin: 5px 0;
+
+    color: #0056b3;
+
+    font-size: 1.8rem;
+
+}
+
+.subtitle {
+
+    margin: 5px 0 25px;
+
+    color: #555;
+
+    font-size: 1rem;
+
+}
+
+/* =========================================================
+   VERIFICATION ICON
+   ========================================================= */
+
+.verification-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin: 15px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+}
+
+/* =========================================================
+   DEFAULT / CHECKING STATE
+   ========================================================= */
+
+.checking {
+
+    background: #e8f1ff;
+
+    color: #0056b3;
+
+}
+
+/* =========================================================
+   VALID STATE
+   ========================================================= */
+
+.valid {
+
+    background: #e8f8ee;
+
+    color: #16803c;
+
+}
+
+/* =========================================================
+   INVALID STATE
+   ========================================================= */
+
+.invalid {
+
+    background: #fdecec;
+
+    color: #c62828;
+
+}
+
+/* =========================================================
+   NOT FOUND STATE
+   ========================================================= */
+
+.not-found {
+
+    background: #fff4df;
+
+    color: #a15c00;
+
+}
+
+/* =========================================================
+   STATUS TEXT
+   ========================================================= */
+
+.status-title {
+
+    font-size: 1.45rem;
+
+    font-weight: bold;
+
+    margin: 10px 0 5px;
+
+}
+
+.status-description {
+
+    color: #555;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+
+}
+
+/* =========================================================
+   CERTIFICATE DETAILS
+   ========================================================= */
+
+.certificate-details {
+
+    display: none;
+
+    text-align: left;
+
+    margin-top: 25px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+}
+
+.detail-row {
+
+    display: flex;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+.detail-row:last-child {
+
+    border-bottom: none;
+
+}
+
+.detail-label {
+
+    width: 42%;
+
+    padding: 13px;
+
+    background: #f5f7fa;
+
+    font-weight: bold;
+
+    color: #444;
+
+}
+
+.detail-value {
+
+    width: 58%;
+
+    padding: 13px;
+
+    color: #222;
+
+    word-break: break-word;
+
+}
+
+/* =========================================================
+   TOKEN DISPLAY
+   ========================================================= */
+
+.verification-reference {
+
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 12px;
+
+    background: #f5f7fa;
+
+    border-radius: 8px;
+
+    font-size: 0.85rem;
+
+    color: #555;
+
+    word-break: break-all;
+
+}
+
+.verification-reference strong {
+
+    color: #333;
+
+}
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.security-notice {
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #eef6ff;
+
+    border-left: 4px solid #007bff;
+
+    text-align: left;
+
+    color: #444;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+}
+
+.security-notice i {
+
+    color: #007bff;
+
+    margin-right: 7px;
+
+}
+
+/* =========================================================
+   MANUAL VERIFICATION BOX
+   ========================================================= */
+
+.manual-section {
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #ddd;
+
+}
+
+.manual-section h3 {
+
+    margin-top: 0;
+
+    color: #0056b3;
+
+}
+
+.manual-section p {
+
+    color: #666;
+
+    font-size: 0.9rem;
+
+}
+
+.token-input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+
+    text-align: center;
+
+    outline: none;
+
+}
+
+.token-input:focus {
+
+    border-color: #007bff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 123, 255, 0.12);
+
+}
+
+.verify-button {
+
+    margin-top: 12px;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #0056b3;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+}
+
+.verify-button:hover {
+
+    background: #003f80;
+
+    transform: translateY(-1px);
+
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    background: rgba(0, 45, 90, 0.96);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px 15px;
+
+    font-size: 0.9rem;
+
+    line-height: 1.6;
+
+}
+
+footer a {
+
+    color: #8ed8ff;
+
+    text-decoration: none;
+
+}
+
+footer a:hover {
+
+    color: white;
+
+    text-decoration: underline;
+
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .main-header {
+
+        padding: 12px 10px;
+
+    }
+
+    .header-logo {
+
+        width: 42px;
+        height: 42px;
+
+    }
+
+    .header-title {
+
+        font-size: 1rem;
+
+    }
+
+    main {
+
+        padding: 20px 10px 30px;
+
+    }
+
+    .verification-card {
+
+        padding: 25px 18px;
+
+        border-radius: 14px;
+
+    }
+
+    .main-logo {
+
+        width: 85px;
+        height: 85px;
+
+    }
+
+    h1 {
+
+        font-size: 1.45rem;
+
+    }
+
+    .detail-row {
+
+        display: block;
+
+    }
+
+    .detail-label,
+    .detail-value {
+
+        width: 100%;
+
+    }
+
+    .detail-label {
+
+        padding-bottom: 6px;
+
+    }
+
+    .detail-value {
+
+        padding-top: 6px;
+
+    }
+
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+    body {
+
+        background: white;
+
+        color: black;
+
+    }
+
+    .main-header,
+    footer,
+    .manual-section {
+
+        display: none;
+
+    }
+
+    main {
+
+        padding: 0;
+
+    }
+
+    .verification-card {
+
+        box-shadow: none;
+
+        max-width: 100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<div class="main-header">
+
+```
+<div class="header-content">
+
+    <img
+        src="images/logo.PNG"
+        alt="Mishita Computers Centre Logo"
+        class="header-logo">
+
+    <div class="header-title">
+        Mishita Computers Centre - BaseMate Student MDB
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main>
+
+```
+<section class="verification-card">
+
+    <img
+        src="images/mishitacologo.PNG"
+        alt="Mishita Computers Centre"
+        class="main-logo">
+
+
+    <h1>
+        Certificate Verification
+    </h1>
+
+    <p class="subtitle">
+        BaseMate Student Management DB
+    </p>
+
+
+    <!-- =================================================
+         VERIFICATION STATUS
+         ================================================= -->
+
+    <div
+        id="verificationIcon"
+        class="verification-icon checking">
+
+        <i class="fas fa-shield-halved"></i>
+
+    </div>
+
+
+    <div
+        id="statusTitle"
+        class="status-title">
+
+        Checking Certificate...
+
+    </div>
+
+
+    <div
+        id="statusDescription"
+        class="status-description">
+
+        Please wait while the certificate verification
+        information is being processed.
+
+    </div>
+
+
+    <!-- =================================================
+         CERTIFICATE DETAILS
+         ================================================= -->
+
+    <div
+        id="certificateDetails"
+        class="certificate-details">
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Certificate Number
+            </div>
+
+            <div
+                class="detail-value"
+                id="certificateNumber">
+                —
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Student Name
+            </div>
+
+            <div
+                class="detail-value"
+                id="studentName">
+                —
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Admission Number
+            </div>
+
+            <div
+                class="detail-value"
+                id="admissionNumber">
+                —
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Course
+            </div>
+
+            <div
+                class="detail-value"
+                id="course">
+                —
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Completion Date
+            </div>
+
+            <div
+                class="detail-value"
+                id="completionDate">
+                —
+            </div>
+
+        </div>
+
+
+        <div class="detail-row">
+
+            <div class="detail-label">
+                Certificate Status
+            </div>
+
+            <div
+                class="detail-value"
+                id="certificateStatus">
+                —
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         VERIFICATION REFERENCE
+         ================================================= -->
+
+    <div
+        id="verificationReference"
+        class="verification-reference">
+
+        <strong>Verification Reference:</strong><br>
+
+        <span id="verificationToken">
+            —
+        </span>
+
+    </div>
+
+
+    <!-- =================================================
+         SECURITY NOTICE
+         ================================================= -->
+
+    <div class="security-notice">
+
+        <i class="fas fa-lock"></i>
+
+        This verification page is provided by
+        <strong>Mishita Computers Centre</strong>
+        through the BaseMate Student Management DB
+        certificate verification system.
+
+    </div>
+
+
+    <!-- =================================================
+         MANUAL VERIFICATION
+         ================================================= -->
+
+    <div class="manual-section">
+
+        <h3>
+            <i class="fas fa-magnifying-glass"></i>
+            Manual Verification
+        </h3>
+
+        <p>
+            If you are unable to scan the QR code,
+            enter the certificate verification reference
+            below.
+        </p>
+
+        <input
+            type="text"
+            id="manualToken"
+            class="token-input"
+            placeholder="Enter verification reference"
+            autocomplete="off"
+            spellcheck="false">
+
+        <br>
+
+        <button
+            type="button"
+            class="verify-button"
+            onclick="manualVerify()">
+
+            <i class="fas fa-shield-check"></i>
+            Verify Certificate
+
+        </button>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+```
+<strong>
+    Mishita Computers Centre
+</strong>
+
+<br>
+
+BaseMate Student Management DB
+
+<br>
+
+Support:
+<a href="mailto:mishitacomputers@gmail.com">
+    mishitacomputers@gmail.com
+</a>
+
+<br>
+
+&copy; 2026 Mishita Computers Centre.
+All rights reserved.
+```
+
+</footer>
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+/* =========================================================
+   BASEMATE CERTIFICATE VERIFICATION ENGINE
+   ========================================================= */
+
+/*
+    IMPORTANT:
+
+    This first version prepares the complete verification
+    interface.
+
+    The actual online database/API will be connected in
+    the next stage.
+
+    Expected QR format:
+
+    verify.html?token=BMV-XXXXXXXX-XXXXXXXX
+*/
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const token =
+            params.get("token");
+
+
+        if (token && token.trim() !== "") {
+
+            document.getElementById(
+                "verificationToken"
+            ).textContent = token.trim();
+
+            document.getElementById(
+                "verificationReference"
+            ).style.display = "block";
+
+
+            /*
+                TEMPORARY TEST MODE
+
+                We are not connecting to the online
+                verification database yet.
+
+                The next development stage will replace
+                this section with a secure API request.
+            */
+
+            showPendingVerification(token.trim());
+
+        }
+        else {
+
+            showNoToken();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SHOW PENDING VERIFICATION
+   ========================================================= */
+
+function showPendingVerification(token) {
+
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+
+    icon.className =
+        "verification-icon checking";
+
+    icon.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i>';
+
+
+    title.textContent =
+        "Verification Ready";
+
+
+    description.textContent =
+        "Verification reference received. The online certificate database will be connected here in the next stage.";
+
+}
+
+
+/* =========================================================
+   NO TOKEN
+   ========================================================= */
+
+function showNoToken() {
+
+    const icon =
+        document.getElementById(
+            "verificationIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "statusTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "statusDescription"
+        );
+
+
+    icon.className =
+        "verification-icon not-found";
+
+    icon.innerHTML =
+        '<i class="fas fa-qrcode"></i>';
+
+
+    title.textContent =
+        "Certificate Verification";
+
+
+    description.textContent =
+        "Scan the QR code on a BaseMate certificate or enter the verification reference manually below.";
+
+}
+
+
+/* =========================================================
+   MANUAL VERIFICATION
+   ========================================================= */
+
+function manualVerify() {
+
+    const input =
+        document.getElementById(
+            "manualToken"
+        );
+
+    const token =
+        input.value.trim();
+
+
+    if (token === "") {
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /*
+        Reload the page using the verification token.
+    */
+
+    const baseURL =
+        window.location.pathname;
+
+    const verificationURL =
+        baseURL +
+        "?token=" +
+        encodeURIComponent(token);
+
+
+    window.location.href =
+        verificationURL;
+
+}
+
+
+/* =========================================================
+   ENTER KEY SUPPORT
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Enter" &&
+            document.activeElement.id === "manualToken"
+        ) {
+
+            manualVerify();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
