@@ -1,0 +1,706 @@
+/* =========================================================
+   BASEMATE CERTIFICATE VERIFICATION
+   Mishita Computers Centre
+   ========================================================= */
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0056b3,
+            #007bff,
+            #00a8e8,
+            #0056b3
+        );
+
+    background-size: 300% 300%;
+
+    animation:
+        backgroundMove 15s ease infinite;
+
+    color: #222;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+@keyframes backgroundMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.main-header {
+
+    background:
+        rgba(0, 55, 115, 0.97);
+
+    color: white;
+
+    padding: 15px 20px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.header-content {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+
+.header-title {
+
+    font-size: 1.25rem;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* =========================================================
+   MAIN AREA
+   ========================================================= */
+
+main {
+
+    flex: 1;
+
+    width: 100%;
+
+    padding:
+        35px 15px 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+}
+
+
+/* =========================================================
+   VERIFICATION CARD
+   ========================================================= */
+
+.verification-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    background:
+        rgba(255, 255, 255, 0.97);
+
+    border-radius: 18px;
+
+    padding: 35px 30px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.25);
+
+    text-align: center;
+
+}
+
+
+/* =========================================================
+   CENTRE LOGO
+   Plain PNG
+   No border / circle / shadow
+   ========================================================= */
+
+.main-logo {
+
+    width: 110px;
+
+    height: 110px;
+
+    object-fit: contain;
+
+    border: none !important;
+
+    border-radius: 0 !important;
+
+    background: transparent !important;
+
+    padding: 0 !important;
+
+    margin: 0 auto 12px;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    display: block;
+
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+h1 {
+
+    margin: 5px 0;
+
+    color: #0056b3;
+
+    font-size: 1.8rem;
+
+}
+
+
+.subtitle {
+
+    margin:
+        5px 0 25px;
+
+    color: #555;
+
+    font-size: 1rem;
+
+}
+
+
+/* =========================================================
+   VERIFICATION ICON
+   ========================================================= */
+
+.verification-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin: 15px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 35px;
+
+}
+
+
+.checking {
+
+    background: #e8f1ff;
+
+    color: #0056b3;
+
+}
+
+
+.valid {
+
+    background: #e8f8ee;
+
+    color: #16803c;
+
+}
+
+
+.invalid {
+
+    background: #fdecec;
+
+    color: #c62828;
+
+}
+
+
+.not-found {
+
+    background: #fff4df;
+
+    color: #a15c00;
+
+}
+
+
+/* =========================================================
+   STATUS TEXT
+   ========================================================= */
+
+.status-title {
+
+    font-size: 1.45rem;
+
+    font-weight: bold;
+
+    margin: 10px 0 5px;
+
+}
+
+
+.status-description {
+
+    color: #555;
+
+    line-height: 1.5;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================================================
+   CERTIFICATE DETAILS
+   ========================================================= */
+
+.certificate-details {
+
+    display: none;
+
+    text-align: left;
+
+    margin-top: 25px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+}
+
+
+.detail-row {
+
+    display: flex;
+
+    border-bottom: 1px solid #eee;
+
+}
+
+
+.detail-row:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.detail-label {
+
+    width: 42%;
+
+    padding: 13px;
+
+    background: #f5f7fa;
+
+    font-weight: bold;
+
+    color: #444;
+
+}
+
+
+.detail-value {
+
+    width: 58%;
+
+    padding: 13px;
+
+    color: #222;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================================================
+   TOKEN DISPLAY
+   ========================================================= */
+
+.verification-reference {
+
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 12px;
+
+    background: #f5f7fa;
+
+    border-radius: 8px;
+
+    font-size: 0.85rem;
+
+    color: #555;
+
+    word-break: break-all;
+
+}
+
+
+.verification-reference strong {
+
+    color: #333;
+
+}
+
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.security-notice {
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #eef6ff;
+
+    border-left: 4px solid #007bff;
+
+    text-align: left;
+
+    color: #444;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+}
+
+
+.security-notice i {
+
+    color: #007bff;
+
+    margin-right: 7px;
+
+}
+
+
+/* =========================================================
+   MANUAL VERIFICATION
+   ========================================================= */
+
+.manual-section {
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #ddd;
+
+}
+
+
+.manual-section h3 {
+
+    margin-top: 0;
+
+    color: #0056b3;
+
+}
+
+
+.manual-section p {
+
+    color: #666;
+
+    font-size: 0.9rem;
+
+}
+
+
+.token-input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+
+    text-align: center;
+
+    outline: none;
+
+}
+
+
+.token-input:focus {
+
+    border-color: #007bff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0, 123, 255, 0.12);
+
+}
+
+
+.verify-button {
+
+    margin-top: 12px;
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #0056b3;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+}
+
+
+.verify-button:hover {
+
+    background: #003f80;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    background:
+        rgba(0, 45, 90, 0.96);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px 15px;
+
+    font-size: 0.9rem;
+
+    line-height: 1.6;
+
+}
+
+
+footer a {
+
+    color: #8ed8ff;
+
+    text-decoration: none;
+
+}
+
+
+footer a:hover {
+
+    color: white;
+
+    text-decoration: underline;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+
+    .main-header {
+
+        padding:
+            12px 10px;
+
+    }
+
+
+    .header-title {
+
+        font-size: 1rem;
+
+    }
+
+
+    main {
+
+        padding:
+            20px 10px 30px;
+
+    }
+
+
+    .verification-card {
+
+        padding:
+            25px 18px;
+
+        border-radius: 14px;
+
+    }
+
+
+    .main-logo {
+
+        width: 90px;
+
+        height: 90px;
+
+    }
+
+
+    h1 {
+
+        font-size: 1.45rem;
+
+    }
+
+
+    .detail-row {
+
+        display: block;
+
+    }
+
+
+    .detail-label,
+    .detail-value {
+
+        width: 100%;
+
+    }
+
+
+    .detail-label {
+
+        padding-bottom: 6px;
+
+    }
+
+
+    .detail-value {
+
+        padding-top: 6px;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+
+    body {
+
+        background: white;
+
+        color: black;
+
+    }
+
+
+    .main-header,
+    footer,
+    .manual-section {
+
+        display: none;
+
+    }
+
+
+    main {
+
+        padding: 0;
+
+    }
+
+
+    .verification-card {
+
+        box-shadow: none;
+
+        max-width: 100%;
+
+    }
+
+}
