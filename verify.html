@@ -702,11 +702,11 @@ footer a:hover {
          Same GitHub images folder as BaseMate website
          ===================================================== -->
 
-  <img
+ <img
+    id="mainLogo"
     src="./images/mishitacologo.PNG"
     alt="Mishita Computers Centre"
-    class="main-logo"
-    onerror="this.onerror=null; this.src='./images/mishitacoLogo.PNG';">
+    class="main-logo">
 
 
     <h1>
@@ -1694,7 +1694,28 @@ document.addEventListener(
 
 </script>
 
+<script>
+(function () {
+    const logo = document.getElementById("mainLogo");
 
+    const logoPaths = [
+        "./images/mishitacologo.PNG",
+        "./images/mishitacoLogo.PNG",
+        "./images/mishitacologo.png",
+        "./images/mishitacoLogo.png"
+    ];
+
+    let currentPath = 0;
+
+    logo.addEventListener("error", function () {
+        currentPath++;
+
+        if (currentPath < logoPaths.length) {
+            logo.src = logoPaths[currentPath];
+        }
+    });
+})();
+</script>
 </body>
 
 </html>
