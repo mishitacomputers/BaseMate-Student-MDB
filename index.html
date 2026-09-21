@@ -45,25 +45,72 @@
 <!-- =========================================================
      HEADER
 ========================================================= -->
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
 <div class="main-header">
 
     <header>
 
-        <!-- ONLY LOGO RETAINED -->
-        <img src="./images/mishitacologo.PNG"
-             alt="Mishita Computers Centre Logo"
-             class="protected">
+        <!-- MISHITA COMPUTERS CENTRE LOGO -->
+        <img
+            id="mishitaLogo"
+            src="./images/mishitacologo.PNG"
+            alt="Mishita Computers Centre Logo"
+            class="protected"
+            style="
+                width: 70px;
+                height: 70px;
+                object-fit: contain;
+                border-radius: 0 !important;
+                display: block;
+                flex-shrink: 0;
+            "
+        >
 
         <span>
             Mishita Computers Centre - BaseMate Student MDB
         </span>
 
-        <!-- TOP RIGHT LOGO REMOVED -->
-
     </header>
 
 </div>
+
+<!-- =========================================================
+     LOGO FALLBACK
+     GitHub Pages is case-sensitive, so try common filename
+     variations automatically.
+========================================================= -->
+
+<script>
+(function () {
+
+    const logo = document.getElementById("mishitaLogo");
+
+    const logoPaths = [
+        "./images/mishitacologo.PNG",
+        "./images/mishitacoLogo.PNG",
+        "./images/mishitacologo.png",
+        "./images/mishitacoLogo.png"
+    ];
+
+    let currentPath = 0;
+
+    function tryNextLogo() {
+
+        currentPath++;
+
+        if (currentPath < logoPaths.length) {
+            logo.src = logoPaths[currentPath];
+        }
+    }
+
+    logo.addEventListener("error", tryNextLogo);
+
+})();
+</script>
+
 
 
 
