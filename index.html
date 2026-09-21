@@ -20,9 +20,27 @@
 
     <!-- Disable Right Click -->
     <script src="./js/disable-rightclick.js"></script>
+
+    <!-- =====================================================
+         TOP LEFT LOGO ADJUSTMENT
+         ===================================================== -->
+    <style>
+        .main-header header img {
+            border-radius: 0 !important;
+        }
+
+        .main-header header img:first-child {
+            width: 82px !important;
+            height: 82px !important;
+            object-fit: contain !important;
+            border-radius: 0 !important;
+        }
+    </style>
+
 </head>
 
 <body>
+
 
 <!-- =========================================================
      HEADER
@@ -32,21 +50,21 @@
 
     <header>
 
-        <img src="./images/logo.PNG"
-             alt="Left Logo"
+        <!-- ONLY LOGO RETAINED -->
+        <img src="./images/mishitacologo.PNG"
+             alt="Mishita Computers Centre Logo"
              class="protected">
 
         <span>
             Mishita Computers Centre - BaseMate Student MDB
         </span>
 
-        <img src="./images/mishitacologo.PNG"
-             alt="Right Logo"
-             class="protected">
+        <!-- TOP RIGHT LOGO REMOVED -->
 
     </header>
 
 </div>
+
 
 
 <!-- =========================================================
@@ -69,6 +87,7 @@
     </div>
 
 
+
     <!-- DIGITAL CLOCK -->
 
     <div class="side-card" id="digitalClockCard">
@@ -82,6 +101,7 @@
         <div id="calendar"></div>
 
     </div>
+
 
 
     <!-- INTERNET CLOCK SCRIPT -->
@@ -111,7 +131,9 @@
         }
 
 
+
         let internetTimeOffset = 0;
+
 
 
         fetchInternetTime().then(function (internetDate) {
@@ -135,6 +157,7 @@
         });
 
 
+
         function updateDigitalClock() {
 
             const now =
@@ -143,10 +166,12 @@
                 );
 
 
+
             let hours =
                 now.getHours()
                    .toString()
                    .padStart(2, "0");
+
 
 
             let minutes =
@@ -155,30 +180,40 @@
                    .padStart(2, "0");
 
 
+
             let seconds =
                 now.getSeconds()
                    .toString()
                    .padStart(2, "0");
 
 
+
             let ampm =
                 hours >= 12 ? "PM" : "AM";
+
 
 
             let displayHours =
                 parseInt(hours, 10);
 
 
+
             if (displayHours === 0) {
+
                 displayHours = 12;
+
             }
             else if (displayHours > 12) {
+
                 displayHours -= 12;
+
             }
+
 
 
             let timeString =
                 `${displayHours}:${minutes}:${seconds} ${ampm}`;
+
 
 
             document.getElementById(
@@ -186,12 +221,16 @@
             ).textContent = timeString;
 
 
+
             const dateOptions = {
+
                 weekday: "short",
                 year: "numeric",
                 month: "short",
                 day: "numeric"
+
             };
+
 
 
             document.getElementById(
@@ -201,7 +240,9 @@
                     undefined,
                     dateOptions
                 );
+
         }
+
 
 
         function renderCalendar(date) {
@@ -216,6 +257,7 @@
                 date.getDate();
 
 
+
             const firstDay =
                 new Date(
                     year,
@@ -224,12 +266,14 @@
                 ).getDay();
 
 
+
             const daysInMonth =
                 new Date(
                     year,
                     month + 1,
                     0
                 ).getDate();
+
 
 
             let calendarHTML = `
@@ -241,10 +285,12 @@
                         <tr>
 
                             <th colspan="7">
+
                                 ${date.toLocaleString(
                                     "default",
                                     { month: "long" }
                                 )} ${year}
+
                             </th>
 
                         </tr>
@@ -269,6 +315,7 @@
             `;
 
 
+
             /* Empty cells before first day */
 
             for (
@@ -280,6 +327,7 @@
                 calendarHTML += "<td></td>";
 
             }
+
 
 
             /* Days of month */
@@ -301,6 +349,7 @@
                 }
 
 
+
                 if (d === today) {
 
                     calendarHTML +=
@@ -317,6 +366,7 @@
             }
 
 
+
             calendarHTML += `
 
                     </tr>
@@ -324,17 +374,21 @@
                     </tbody>
 
                 </table>
+
             `;
+
 
 
             document.getElementById(
                 "calendar"
             ).innerHTML = calendarHTML;
+
         }
 
     </script>
 
 </div>
+
 
 
 <!-- =========================================================
@@ -368,6 +422,7 @@
 </div>
 
 
+
 <!-- =========================================================
      MAIN OVERLAY
 ========================================================= -->
@@ -396,6 +451,7 @@
         </p>
 
     </div>
+
 
 
     <!-- =====================================================
@@ -452,6 +508,7 @@
     </div>
 
 
+
     <!-- =====================================================
          HOME TAB
     ====================================================== -->
@@ -462,6 +519,7 @@
         <div class="features-heading">
             <u>KEY FEATURES INCLUDE</u>
         </div>
+
 
 
         <div class="features">
@@ -480,6 +538,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-user-cog fa-2x"></i>
@@ -491,6 +550,7 @@
                 Manage how other users access the system.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -506,6 +566,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-chart-line fa-2x"></i>
@@ -517,6 +578,7 @@
                 Track academic progress, exams, and assessments.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -532,6 +594,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-file-invoice-dollar fa-2x"></i>
@@ -543,6 +606,7 @@
                 Send branded invoices via email or print them.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -558,6 +622,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-database fa-2x"></i>
@@ -569,6 +634,7 @@
                 Auto-backup every 14 days or manually in one click.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -584,6 +650,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-certificate fa-2x"></i>
@@ -595,6 +662,7 @@
                 Generate and download certificates or IDs instantly.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -615,6 +683,7 @@
     </div>
 
 
+
     <!-- =====================================================
          DOWNLOADS TAB
     ====================================================== -->
@@ -631,6 +700,7 @@
         </p>
 
 
+
         <a href="https://drive.google.com/file/d/12z2iAVbwi9M_LEqM5g8dM7dG_2fwGeUH/view?usp=sharing"
            target="_blank"
            class="download-btn">
@@ -638,6 +708,7 @@
             System User Interface Documentation (PDF)
 
         </a>
+
 
 
         <a href="https://drive.google.com/file/d/1T0AIAqWUrhTqQ01qHhpZCUqKjb1ME3L8/view?usp=sharing"
@@ -649,6 +720,7 @@
         </a>
 
     </div>
+
 
 
     <!-- =====================================================
@@ -663,9 +735,12 @@
         </h2>
 
 
+
         <h3>
             ABOUT THIS APPLICATION
         </h3>
+
+
 
         <p>
             This application is designed to manage student
@@ -674,6 +749,7 @@
             attachments, and reporting.
             Key features include:
         </p>
+
 
 
         <ul>
@@ -691,12 +767,15 @@
         </ul>
 
 
+
         <p>
 
             <strong>VERSION:</strong> 1.0.0.2
+
             <br>
 
             <strong>DATE:</strong> July 2025
+
             <br>
 
             <strong>DEVELOPER:</strong>
@@ -705,9 +784,11 @@
         </p>
 
 
+
         <h3>
             RECOMMENDED SYSTEM REQUIREMENTS
         </h3>
+
 
 
         <ul>
@@ -742,14 +823,17 @@
         </ul>
 
 
+
         <h3>
             WHY INTERNET IS IMPORTANT
         </h3>
 
 
+
         <p>
             The application uses internet connectivity for:
         </p>
+
 
 
         <ul>
@@ -785,9 +869,11 @@
         </ul>
 
 
+
         <h3>
             TIPS FOR BEST PERFORMANCE
         </h3>
+
 
 
         <ul>
@@ -819,9 +905,11 @@
         </ul>
 
 
+
         <h3>
             BACKUP INFORMATION
         </h3>
+
 
 
         <ul>
@@ -849,9 +937,11 @@
         </ul>
 
 
+
         <h3>
             WARNING
         </h3>
+
 
 
         <p>
@@ -863,9 +953,11 @@
         </p>
 
 
+
         <h3>
             SUPPORT / FEEDBACK
         </h3>
+
 
 
         <p>
@@ -885,6 +977,7 @@
         </p>
 
 
+
         <p>
             <em>
                 Thank you for using our application!
@@ -892,6 +985,7 @@
         </p>
 
     </div>
+
 
 
     <!-- =====================================================
@@ -906,9 +1000,11 @@
         </h2>
 
 
+
         <h3>
             <strong>Q:</strong>
             I forgot my password. How can I recover it?
+
             <br>
 
             <strong>A:</strong>
@@ -920,9 +1016,11 @@
         </h3>
 
 
+
         <p>
             <strong>Q:</strong>
             Can the system work without internet access?
+
             <br>
 
             <strong>A:</strong>
@@ -932,6 +1030,7 @@
             reset, and system alerts require an internet
             connection.
         </p>
+
 
 
         <h3>
@@ -947,6 +1046,7 @@
         </p>
 
 
+
         <h3>
             Q: I keep seeing "This Application is Blocked."
             What does this mean and what should I do?
@@ -960,6 +1060,7 @@
         </p>
 
 
+
         <h3>
             Q: "Verifying authenticity please wait?"
             This is the message I see every time I log in.
@@ -970,6 +1071,7 @@
             system's security process to validate your license
             and account status each time you log in.
         </p>
+
 
 
         <h3>
@@ -986,6 +1088,7 @@
         </p>
 
 
+
         <h3>
             Q: All student learners show "Learning is in progress".
             What could be the issue?
@@ -998,6 +1101,7 @@
             information. Ensure your PC has the correct and
             updated date/time settings.
         </p>
+
 
 
         <h3>
@@ -1014,6 +1118,7 @@
         </p>
 
 
+
         <h3>
             Q: "All charts and data successfully loaded".
             This is the message I see, yet some charts and
@@ -1025,6 +1130,7 @@
             occasionally take longer than expected to complete.
             Simply close and reopen the form to refresh the charts.
         </p>
+
 
 
         <h3>
@@ -1040,6 +1146,7 @@
         </p>
 
 
+
         <h3>
             Q: Why does the backup process fail?
         </h3>
@@ -1052,6 +1159,7 @@
         </p>
 
 
+
         <h3>
             Q: I see a "No encryption tool found" error during backup.
             What should I do?
@@ -1062,6 +1170,7 @@
             is installed on your PC. The system uses it to zip
             and encrypt backup files.
         </p>
+
 
 
         <h3>
@@ -1077,6 +1186,7 @@
         </p>
 
 
+
         <h3>
             Q: How do I verify legitimacy of a payment receipt?
         </h3>
@@ -1089,16 +1199,19 @@
         </p>
 
 
+
         <h3>
             Q: Can the system work without internet access?
         </h3>
 
         <p>
             A: Yes. Core functions like data entry, reporting,
-            backup, and restore work offline. However, features
-            such as email verification, password reset, and
-            system alerts require an internet connection.
+            backup, and restore work offline. However,
+            features such as email verification, password
+            reset, and system alerts require an internet
+            connection.
         </p>
+
 
 
         <h3>
@@ -1112,6 +1225,7 @@
             operation while maintaining full data management
             capabilities.
         </p>
+
 
 
         <h3>
@@ -1129,6 +1243,7 @@
     </div>
 
 
+
     <!-- =====================================================
          TERMS TAB
     ====================================================== -->
@@ -1139,6 +1254,7 @@
         <h2 style="color: #00ff99;">
             <u>TERMS AND CONDITIONS OF USE & USER AGREEMENT</u>
         </h2>
+
 
 
         <p>
@@ -1171,6 +1287,7 @@
         </p>
 
 
+
         <h3>
             1. ACCEPTANCE OF TERMS
         </h3>
@@ -1184,6 +1301,7 @@
         </p>
 
 
+
         <h3>
             2. LICENSE GRANT
         </h3>
@@ -1193,6 +1311,8 @@
             non-transferable license to use the Application
             solely for lawful purposes.
         </p>
+
+
 
         <ul>
 
@@ -1213,6 +1333,7 @@
         </ul>
 
 
+
         <h3>
             3. INTELLECTUAL PROPERTY
         </h3>
@@ -1224,6 +1345,7 @@
             trademark, and other applicable intellectual
             property laws. All rights reserved.
         </p>
+
 
 
         <h3>
@@ -1254,6 +1376,7 @@
         </ul>
 
 
+
         <h3>
             5. PROHIBITED USES
         </h3>
@@ -1278,6 +1401,7 @@
         </ul>
 
 
+
         <h3>
             6. DATA COLLECTION & PRIVACY
         </h3>
@@ -1292,6 +1416,7 @@
         </p>
 
 
+
         <h3>
             7. UPDATES & SUPPORT
         </h3>
@@ -1303,6 +1428,7 @@
             or purchase. Some updates may be mandatory for
             continued use.
         </p>
+
 
 
         <h3>
@@ -1319,6 +1445,7 @@
         </p>
 
 
+
         <h3>
             9. LIMITATION OF LIABILITY
         </h3>
@@ -1330,6 +1457,7 @@
             use or inability to use the Application, including
             data loss or corruption.
         </p>
+
 
 
         <h3>
@@ -1344,6 +1472,7 @@
         </p>
 
 
+
         <h3>
             11. GOVERNING LAW & DISPUTE RESOLUTION
         </h3>
@@ -1354,6 +1483,7 @@
             courts of Kenya. You agree to attempt an amicable
             resolution before pursuing legal action.
         </p>
+
 
 
         <h3>
@@ -1368,6 +1498,7 @@
         </p>
 
 
+
         <h3>
             13. SEVERABILITY
         </h3>
@@ -1377,6 +1508,7 @@
             or unenforceable, the remaining provisions will
             remain in full force and effect.
         </p>
+
 
 
         <h3>
@@ -1390,18 +1522,27 @@
         </p>
 
 
+
         <ul>
 
             <li>
+
                 7-Zip, developed by Igor Pavlov, licensed
                 under the GNU LGPL.
+
                 Source and license available at
+
                 <a href="https://www.7-zip.org"
                    target="_blank"
                    rel="noopener noreferrer">
+
                     https://www.7-zip.org
+
                 </a>
+
             </li>
+
+
 
             <li>
                 Code 3 of 9 (Code39) Barcode Symbology,
@@ -1409,6 +1550,7 @@
             </li>
 
         </ul>
+
 
 
         <p>
@@ -1419,9 +1561,12 @@
         </p>
 
 
+
         <h3>
             15. CONTACT
         </h3>
+
+
 
         <p>
 
@@ -1448,15 +1593,19 @@
         </p>
 
 
+
         <p>
+
             <strong>
                 By using this Application, you confirm that
                 you have read, understood, and agreed to be
                 bound by these terms.
             </strong>
+
         </p>
 
     </div>
+
 
 
     <!-- =====================================================
@@ -1471,6 +1620,7 @@
         </h2>
 
 
+
         <p style="font-size: 1.1em; font-weight: bold;">
 
             We offer a wide range of digital & printing solutions:
@@ -1478,7 +1628,9 @@
         </p>
 
 
+
         <div class="features">
+
 
 
             <div class="feature-item">
@@ -1496,6 +1648,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-print fa-2x"></i>
@@ -1508,6 +1661,7 @@
                 assignments, and reports.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -1524,6 +1678,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-layer-group fa-2x"></i>
@@ -1536,6 +1691,7 @@
                 with professional lamination.
 
             </div>
+
 
 
             <div class="feature-item">
@@ -1552,6 +1708,7 @@
             </div>
 
 
+
             <div class="feature-item">
 
                 <i class="fas fa-book fa-2x"></i>
@@ -1566,9 +1723,11 @@
             </div>
 
 
+
         </div>
 
     </div>
+
 
 
     <!-- =====================================================
@@ -1581,6 +1740,7 @@
         <h2 style="color: #00ff99;">
             <u>ABOUT US</u>
         </h2>
+
 
 
         <p style="font-size: 1.1em;">
@@ -1599,6 +1759,7 @@
             client needs.
 
         </p>
+
 
 
         <p style="font-size: 1.1em;">
@@ -1623,6 +1784,7 @@
     </div>
 
 
+
     <!-- =====================================================
          DEMO VIDEO TAB
     ====================================================== -->
@@ -1633,6 +1795,7 @@
         <h2 style="color: #00ff99;">
             <u>DEMO VIDEO</u>
         </h2>
+
 
 
         <div style="
@@ -1658,6 +1821,7 @@
     </div>
 
 
+
     <!-- =====================================================
          SYSTEM GUI OVERVIEW
     ====================================================== -->
@@ -1670,6 +1834,7 @@
         </h2>
 
 
+
         <div style="
             display: grid;
             grid-template-columns:
@@ -1677,6 +1842,7 @@
             gap: 20px;
             text-align: center;
         ">
+
 
 
             <!-- SETUP -->
@@ -1699,6 +1865,7 @@
                 </p>
 
             </div>
+
 
 
             <!-- LOGIN -->
@@ -1731,6 +1898,7 @@
             </div>
 
 
+
             <!-- SWITCHBOARD -->
 
             <div>
@@ -1752,6 +1920,7 @@
                 </p>
 
             </div>
+
 
 
             <!-- SETTINGS -->
@@ -1778,6 +1947,7 @@
             </div>
 
 
+
             <!-- NEW STUDENT -->
 
             <div>
@@ -1802,6 +1972,7 @@
             </div>
 
 
+
             <!-- ACADEMICS -->
 
             <div>
@@ -1822,6 +1993,7 @@
                 </p>
 
             </div>
+
 
 
             <!-- FEES -->
@@ -1848,6 +2020,7 @@
             </div>
 
 
+
             <!-- STUDENT INFORMATION -->
 
             <div>
@@ -1869,6 +2042,7 @@
                 </p>
 
             </div>
+
 
 
             <!-- SUMMARY -->
@@ -1894,6 +2068,7 @@
             </div>
 
 
+
             <!-- VISUAL REPORT -->
 
             <div>
@@ -1917,6 +2092,7 @@
             </div>
 
 
+
             <!-- VISUAL REPORT 2 -->
 
             <div>
@@ -1938,6 +2114,7 @@
                 </p>
 
             </div>
+
 
 
             <!-- STUDENT ID -->
@@ -1966,12 +2143,15 @@
             </div>
 
 
+
         </div>
 
     </div>
 
 
+
 </div>
+
 
 
 <!-- =========================================================
@@ -1999,6 +2179,7 @@
 </footer>
 
 
+
 <!-- =========================================================
      TAB SWITCHING JAVASCRIPT
 ========================================================= -->
@@ -2009,8 +2190,10 @@
         document.querySelectorAll(".tab-link");
 
 
+
     const tabContents =
         document.querySelectorAll(".tab-content");
+
 
 
     tabLinks.forEach(function (button) {
@@ -2021,6 +2204,7 @@
 
                 const tabId =
                     button.getAttribute("data-tab");
+
 
 
                 /* Remove active state */
@@ -2036,6 +2220,7 @@
                 );
 
 
+
                 tabContents.forEach(
                     function (content) {
 
@@ -2047,13 +2232,16 @@
                 );
 
 
+
                 /* Activate selected tab */
 
                 button.classList.add("active");
 
 
+
                 const selectedTab =
                     document.getElementById(tabId);
+
 
 
                 if (selectedTab) {
@@ -2070,6 +2258,7 @@
     });
 
 </script>
+
 
 
 </body>
