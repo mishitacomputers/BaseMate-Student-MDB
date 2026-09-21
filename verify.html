@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Certificate Verification - BaseMate Student MDB</title>
@@ -28,6 +30,7 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
+
     font-family: Arial, Helvetica, sans-serif;
 
     background:
@@ -40,6 +43,7 @@ body {
         );
 
     background-size: 300% 300%;
+
     animation: backgroundMove 15s ease infinite;
 
     color: #222;
@@ -63,6 +67,7 @@ body {
     }
 
 }
+
 
 /* =========================================================
    HEADER
@@ -93,24 +98,7 @@ body {
 
     justify-content: center;
 
-    gap: 15px;
-
     text-align: center;
-
-}
-
-.header-logo {
-
-    width: 52px;
-    height: 52px;
-
-    object-fit: contain;
-
-    border-radius: 50%;
-
-    background: white;
-
-    padding: 3px;
 
 }
 
@@ -123,6 +111,7 @@ body {
     letter-spacing: 0.5px;
 
 }
+
 
 /* =========================================================
    MAIN AREA
@@ -143,6 +132,7 @@ main {
     align-items: flex-start;
 
 }
+
 
 /* =========================================================
    VERIFICATION CARD
@@ -167,26 +157,38 @@ main {
 
 }
 
+
 /* =========================================================
-   LOGO
+   CENTRE LOGO
+   Plain PNG - No Border / Circle / Shadow
    ========================================================= */
 
 .main-logo {
 
-    width: 105px;
+    width: 110px;
 
-    height: 105px;
+    height: 110px;
 
     object-fit: contain;
 
-    border-radius: 50%;
+    border: none !important;
 
-    margin-bottom: 10px;
+    border-radius: 0 !important;
 
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.18);
+    background: transparent !important;
+
+    padding: 0 !important;
+
+    margin: 0 auto 12px;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    display: block;
 
 }
+
 
 /* =========================================================
    HEADINGS
@@ -211,6 +213,7 @@ h1 {
     font-size: 1rem;
 
 }
+
 
 /* =========================================================
    VERIFICATION ICON
@@ -268,6 +271,7 @@ h1 {
 
 }
 
+
 /* =========================================================
    STATUS TEXT
    ========================================================= */
@@ -291,6 +295,7 @@ h1 {
     margin-bottom: 25px;
 
 }
+
 
 /* =========================================================
    CERTIFICATE DETAILS
@@ -352,6 +357,7 @@ h1 {
 
 }
 
+
 /* =========================================================
    TOKEN DISPLAY
    ========================================================= */
@@ -381,6 +387,7 @@ h1 {
     color: #333;
 
 }
+
 
 /* =========================================================
    SECURITY NOTICE
@@ -415,6 +422,7 @@ h1 {
     margin-right: 7px;
 
 }
+
 
 /* =========================================================
    MANUAL VERIFICATION
@@ -505,6 +513,7 @@ h1 {
 
 }
 
+
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -541,6 +550,7 @@ footer a:hover {
 
 }
 
+
 /* =========================================================
    MOBILE
    ========================================================= */
@@ -550,13 +560,6 @@ footer a:hover {
     .main-header {
 
         padding: 12px 10px;
-
-    }
-
-    .header-logo {
-
-        width: 42px;
-        height: 42px;
 
     }
 
@@ -582,8 +585,9 @@ footer a:hover {
 
     .main-logo {
 
-        width: 85px;
-        height: 85px;
+        width: 90px;
+
+        height: 90px;
 
     }
 
@@ -619,6 +623,7 @@ footer a:hover {
     }
 
 }
+
 
 /* =========================================================
    PRINT
@@ -662,7 +667,9 @@ footer a:hover {
 
 </head>
 
+
 <body>
+
 
 <!-- =========================================================
      HEADER
@@ -670,22 +677,16 @@ footer a:hover {
 
 <div class="main-header">
 
-```
-<div class="header-content">
+    <div class="header-content">
 
-    <img
-        src="images/logo.PNG"
-        alt="Mishita Computers Centre Logo"
-        class="header-logo">
+        <div class="header-title">
+            Mishita Computers Centre - BaseMate Student MDB
+        </div>
 
-    <div class="header-title">
-        Mishita Computers Centre - BaseMate Student MDB
     </div>
 
 </div>
-```
 
-</div>
 
 <!-- =========================================================
      MAIN
@@ -693,25 +694,33 @@ footer a:hover {
 
 <main>
 
-```
 <section class="verification-card">
+
+
+    <!-- =====================================================
+         CENTRE LOGO
+         Same GitHub images folder as BaseMate website
+         ===================================================== -->
 
     <img
         src="images/mishitacologo.PNG"
         alt="Mishita Computers Centre"
         class="main-logo">
 
+
     <h1>
         Certificate Verification
     </h1>
+
 
     <p class="subtitle">
         BaseMate Student Management DB
     </p>
 
-    <!-- =================================================
+
+    <!-- =====================================================
          VERIFICATION STATUS
-         ================================================= -->
+         ===================================================== -->
 
     <div
         id="verificationIcon"
@@ -721,6 +730,7 @@ footer a:hover {
 
     </div>
 
+
     <div
         id="statusTitle"
         class="status-title">
@@ -728,6 +738,7 @@ footer a:hover {
         Checking Certificate...
 
     </div>
+
 
     <div
         id="statusDescription"
@@ -738,13 +749,15 @@ footer a:hover {
 
     </div>
 
-    <!-- =================================================
+
+    <!-- =====================================================
          CERTIFICATE DETAILS
-         ================================================= -->
+         ===================================================== -->
 
     <div
         id="certificateDetails"
         class="certificate-details">
+
 
         <div class="detail-row">
 
@@ -760,6 +773,7 @@ footer a:hover {
 
         </div>
 
+
         <div class="detail-row">
 
             <div class="detail-label">
@@ -773,6 +787,7 @@ footer a:hover {
             </div>
 
         </div>
+
 
         <div class="detail-row">
 
@@ -788,6 +803,7 @@ footer a:hover {
 
         </div>
 
+
         <div class="detail-row">
 
             <div class="detail-label">
@@ -801,6 +817,7 @@ footer a:hover {
             </div>
 
         </div>
+
 
         <div class="detail-row">
 
@@ -816,6 +833,7 @@ footer a:hover {
 
         </div>
 
+
         <div class="detail-row">
 
             <div class="detail-label">
@@ -829,6 +847,7 @@ footer a:hover {
             </div>
 
         </div>
+
 
         <div class="detail-row">
 
@@ -844,17 +863,23 @@ footer a:hover {
 
         </div>
 
+
     </div>
 
-    <!-- =================================================
+
+    <!-- =====================================================
          VERIFICATION REFERENCE
-         ================================================= -->
+         ===================================================== -->
 
     <div
         id="verificationReference"
         class="verification-reference">
 
-        <strong>Verification Reference:</strong><br>
+        <strong>
+            Verification Reference:
+        </strong>
+
+        <br>
 
         <span id="verificationToken">
             —
@@ -862,9 +887,10 @@ footer a:hover {
 
     </div>
 
-    <!-- =================================================
+
+    <!-- =====================================================
          SECURITY NOTICE
-         ================================================= -->
+         ===================================================== -->
 
     <div class="security-notice">
 
@@ -877,22 +903,30 @@ footer a:hover {
 
     </div>
 
-    <!-- =================================================
+
+    <!-- =====================================================
          MANUAL VERIFICATION
-         ================================================= -->
+         ===================================================== -->
 
     <div class="manual-section">
 
         <h3>
+
             <i class="fas fa-magnifying-glass"></i>
+
             Manual Verification
+
         </h3>
 
+
         <p>
+
             If you are unable to scan the QR code,
             enter the certificate verification reference
             below.
+
         </p>
+
 
         <input
             type="text"
@@ -902,7 +936,9 @@ footer a:hover {
             autocomplete="off"
             spellcheck="false">
 
+
         <br>
+
 
         <button
             type="button"
@@ -910,16 +946,19 @@ footer a:hover {
             onclick="manualVerify()">
 
             <i class="fas fa-shield-check"></i>
+
             Verify Certificate
 
         </button>
 
+
     </div>
 
+
 </section>
-```
 
 </main>
+
 
 <!-- =========================================================
      FOOTER
@@ -927,43 +966,41 @@ footer a:hover {
 
 <footer>
 
-```
-<strong>
-    Mishita Computers Centre
-</strong>
+    <strong>
+        Mishita Computers Centre
+    </strong>
 
-<br>
+    <br>
 
-BaseMate Student Management DB
+    BaseMate Student Management DB
 
-<br>
+    <br>
 
-Support:
-<a href="mailto:mishitacomputers@gmail.com">
-    mishitacomputers@gmail.com
-</a>
+    Support:
 
-<br>
+    <a href="mailto:mishitacomputers@gmail.com">
+        mishitacomputers@gmail.com
+    </a>
 
-&copy; 2026 Mishita Computers Centre.
-All rights reserved.
-```
+    <br>
+
+    &copy; 2026 Mishita Computers Centre.
+    All rights reserved.
 
 </footer>
 
+
 <!-- =========================================================
      JAVASCRIPT
+     BASEMATE CERTIFICATE VERIFICATION ENGINE
      ========================================================= -->
 
 <script>
 
-/* =========================================================
-   BASEMATE CERTIFICATE VERIFICATION ENGINE
-   ========================================================= */
 
-/*
-   Cloudflare Worker API
-*/
+/* =========================================================
+   CLOUDFLARE WORKER API
+   ========================================================= */
 
 const VERIFICATION_API =
     "https://basemate-certificate-verification.mishitacomputers.workers.dev/api/verify";
@@ -978,14 +1015,23 @@ document.addEventListener(
     function () {
 
         const params =
-            new URLSearchParams(window.location.search);
+            new URLSearchParams(
+                window.location.search
+            );
+
 
         const token =
             params.get("token");
 
-        if (token && token.trim() !== "") {
 
-            verifyCertificate(token.trim());
+        if (
+            token &&
+            token.trim() !== ""
+        ) {
+
+            verifyCertificate(
+                token.trim()
+            );
 
         }
         else {
@@ -1006,6 +1052,7 @@ async function verifyCertificate(token) {
 
     showChecking(token);
 
+
     try {
 
         const response =
@@ -1015,18 +1062,24 @@ async function verifyCertificate(token) {
                 encodeURIComponent(token),
                 {
                     method: "GET",
+
                     headers: {
-                        "Accept": "application/json"
+                        "Accept":
+                            "application/json"
                     },
+
                     cache: "no-store"
                 }
             );
 
+
         let data;
+
 
         try {
 
-            data = await response.json();
+            data =
+                await response.json();
 
         }
         catch (jsonError) {
@@ -1079,6 +1132,7 @@ async function verifyCertificate(token) {
             data.certificate
         );
 
+
     }
     catch (error) {
 
@@ -1105,35 +1159,45 @@ function showChecking(token) {
             "verificationIcon"
         );
 
+
     const title =
         document.getElementById(
             "statusTitle"
         );
+
 
     const description =
         document.getElementById(
             "statusDescription"
         );
 
+
     icon.className =
         "verification-icon checking";
+
 
     icon.innerHTML =
         '<i class="fas fa-spinner fa-spin"></i>';
 
+
     title.textContent =
         "Checking Certificate...";
+
 
     description.textContent =
         "Please wait while we securely verify this certificate with the BaseMate online verification database.";
 
+
     document.getElementById(
         "verificationToken"
-    ).textContent = token;
+    ).textContent =
+        token;
+
 
     document.getElementById(
         "verificationReference"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 }
 
@@ -1142,22 +1206,28 @@ function showChecking(token) {
    VALID / REVOKED CERTIFICATE DISPLAY
    ========================================================= */
 
-function displayCertificate(token, certificate) {
+function displayCertificate(
+    token,
+    certificate
+) {
 
     const icon =
         document.getElementById(
             "verificationIcon"
         );
 
+
     const title =
         document.getElementById(
             "statusTitle"
         );
 
+
     const description =
         document.getElementById(
             "statusDescription"
         );
+
 
     const details =
         document.getElementById(
@@ -1171,60 +1241,75 @@ function displayCertificate(token, certificate) {
         ).toUpperCase();
 
 
-    /*
+    /* =====================================================
        VALID CERTIFICATE
-    */
+       ===================================================== */
 
-    if (certificateStatus === "VALID") {
+    if (
+        certificateStatus === "VALID"
+    ) {
 
         icon.className =
             "verification-icon valid";
 
+
         icon.innerHTML =
             '<i class="fas fa-circle-check"></i>';
 
+
         title.textContent =
             "Certificate Verified";
+
 
         description.textContent =
             "This certificate has been successfully verified against the BaseMate Student Management DB online verification records.";
 
     }
 
-    /*
-       REVOKED CERTIFICATE
-    */
 
-    else if (certificateStatus === "REVOKED") {
+    /* =====================================================
+       REVOKED CERTIFICATE
+       ===================================================== */
+
+    else if (
+        certificateStatus === "REVOKED"
+    ) {
 
         icon.className =
             "verification-icon invalid";
 
+
         icon.innerHTML =
             '<i class="fas fa-circle-xmark"></i>';
 
+
         title.textContent =
             "Certificate Revoked";
+
 
         description.textContent =
             "This certificate exists in the BaseMate verification database, but its current status is REVOKED. Please contact Mishita Computers Centre for clarification.";
 
     }
 
-    /*
+
+    /* =====================================================
        OTHER / UNKNOWN STATUS
-    */
+       ===================================================== */
 
     else {
 
         icon.className =
             "verification-icon checking";
 
+
         icon.innerHTML =
             '<i class="fas fa-circle-question"></i>';
 
+
         title.textContent =
             "Certificate Found";
+
 
         description.textContent =
             "The certificate record was found in the BaseMate verification database.";
@@ -1232,9 +1317,9 @@ function displayCertificate(token, certificate) {
     }
 
 
-    /* -----------------------------------------------
-       Fill certificate information
-       ----------------------------------------------- */
+    /* =====================================================
+       FILL CERTIFICATE INFORMATION
+       ===================================================== */
 
     document.getElementById(
         "certificateNumber"
@@ -1281,36 +1366,46 @@ function displayCertificate(token, certificate) {
             "certificateStatus"
         );
 
+
     statusElement.textContent =
         certificateStatus || "—";
 
 
-    /*
-       Status appearance
-    */
+    /* =====================================================
+       STATUS APPEARANCE
+       ===================================================== */
 
-    if (certificateStatus === "VALID") {
+    if (
+        certificateStatus === "VALID"
+    ) {
 
         statusElement.style.color =
             "#16803c";
 
+
         statusElement.style.fontWeight =
             "bold";
 
     }
-    else if (certificateStatus === "REVOKED") {
+
+    else if (
+        certificateStatus === "REVOKED"
+    ) {
 
         statusElement.style.color =
             "#c62828";
 
+
         statusElement.style.fontWeight =
             "bold";
 
     }
+
     else {
 
         statusElement.style.color =
             "#444";
+
 
         statusElement.style.fontWeight =
             "bold";
@@ -1326,6 +1421,7 @@ function displayCertificate(token, certificate) {
         "verificationToken"
     ).textContent =
         token;
+
 
     document.getElementById(
         "verificationReference"
@@ -1346,15 +1442,18 @@ function showNotFound(token) {
             "verificationIcon"
         );
 
+
     const title =
         document.getElementById(
             "statusTitle"
         );
 
+
     const description =
         document.getElementById(
             "statusDescription"
         );
+
 
     const details =
         document.getElementById(
@@ -1365,22 +1464,28 @@ function showNotFound(token) {
     icon.className =
         "verification-icon not-found";
 
+
     icon.innerHTML =
         '<i class="fas fa-circle-exclamation"></i>';
+
 
     title.textContent =
         "Certificate Not Found";
 
+
     description.textContent =
         "No certificate matching this verification reference could be found in the BaseMate online verification database. Please check the reference and try again.";
 
+
     details.style.display =
         "none";
+
 
     document.getElementById(
         "verificationToken"
     ).textContent =
         token;
+
 
     document.getElementById(
         "verificationReference"
@@ -1401,10 +1506,12 @@ function showVerificationError() {
             "verificationIcon"
         );
 
+
     const title =
         document.getElementById(
             "statusTitle"
         );
+
 
     const description =
         document.getElementById(
@@ -1415,14 +1522,18 @@ function showVerificationError() {
     icon.className =
         "verification-icon invalid";
 
+
     icon.innerHTML =
         '<i class="fas fa-triangle-exclamation"></i>';
+
 
     title.textContent =
         "Verification Service Unavailable";
 
+
     description.textContent =
         "We were unable to complete the online certificate verification at this time. Please check your internet connection and try again later.";
+
 
     document.getElementById(
         "certificateDetails"
@@ -1443,10 +1554,12 @@ function showNoToken() {
             "verificationIcon"
         );
 
+
     const title =
         document.getElementById(
             "statusTitle"
         );
+
 
     const description =
         document.getElementById(
@@ -1457,11 +1570,14 @@ function showNoToken() {
     icon.className =
         "verification-icon not-found";
 
+
     icon.innerHTML =
         '<i class="fas fa-qrcode"></i>';
 
+
     title.textContent =
         "Certificate Verification";
+
 
     description.textContent =
         "Scan the QR code on a BaseMate certificate or enter the verification reference manually below.";
@@ -1483,10 +1599,14 @@ function formatDate(dateValue) {
 
 
     const date =
-        new Date(dateValue + "T00:00:00");
+        new Date(
+            dateValue + "T00:00:00"
+        );
 
 
-    if (isNaN(date.getTime())) {
+    if (
+        isNaN(date.getTime())
+    ) {
 
         return dateValue;
 
@@ -1497,7 +1617,9 @@ function formatDate(dateValue) {
         "en-GB",
         {
             day: "2-digit",
+
             month: "short",
+
             year: "numeric"
         }
     );
@@ -1516,11 +1638,14 @@ function manualVerify() {
             "manualToken"
         );
 
+
     const token =
         input.value.trim();
 
 
-    if (token === "") {
+    if (
+        token === ""
+    ) {
 
         input.focus();
 
@@ -1531,6 +1656,7 @@ function manualVerify() {
 
     const baseURL =
         window.location.pathname;
+
 
     const verificationURL =
         baseURL +
@@ -1554,7 +1680,8 @@ document.addEventListener(
 
         if (
             event.key === "Enter" &&
-            document.activeElement.id === "manualToken"
+            document.activeElement.id ===
+            "manualToken"
         ) {
 
             manualVerify();
@@ -1566,5 +1693,7 @@ document.addEventListener(
 
 </script>
 
+
 </body>
+
 </html>
