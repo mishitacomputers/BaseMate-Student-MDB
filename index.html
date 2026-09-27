@@ -42,15 +42,40 @@
         outline: none !important;
         margin-left: -15px !important;
     }
+
+
+    /* =====================================================
+       ONLINE STUDENT ADMISSION BUTTON
+       ===================================================== */
+
+    .online-admission-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 16px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        color: #ffffff;
+        background: #0066cc;
+        border: 1px solid #00ff99;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .online-admission-link:hover {
+        background: #00ff99;
+        color: #003366;
+        transform: translateY(-2px);
+    }
+
 </style>
 </head>
 
 <body>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
 <!-- =========================================================
      HEADER
 ========================================================= -->
@@ -557,6 +582,23 @@
                 data-tab="services">
             Other Services
         </button>
+
+
+        <!-- =================================================
+             ONLINE STUDENT ADMISSION
+             Opens Google Form in a new browser tab.
+        ================================================== -->
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScDc39HwnsEAMTRkAjIwBPupEvNkzBRABBSoWago6JSehYqDg/viewform?usp=dialog"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="online-admission-link">
+
+            <i class="fas fa-user-graduate"></i>
+
+            Online Student Admission
+
+        </a>
 
     </div>
 
@@ -1557,9 +1599,9 @@
         </h3>
 
         <p>
-            If any part of this Agreement is found invalid
-            or unenforceable, the remaining provisions will
-            remain in full force and effect.
+            If any part of this Agreement is found invalid or
+            unenforceable, the remaining provisions will remain
+            in full force and effect.
         </p>
 
 
