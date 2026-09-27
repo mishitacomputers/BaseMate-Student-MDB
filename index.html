@@ -42,6 +42,71 @@
             outline: none !important;
             margin-left: -15px !important;
         }
+/* =====================================================
+   ONLINE STUDENT ADMISSION BUTTON
+   ===================================================== */
+
+.online-admission-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 16px 35px;
+    margin: 20px auto;
+
+    background: linear-gradient(135deg, #0056b3, #003366);
+    color: #ffffff !important;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.15em;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    text-decoration: none !important;
+    text-align: center;
+
+    border: 3px solid #ffffff;
+    border-radius: 12px;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+
+    transition: all 0.3s ease;
+}
+
+/* Button icon */
+.online-admission-btn i {
+    font-size: 1.4em;
+    color: #ffeb3b;
+}
+
+/* Hover effect */
+.online-admission-btn:hover {
+    background: linear-gradient(135deg, #ff7e5f, #e65100);
+    color: #ffffff !important;
+
+    transform: translateY(-4px) scale(1.04);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Keyboard focus */
+.online-admission-btn:focus-visible {
+    outline: 4px solid #ffeb3b;
+    outline-offset: 4px;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+    .online-admission-btn {
+        padding: 14px 20px;
+        font-size: 1em;
+        width: auto;
+        max-width: 90%;
+        box-sizing: border-box;
+    }
+}
+        
     </style>
 </head>
 
@@ -478,20 +543,26 @@
          ONLINE STUDENT ADMISSION
     ====================================================== -->
 
-    <div style="text-align: center; margin: 20px 0;">
+<!-- =====================================================
+     ONLINE STUDENT ADMISSION
+====================================================== -->
 
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScDc39HwnsEAMTRkAjIwBPupEvNkzBRABBSoWago6JSehYqDg/viewform?usp=dialog"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="online-admission-btn">
+<div style="text-align: center; margin: 25px 0;">
 
-            <i class="fas fa-user-graduate"></i>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScDc39HwnsEAMTRkAjIwBPupEvNkzBRABBSoWago6JSehYqDg/viewform?usp=dialog"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="online-admission-btn">
 
-            Online Student Admission
+        <i class="fas fa-user-graduate"></i>
 
-        </a>
+        <span>ONLINE STUDENT ADMISSION</span>
 
-    </div>
+        <i class="fas fa-arrow-right"></i>
+
+    </a>
+
+</div>
 
 
     <!-- =====================================================
